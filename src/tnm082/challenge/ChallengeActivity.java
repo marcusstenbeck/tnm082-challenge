@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class ChallengeActivity extends Activity {
-    /** Called when the activity is first created. */
+    /** Ropad när den aktivitet är först skapad. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
