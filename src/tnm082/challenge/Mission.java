@@ -37,6 +37,12 @@ public class Mission {
 		desc = m.desc;
 	}
 	
+	public Mission(String n, String d, int i) {
+		name = n;
+		desc = d;
+		id = i;
+	}
+	
 	public int getId() {
 		return id;
 	}
