@@ -16,7 +16,7 @@ public class Group {
 	 */
 	
 	private String name;
-	private List userList;
+	private List<Users> userList;
 	
 	public String getName() {
 		return name;

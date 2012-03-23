@@ -16,7 +16,16 @@ public class Mission {
 	
 	private String name;
 	private String desc;
+	private int Id;
 	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
 	public String getName() {
 		name = "uberuppdraget";
 		return name;
