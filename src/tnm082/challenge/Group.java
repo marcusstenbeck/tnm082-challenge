@@ -1,4 +1,5 @@
 package tnm082.challenge;
+
 import java.util.List;
 
 public class Group {
