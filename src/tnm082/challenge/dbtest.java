@@ -1,107 +1,5 @@
 package tnm082.challenge;
-/*
-//Jag tänkte med detta exempel visa hur man ansluter till, 
-//hämtar data, tar bort data och skriver lite data till en databas via Java.
-//Det som jag visar här är väldigt grundläggade och jag rekomenderar
-//att ni efter att ha fått detta att fungera tittar vidare på t.ex PreparedStatement
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class dbtest
-{
-	public static void go()
-	{
-		//en connection class för att hålla reda på vår connection till databasen.
-		Connection conn=null;
-		//ett statement behövs för att ställa frågan till databasen.
-		Statement stmnt=null;
-		//ett resultset behövs för att hålla svaret vi får från databasen.
-		ResultSet rs=null;
-		//vårt användarnamn för databasen.
-		String username="142381_mgms345";
-		//vårt lösenord för databasen.
-		String password="YRu87Jki32";
-		//flera exceptions kommer att kunna kastas under databas kommunikationen
-		try
-		{
-			//Ladda databas drivrutinen, kolla i dokumentationen
-			//om exakt vad den heter och se till att den finns i din
-			//classpath. I detta exempel ansluter jag till en mysql databas
-			//och använder därför deras drivrutin.
-			Class.forName("com.mysql.jdbc.Driver");
-			//för att skapa och öppna en connection så måste vi först specificera
-			//vilket protokoll vi vill använda och sedan vilken typ av drivrutin,
-			//i detta fall vill vi ansluta via jdbc och till en mysql databas, se
-			//dokumentationen för din databas för exakt information om vad man ska
-			//skriva här. Efter första delen följer adressen till servern där databasen
-			//finns och sist kommer databas namnet, i detta fall test.
-			//Sist skickar man med användarnamn och lösenord för databasen.
-			conn=DriverManager.getConnection("jdbc:mysql://xkwde10-142381.mysql.binero.se/142381-xkwde10",username,password);
-			//skapa ett statement så vi kan ställa frågor till databasen.
-			stmnt=conn.createStatement();
-			//Vi börjar med att försöka lägga till något i databasen, om det lyckas så 
-			//retunerar executeUpdate antalet rader som har blivit updaterade.
-			if(stmnt.executeUpdate("INSERT INTO member(id,fname,lname) VALUES(4545,'Viktor','Anka')")!=1)
-			{
-				System.out.println("Database Error, no row was inserted");
-			}
-			else
-			{
-				System.out.println("Success, row inserted");
-			}
-			//sen försöker vi hämta data från databasen
-			rs=stmnt.executeQuery("SELECT * FROM CITY");
-			//så länge vi kan flytta fram i vårt resultset så finns det fler rader
-			while(rs.next())
-			{
-				//här hämtar vi ut värdet från kolumnen id på nuvarande rad.
-				System.out.println("Member ID: "+rs.getString("CITY_ID"));
-				//här hämtar vi ut värdet från kolumn nr 2 (fnamn i detta fall) och sedan
-				//värdet från kolumn lname. Tänk på att när man använder kolumn index så är
-				//det 1 baserat, dvs första kolumnen har id 1.
-				System.out.println("Name: "+rs.getString(2)+" "+rs.getString("CITY_NAME"));
-			}
-			//Och sen tar vi bort raden vi just skrev till databasen
-			if(stmnt.executeUpdate("DELETE FROM member WHERE id=4545")!=1)
-			{
-				System.out.println("Database Error, no row was deleted");
-			}
-			else
-			{
-				System.out.println("Success, row deleted");
-			}
-		}
-		catch(ClassNotFoundException cnfe)
-		{
-			cnfe.printStackTrace(System.err);
-		}
-		catch(SQLException sql)
-		{
-			sql.printStackTrace(System.err);
-		}
-		finally
-		{
-			//Vi vill att anslutningen alltid ska stängas och sätter därför
-			//denna kod i ett finally block som alltid körs oavsätt om ett
-			//exception inträffar. Tyvärr kan ett exception även inträffa
-			//när vi stänger så vi måste fånga det också...
-			try
-			{
-				conn.close();
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace(System.err);
-			}
-		}
-	}
-}
-
-*/
 
 
 
@@ -129,6 +27,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 public class dbtest extends ListActivity{
+	/**
+	 * Kodad av: Rikard / HC
+	 * Task nr:2
+	 * Datum: 2012-03-23
+	 * Estimerad tid: 4h
+	 * Faktisk tid: 6h
+	 * Testad/av: Ja/Nej / namn
+	 * Utcheckad/av: Ja /	Rikard / HC
+	 * @param namn - beskrivning.
+	 * @return namn - beskrivning.
+
+	 */
 	
 	JSONArray jArray;
 	String result = null;
@@ -185,7 +95,7 @@ public class dbtest extends ListActivity{
 	         }
 	      }
 	      catch(JSONException e1){
-	    	  Toast.makeText(getBaseContext(), "No City Found" ,Toast.LENGTH_LONG).show();
+	    	  Toast.makeText(getBaseContext(), "No Mission Found" ,Toast.LENGTH_LONG).show();
 	      } catch (ParseException e1) {
 				e1.printStackTrace();
 		}
