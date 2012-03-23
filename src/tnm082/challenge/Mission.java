@@ -28,6 +28,13 @@ public class Mission {
 		desc = Mdesc;	
 	}
 	
+	public Mission(Mission m)
+	{
+		id = m.id;
+		name = m.name;
+		desc = m.desc;
+	}
+	
 	public int getId() {
 		return id;
 	}
