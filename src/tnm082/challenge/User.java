@@ -71,7 +71,7 @@ public class User {
 			if(acceptedMissions.get(i).getId() == the_mission.getId())
 			{
 				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
-				completedMissions.add(i, the_mission);
+				completedMissions.add(completedMissions.size(), the_mission);
 			}
 		}
 		 
@@ -91,7 +91,7 @@ public class User {
 	}
 	public void acceptMission(Mission the_mission)
 	{
-		acceptedMissions.add(the_mission);
+		acceptedMissions.add(acceptedMissions.size(), the_mission);
 	
 	}
 	public void cancelMission(Mission the_mission)
