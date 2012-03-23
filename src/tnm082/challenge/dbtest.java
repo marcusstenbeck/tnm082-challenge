@@ -45,13 +45,12 @@ public class dbtest extends ListActivity{
 	InputStream is = null;
 	StringBuilder sb=null;
 
-	//@Override
+
 	public void go() {
-	//super.onCreate(savedInstanceState);
-	//setContentView(R.layout.main);
 
 	 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-	//http post
+	// Skapar en http post som initierar en php-fil på servern.
+	// Php-filen gör queryn och skriver ut den hämtade datan i JSON
 	try{
 	     HttpClient httpclient = new DefaultHttpClient();
 	     HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-Mission.php");
@@ -62,7 +61,7 @@ public class dbtest extends ListActivity{
 	     }catch(Exception e){
 	         Log.e("log_tag", "Error in http connection"+e.toString());
 	    }
-	//convert response to string
+	// Läser in data från php-filen och sparar som JSON
 	try{
 	      BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
 	       sb = new StringBuilder();
@@ -77,7 +76,7 @@ public class dbtest extends ListActivity{
 	        }catch(Exception e){
 	              Log.e("log_tag", "Error converting result "+e.toString());
 	        }
-	//parsing data
+	// Parsar den inlästa datan och sparar
 	int ct_id;
 	String ct_name, ct_description;
 	try{

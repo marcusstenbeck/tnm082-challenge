@@ -3,7 +3,7 @@ package tnm082.challenge;
 import junit.framework.TestCase;
 
 public class UserTest extends TestCase {
-
+	
 	public void testGetName() {
 		User u = new User();
 		
