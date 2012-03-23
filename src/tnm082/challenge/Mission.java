@@ -14,13 +14,25 @@ public class Mission {
 
 	 */
 	
-	private String name;
-	private String desc;
+	private String name, desc;
 	private int id;
 	
 	public Mission() {
 		// Sätt -1 som standard
 		this.id = -1;
+	}
+	
+	public Mission(int Mid, String Mname, String Mdesc) {
+		id = Mid;
+		name = Mname;
+		desc = Mdesc;	
+	}
+	
+	public Mission(Mission m)
+	{
+		id = m.id;
+		name = m.name;
+		desc = m.desc;
 	}
 	
 	public int getId() {
