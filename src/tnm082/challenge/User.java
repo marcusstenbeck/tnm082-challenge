@@ -30,6 +30,19 @@ public class User {
 		// En lista över uppdrag som användaren har klarat
 		this.completedMissions = new ArrayList<Mission>();
 	}
+	public User(String new_name, String new_pass, List<Mission> new_accepted, List<Mission> new_completed) {
+		this.name = new_name;
+		this.pass = new_pass;
+		
+		for(int i = 0; i < new_accepted.size();i++)
+		{
+			this.acceptedMissions.add(i, new_accepted.get(i));
+		}
+		for(int i = 0; i < new_completed.size();i++)
+		{
+			this.completedMissions.add(i, new_completed.get(i));
+		}
+	}
 	
 	public String getName() {
 		return name;
@@ -58,7 +71,7 @@ public class User {
 			if(acceptedMissions.get(i).getId() == the_mission.getId())
 			{
 				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
-				completedMissions.add(the_mission);
+				completedMissions.add(completedMissions.size(), the_mission);
 			}
 		}
 		 
@@ -78,7 +91,7 @@ public class User {
 	}
 	public void acceptMission(Mission the_mission)
 	{
-		acceptedMissions.add(the_mission);
+		acceptedMissions.add(acceptedMissions.size(), the_mission);
 	
 	}
 	public void cancelMission(Mission the_mission)
