@@ -33,15 +33,15 @@ public class Group {
 		return userList;
 	}
 	
-	public void addUser(Users a){
+	public void addUser(User a){
 		userList.add(a);	
 	}
 	
-	public void removeUser(Users a){
+	public void removeUser(User a){
 		userList.remove(a);	
 	}
 	
-	public Users getUser(int id){
+	public User getUser(int id){
 		for(int i = 0; i<userList.size(); i++){
 			if(id == userList.get(i).getId()){
 				return userList.get(i);
