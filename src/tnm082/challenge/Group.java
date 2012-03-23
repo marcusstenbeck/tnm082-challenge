@@ -2,21 +2,22 @@ package tnm082.challenge;
 
 import java.util.*;
 
-public class Group {
-	/**
-	 * Kodad av: Magnus S/Markus O
-	 * Task nr:15
-	 * Datum: 2012-03-22
-	 * Estimerad tid: 2h
-	 * Faktisk tid: xh
-	 * Testad/av: Ja/Nej / namn
-	 * Utcheckad/av: Ja/Nej / namn
-	 * @param namn - beskrivning.
-	 * @return namn - beskrivning.
+/**
+ * Kodad av: Magnus S/Markus O
+ * Task nr:15
+ * Datum: 2012-03-22
+ * Estimerad tid: 2h
+ * Faktisk tid: xh
+ * Testad/av: Ja/Nej / namn
+ * Utcheckad/av: Ja/Nej / namn
+ * @param namn - beskrivning.
+ * @return namn - beskrivning.
 
-	 */
-	
+ */
+
+public class Group {
 	private String name;
+
 	protected List<User> userList;
 	
 	public Group()
@@ -24,7 +25,7 @@ public class Group {
 		name = "Übergruppen";
 		userList = new Vector<User>();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -34,7 +35,6 @@ public class Group {
 	}
 	
 	public List getUserList() {
-		 
 		return userList;
 	}
 	
