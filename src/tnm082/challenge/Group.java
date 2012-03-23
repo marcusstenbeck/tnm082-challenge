@@ -17,7 +17,7 @@ public class Group {
 	 */
 	
 	private String name;
-	private List<Users> userList;
+	private List<User> userList;
 	
 	public String getName() {
 		name = "ubergruppen";
