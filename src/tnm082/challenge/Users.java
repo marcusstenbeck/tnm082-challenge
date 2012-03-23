@@ -1,7 +1,8 @@
 package tnm082.challenge;
 
-//import Mission;
+//import Mission.jaca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +19,17 @@ import java.util.List;
 public class Users {
 	private String name;
 	private String pass;
-//	private List<Mission> do_it;
-//	private List<Mission> done_it;
+	private List<Mission> do_it;
+	private List<Mission> done_it;
+	
+	public Users() {
+		name = "klas";
+		pass = "kalas";
+		do_it = new ArrayList<Mission>();
+		done_it = new ArrayList<Mission>();
+		
+		
+	}
 	
 	public String getName() {
 		return name;
@@ -36,31 +46,38 @@ public class Users {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	/*public String getId() {
-		return hämta id från databasen;
-	}*/
+	public int getId() {
+		//return hämta id från databasen;
+		return 0;
+	}
 
-/*	public void doneIt(Mission the_mission)
+	public void doneIt(Mission the_mission)
 	{
-		done_it.add(the_mission);
-		for(Mission m : do_it)
+		//b blir true om the mission har tagits bort ur do_it
+		boolean b = do_it.remove(the_mission);
+		
+		if(b)
+			done_it.add(the_mission);
+		
+		/*for(Mission m : do_it)
 		{
-			if(m==the_mission)
-				//do_it.remove(the_mission.getID()); ska tabort uppdraget från "att göra listan" med hjälp av id som hämtas från databasen
-		}
+			if(m.getId()==the_mission.getId())
+				do_it.remove(m);//do_it.remove(the_mission.getID()); ska tabort uppdraget från "att göra listan" med hjälp av id som hämtas från databasen
+		}*/
 	
-	}*/
-	/*public void add_do(Mission the_mission)
+	}
+	public void add_do(Mission the_mission)
 	{
 		do_it.add(the_mission);
 	
-	}*/
-	/*public void remove_do(Mission the_mission)
+	}
+	public void remove_do(Mission the_mission)
 	{
-		for(Mission m : do_it)
+		do_it.remove(the_mission);
+		/*for(Mission m : do_it)
 		{
-			if(m==the_mission)
-				//do_it.remove(the_mission.getID()); ska tabort uppdraget från "att göra listan" med hjälp av id som hämtas från databasen
-		}
-	}*/
+			if(m.getId()==the_mission.getId())
+				do_it.remove(m);
+		}*/
+	}
 }
