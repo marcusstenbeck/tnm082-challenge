@@ -14,11 +14,40 @@ public class Mission {
 
 	 */
 	
-	private String name;
-	private String desc;
+	private String name, desc;
+	private int id;
 	
+	public Mission() {
+		// Sätt -1 som standard
+		this.id = -1;
+	}
+	
+	public Mission(int Mid, String Mname, String Mdesc) {
+		id = Mid;
+		name = Mname;
+		desc = Mdesc;	
+	}
+	
+	public Mission(Mission m)
+	{
+		id = m.id;
+		name = m.name;
+		desc = m.desc;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
-		name = "uberuppdraget";
+		// Om man inte har satt så returnera en standard
+		if(name == null)
+			name = "No name set.";
+		
 		return name;
 	}
 	
@@ -27,7 +56,10 @@ public class Mission {
 	}
 	
 	public String getDesc() {
-		desc = "sjukt jävla svårt uppdrag";
+		// Om man inte har satt så returnera en standard
+		if(desc == null)
+			desc = "No description set.";
+		
 		return desc;
 	}
 	
