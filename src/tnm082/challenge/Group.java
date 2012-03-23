@@ -3,22 +3,29 @@ package tnm082.challenge;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group {
-	/**
-	 * Kodad av: Magnus S/Markus O
-	 * Task nr:15
-	 * Datum: 2012-03-22
-	 * Estimerad tid: 2h
-	 * Faktisk tid: xh
-	 * Testad/av: Ja/Nej / namn
-	 * Utcheckad/av: Ja/Nej / namn
-	 * @param namn - beskrivning.
-	 * @return namn - beskrivning.
+/**
+ * Kodad av: Magnus S/Markus O
+ * Task nr:15
+ * Datum: 2012-03-22
+ * Estimerad tid: 2h
+ * Faktisk tid: xh
+ * Testad/av: Ja/Nej / namn
+ * Utcheckad/av: Ja/Nej / namn
+ * @param namn - beskrivning.
+ * @return namn - beskrivning.
 
-	 */
-	
+ */
+
+public class Group {
 	private String name;
 	private List<User> userList;
+	
+	public Group() {
+		this.name = "Gruppnamn";
+		
+		//Lista över användare
+		this.userList = new ArrayList<User>();
+}
 	
 	public String getName() {
 		name = "ubergruppen";
@@ -30,7 +37,6 @@ public class Group {
 	}
 	
 	public List getUserList() {
-		 
 		return userList;
 	}
 	
