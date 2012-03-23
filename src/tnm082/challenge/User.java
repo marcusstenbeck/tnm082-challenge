@@ -16,19 +16,21 @@ import java.util.List;
     
     */
 
-public class Users {
+public class User {
 	private String name;
 	private String pass;
 	private List<Mission> do_it;
 	private List<Mission> done_it;
 	
-	public Users() {
-		name = "klas";
-		pass = "kalas";
-		do_it = new ArrayList<Mission>();
-		done_it = new ArrayList<Mission>();
+	public User() {
+		this.name = "klas";
+		this.pass = "kalas";
 		
+		// En lista över uppdrag som ska utföras
+		this.do_it = new ArrayList<Mission>();
 		
+		// En lista över uppdrag som användaren har klarat
+		this.done_it = new ArrayList<Mission>();
 	}
 	
 	public String getName() {
