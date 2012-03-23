@@ -18,6 +18,12 @@ public class Mission {
 	private String desc;
 	private int Id;
 	
+	public Mission(String n, String d, int i) {
+		name = n;
+		desc = d;
+		Id = i;
+	}
+	
 	public int getId() {
 		return Id;
 	}
