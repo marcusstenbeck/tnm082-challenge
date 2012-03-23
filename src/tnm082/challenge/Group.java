@@ -1,7 +1,6 @@
 package tnm082.challenge;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Group {
 	/**
@@ -18,10 +17,15 @@ public class Group {
 	 */
 	
 	private String name;
-	private List<User> userList;
+	protected List<User> userList;
+	
+	public Group()
+	{
+		name = "Übergruppen";
+		userList = new Vector<User>();
+	}
 	
 	public String getName() {
-		name = "ubergruppen";
 		return name;
 	}
 	
@@ -43,16 +47,17 @@ public class Group {
 	}
 	
 	public User getUser(int id){
-		for(int i = 0; i<userList.size(); i++){
-			if(id == userList.get(i).getId()){
-				return userList.get(i);
+		if( userList != null && userList.size() > 0 )
+		{
+			for(int i = 0; i<userList.size(); i++)
+			{
+				if(id == userList.get(i).getId())
+				{
+					return userList.get(i);
+				}
 			}
-			
 		}
 		return null;
 		
-	}
-	public void setUserList(List userList) {
-		this.userList = userList;
 	}
 }
