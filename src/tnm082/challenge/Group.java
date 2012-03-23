@@ -1,4 +1,5 @@
 package tnm082.challenge;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
@@ -19,6 +20,7 @@ public class Group {
 	private List<Users> userList;
 	
 	public String getName() {
+		name = "ubergruppen";
 		return name;
 	}
 	
@@ -27,6 +29,7 @@ public class Group {
 	}
 	
 	public List getUserList() {
+		//dummy som hämtar dummy-users from users?
 		return userList;
 	}
 	
