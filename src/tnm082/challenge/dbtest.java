@@ -37,19 +37,21 @@ public class dbtest extends ListActivity{
 
 	 */
 	
-	JSONArray jArray;
-	String result = null;
-	InputStream is = null;
-	StringBuilder sb=null;
+
 
 
 	@SuppressWarnings("null")
-	public void getMissions() 
+	public List getMissions() 
 	{
-	
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;		
+		
 		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		// Skapar en http post som initierar en php-fil på servern.
 		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		 Log.d("Skapa", "Skapa");
 		try
 		{
 		     HttpClient httpclient = new DefaultHttpClient();
@@ -63,6 +65,7 @@ public class dbtest extends ListActivity{
 			Log.e("log_tag", "Error in http connection"+e.toString());
 		}
 		// Läser in data från php-filen och sparar som JSON
+		Log.d("Läs", "Läs");
 		try
 		{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
@@ -81,32 +84,29 @@ public class dbtest extends ListActivity{
 			Log.e("log_tag", "Error converting result "+e.toString());
 		}
 		// Parsar den inlästa datan och sparar
+		Log.d("Resultat", result);
 		int m_id;
 		String m_name, m_desc;
-		List<Mission> Mlist = new ArrayList();
+		List<Mission> Mlist = new ArrayList<Mission>();
 		Mission Mtmp;
-		
+		Log.d("Parse", "Parse");
 		try
 		{
+			Log.d("Parse", "0");
 			jArray = new JSONArray(result);
+			Log.d("Parse", "1");
 			JSONObject json_data=null;
+			Log.d("Parse", "2");
 			for(int i = 0; i < jArray.length(); i++){
-				Log.d("herp", "derp");
+				Log.d("Parse", "3");
 				json_data = jArray.getJSONObject(i);
+				Log.d("Parse", "4");
 				m_id = json_data.getInt("Mission_ID");
 				m_name = json_data.getString("Mission_name");
 				m_desc = json_data.getString("Mission_description");
-				Log.d("shoop", "dawhoop");
-//				Mtmp = new Mission(m_id, m_name, m_desc);
-				Mtmp.setName(m_name);
-//				Mtmp.setId(m_id);
-//				Mtmp.setDesc(m_desc);
-				Log.d("test", "test");
-//				Mlist.add(Mtmp);
-
-				Log.d("ID: ", Integer.toString(m_id));
-				Log.d("Namn: ", (String)(m_name));
-				Log.d("Beskrivning: ", (String)(m_desc));
+				Mtmp = new Mission(m_id, m_name, m_desc);
+				Mlist.add(i,Mtmp);
+				
 			}
 		}catch(JSONException e1)
 		{
@@ -115,6 +115,7 @@ public class dbtest extends ListActivity{
 		{
 			e1.printStackTrace();
 		}
+		return Mlist;
 	}
 	
 }
