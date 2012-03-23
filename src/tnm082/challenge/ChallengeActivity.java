@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.util.Log;
 
 public class ChallengeActivity extends ListActivity {
     /** Ropad när den aktivitet är först skapad. */
@@ -17,5 +18,10 @@ public class ChallengeActivity extends ListActivity {
         
         setListAdapter(ArrayAdapter.createFromResource(getApplicationContext(),
                 R.array.tut_titles, R.layout.list_item));
+        setContentView(R.layout.main);
+        Log.d("koppla", "upp mot fil");
+        dbtest aa = new dbtest();
+        aa.go();
+        Log.d("uppkoppling", "klar");
     }
 }
