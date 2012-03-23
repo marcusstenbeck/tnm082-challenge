@@ -52,19 +52,17 @@ public class User {
 	}
 
 	public void completeMission(Mission the_mission)
-	{
-		//b blir true om the mission har tagits bort ur acceptedMissions
-		boolean b = acceptedMissions.remove(the_mission);
+	{			
 		
-		if(b)
-			completedMissions.add(the_mission);
-		
-		/*for(Mission m : acceptedMissions)
+		for(Mission m : acceptedMissions)
 		{
 			if(m.getId()==the_mission.getId())
-				acceptedMissions.remove(m);//acceptedMissions.remove(the_mission.getID()); ska tabort uppdraget från "att göra listan" med hjälp av id som hämtas från databasen
+			{
+				acceptedMissions.remove(m);//kan bli fel isf ta fram indexet och ta bort det indexet bara.
+				completedMissions.add(the_mission);
+			}
 		}
-		 */
+		 
 	}
 	public void acceptMission(Mission the_mission)
 	{
