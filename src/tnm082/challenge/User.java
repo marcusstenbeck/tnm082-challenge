@@ -63,6 +63,17 @@ public class User {
 		}
 		 
 	}
+	public boolean hasAcceptedMission(Mission the_mission)
+	{
+		for(Mission m : acceptedMissions)
+		{
+			if(m.getId()==the_mission.getId())
+				return true;
+		}
+		return false;
+		
+		
+	}
 	public void acceptMission(Mission the_mission)
 	{
 		acceptedMissions.add(the_mission);
