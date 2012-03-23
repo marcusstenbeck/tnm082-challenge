@@ -53,11 +53,11 @@ public class User {
 
 	public void completeMission(Mission the_mission)
 	{				
-		for(Mission m : acceptedMissions)
+		for(int i = 0; i < acceptedMissions.size();i++)
 		{
-			if(m.getId()==the_mission.getId())
+			if(acceptedMissions.get(i).getId() == the_mission.getId())
 			{
-				acceptedMissions.remove(m); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
+				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
 				completedMissions.add(the_mission);
 			}
 		}
@@ -65,10 +65,12 @@ public class User {
 	}
 	public boolean hasAcceptedMission(Mission the_mission)
 	{
-		for(Mission m : acceptedMissions)
+		for(int i = 0; i < acceptedMissions.size();i++)
 		{
-			if(m.getId()==the_mission.getId())
+			if(acceptedMissions.get(i).getId() == the_mission.getId())
+			{
 				return true;
+			}
 		}
 		return false;
 		
@@ -81,10 +83,12 @@ public class User {
 	}
 	public void cancelMission(Mission the_mission)
 	{
-		for(Mission m : acceptedMissions)
+		for(int i = 0; i < acceptedMissions.size();i++)
 		{
-			if(m.getId()==the_mission.getId())
-				acceptedMissions.remove(m);
+			if(acceptedMissions.get(i).getId() == the_mission.getId())
+			{
+				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
+			}
 		}
 	}
 }
