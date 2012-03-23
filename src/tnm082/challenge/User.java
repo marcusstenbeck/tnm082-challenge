@@ -17,20 +17,18 @@ import java.util.List;
     */
 
 public class User {
-	private String name;
-	private String pass;
-	private List<Mission> do_it;
-	private List<Mission> done_it;
+	private String name, pass;
+	private List<Mission> acceptedMissions, completedMissions;
 	
 	public User() {
 		this.name = "klas";
 		this.pass = "kalas";
 		
 		// En lista över uppdrag som ska utföras
-		this.do_it = new ArrayList<Mission>();
+		this.acceptedMissions = new ArrayList<Mission>();
 		
 		// En lista över uppdrag som användaren har klarat
-		this.done_it = new ArrayList<Mission>();
+		this.completedMissions = new ArrayList<Mission>();
 	}
 	
 	public String getName() {
@@ -53,33 +51,32 @@ public class User {
 		return 0;
 	}
 
-	public void doneIt(Mission the_mission)
+	public void completeMission(Mission the_mission)
 	{
-		//b blir true om the mission har tagits bort ur do_it
-		boolean b = do_it.remove(the_mission);
+		//b blir true om the mission har tagits bort ur acceptedMissions
+		boolean b = acceptedMissions.remove(the_mission);
 		
 		if(b)
-			done_it.add(the_mission);
+			completedMissions.add(the_mission);
 		
-		/*for(Mission m : do_it)
+		/*for(Mission m : acceptedMissions)
 		{
 			if(m.getId()==the_mission.getId())
-				do_it.remove(m);//do_it.remove(the_mission.getID()); ska tabort uppdraget från "att göra listan" med hjälp av id som hämtas från databasen
-		}*/
+				acceptedMissions.remove(m);//acceptedMissions.remove(the_mission.getID()); ska tabort uppdraget från "att göra listan" med hjälp av id som hämtas från databasen
+		}
+		 */
+	}
+	public void acceptMission(Mission the_mission)
+	{
+		acceptedMissions.add(the_mission);
 	
 	}
-	public void add_do(Mission the_mission)
+	public void cancelMission(Mission the_mission)
 	{
-		do_it.add(the_mission);
-	
-	}
-	public void remove_do(Mission the_mission)
-	{
-		do_it.remove(the_mission);
-		/*for(Mission m : do_it)
+		for(Mission m : acceptedMissions)
 		{
 			if(m.getId()==the_mission.getId())
-				do_it.remove(m);
-		}*/
+				acceptedMissions.remove(m);
+		}
 	}
 }
