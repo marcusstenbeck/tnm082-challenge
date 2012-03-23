@@ -52,13 +52,12 @@ public class User {
 	}
 
 	public void completeMission(Mission the_mission)
-	{			
-		
+	{				
 		for(Mission m : acceptedMissions)
 		{
 			if(m.getId()==the_mission.getId())
 			{
-				acceptedMissions.remove(m);//kan bli fel isf ta fram indexet och ta bort det indexet bara.
+				acceptedMissions.remove(m); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
 				completedMissions.add(the_mission);
 			}
 		}

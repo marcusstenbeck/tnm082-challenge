@@ -47,15 +47,26 @@ public class UserTest extends TestCase {
 		assertNotNull(u.getId());
 	}
 
-	public void testDoneIt() {
+	public void completeMission() {
 		fail("Not yet implemented");
 	}
 
-	public void testAdd_do() {
-		fail("Not yet implemented");
+	public void acceptMission() {
+		/*
+		User u = new User();
+		
+		// Create mission
+		Mission m = new Mission();
+		
+		// Accept mission
+		u.acceptMission(m);
+		
+		// Check if mission exists in acceptedMissions list
+		//u.
+		 */
 	}
 
-	public void testRemove_do() {
+	public void cancelMission() {
 		fail("Not yet implemented");
 	}
 
