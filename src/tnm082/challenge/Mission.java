@@ -20,6 +20,8 @@ public class Mission {
 	public Mission() {
 		// Sätt -1 som standard
 		this.id = -1;
+		this.name = "no data";
+		this.desc = "no data";
 	}
 	
 	public Mission(int Mid, String Mname, String Mdesc) {
