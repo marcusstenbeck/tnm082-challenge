@@ -29,10 +29,28 @@ public class Group {
 	}
 	
 	public List getUserList() {
-		//dummy som hämtar dummy-users from users?
+		 
 		return userList;
 	}
 	
+	public void addUser(Users a){
+		userList.add(a);	
+	}
+	
+	public void removeUser(Users a){
+		userList.remove(a);	
+	}
+	
+	public Users getUser(int id){
+		for(int i = 0; i<userList.size(); i++){
+			if(id == userList.get(i).getId()){
+				return userList.get(i);
+			}
+			
+		}
+		return null;
+		
+	}
 	public void setUserList(List userList) {
 		this.userList = userList;
 	}
