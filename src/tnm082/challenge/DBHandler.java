@@ -242,6 +242,5 @@ public class DBHandler extends ListActivity{
 		}
 		return Glist;
 	}
-	
-	
+		
 }
