@@ -1,4 +1,4 @@
-package tnm082.challenge;
+package tnm082.challenge.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
