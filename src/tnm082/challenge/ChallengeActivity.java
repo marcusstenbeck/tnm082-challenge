@@ -32,8 +32,7 @@ public class ChallengeActivity extends Activity {
         
         
 		DBHandler db = new DBHandler();
-		List<Mission> Mlist = new ArrayList<Mission>();
-		Mlist = db.getMissions();
+		List<Mission> Mlist = db.getMissions();
 
 		text1.setText(Integer.toString(Mlist.get(0).getId()));
 		text2.setText(Mlist.get(0).getName());
