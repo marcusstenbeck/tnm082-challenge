@@ -18,11 +18,13 @@ import java.util.List;
 
 public class User {
 	private String name, pass;
+	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
 	
 	public User() {
 		this.name = "klas";
 		this.pass = "kalas";
+		this.id = 0;
 		
 		// En lista över uppdrag som ska utföras
 		this.acceptedMissions = new ArrayList<Mission>();
@@ -30,9 +32,16 @@ public class User {
 		// En lista över uppdrag som användaren har klarat
 		this.completedMissions = new ArrayList<Mission>();
 	}
-	public User(String new_name, String new_pass, List<Mission> new_accepted, List<Mission> new_completed) {
+	public User(String new_name, String new_pass,int new_id){
 		this.name = new_name;
 		this.pass = new_pass;
+		this.id = new_id;
+		
+	}
+	public User(String new_name, String new_pass,int new_id, List<Mission> new_accepted, List<Mission> new_completed) {
+		this.name = new_name;
+		this.pass = new_pass;
+		this.id = new_id;
 		
 		for(int i = 0; i < new_accepted.size();i++)
 		{
@@ -59,9 +68,11 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getId() {
-		//return hämta id från databasen;
-		return 0;
+		return this.id;
 	}
 
 	public void completeMission(Mission the_mission)
