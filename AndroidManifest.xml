@@ -8,6 +8,11 @@
     android:textSize="24dp"
     android:padding="6dp">
     
+    <!-- För att test ska fungera -->
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+    	android:targetPackage="tnm082.challenge"
+    	android:label="@string/app_name" />
+    
     <!-- Tillåter internetåtkomst i appen -->
     <uses-permission
         android:name="android.permission.GET_ACCOUNTS" />
@@ -60,6 +65,7 @@
         <activity
        		android:name=".TutViewerActivity" >
         </activity>
+        <uses-library android:name="android.test.runner"/>
     </application>
 	
     
