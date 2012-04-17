@@ -104,7 +104,144 @@ public class DBHandler extends ListActivity{
 		}
 		return Mlist;
 	}
-	
+
+	public List<User> getUsers() 
+	{
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;		
+		
+		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		// Skapar en http post som initierar en php-fil på servern.
+		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		try
+		{
+		     HttpClient httpclient = new DefaultHttpClient();
+		     HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-User.php");
+		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+		// Läser in data från php-filen och sparar som JSON
+		try
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+			sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+
+			String line="0";
+			while ((line = reader.readLine()) != null) 
+			{
+				sb.append(line + "\n");
+			}
+			is.close();
+			result=sb.toString();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error converting result "+e.toString());
+		}
+		// Parsar den inlästa datan och sparar
+		int u_id;
+		String u_name, u_pass;
+		List<User> Ulist = new ArrayList<User>();
+		User Utmp;
+		try
+		{
+			jArray = new JSONArray(result);
+			JSONObject json_data=null;
+			for(int i = 0; i < jArray.length(); i++){
+				json_data = jArray.getJSONObject(i);
+				Utmp = new User();
+				u_id = json_data.getInt("User_ID");
+				u_name = json_data.getString("User_name");
+				u_pass = json_data.getString("User_password");
+				Utmp.setName(u_name);
+				Utmp.setPass(u_pass);
+				Ulist.add(i,Utmp);
+				
+			}
+		}catch(JSONException e1)
+		{
+			Toast.makeText(getBaseContext(), "No User Found" ,Toast.LENGTH_LONG).show();
+		}catch (ParseException e1) 
+		{
+			e1.printStackTrace();
+		}
+		return Ulist;
+	}
+
+	public List<Group> getGroups() 
+	{
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;		
+		
+		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		// Skapar en http post som initierar en php-fil på servern.
+		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		try
+		{
+		     HttpClient httpclient = new DefaultHttpClient();
+		     HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-Group.php");
+		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+		// Läser in data från php-filen och sparar som JSON
+		try
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+			sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+
+			String line="0";
+			while ((line = reader.readLine()) != null) 
+			{
+				sb.append(line + "\n");
+			}
+			is.close();
+			result=sb.toString();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error converting result "+e.toString());
+		}
+		// Parsar den inlästa datan och sparar
+		int g_id;
+		String g_name;
+		List<Group> Glist = new ArrayList<Group>();
+		Group Gtmp;
+		try
+		{
+			jArray = new JSONArray(result);
+			JSONObject json_data=null;
+			for(int i = 0; i < jArray.length(); i++){
+				json_data = jArray.getJSONObject(i);
+				Gtmp = new Group();
+				g_id = json_data.getInt("Group_ID");
+				g_name = json_data.getString("Group_name");
+				Gtmp.setName(g_name);
+				Glist.add(i,Gtmp);
+				
+			}
+		}catch(JSONException e1)
+		{
+			Toast.makeText(getBaseContext(), "No User Found" ,Toast.LENGTH_LONG).show();
+		}catch (ParseException e1) 
+		{
+			e1.printStackTrace();
+		}
+		return Glist;
+	}
 	
 	
 }
