@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
 <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
-
-<EditText
-    android:id="@+id/editText1"
-    android:layout_width="match_parent"
+ <FrameLayout
+	 android:id="@android:id/tabcontent"
+	 android:layout_width="fill_parent"
+	 android:layout_height="wrap_content"
+	 android:padding="5dp"
+	 android:layout_weight="1" /> <!-- måste vara så för att få tabben i underkant -->
+ <TabWidget
+ 	android:id="@android:id/tabs"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textEmailAddress" >
-
-    <requestFocus />
-</EditText>
-
-<EditText
-    android:id="@+id/editText2"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textEmailAddress" />
-
-<EditText
-    android:id="@+id/editText3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textEmailAddress" />
-
+    android:layout_weight="0"
+	android:layout_marginBottom="-4dp" /> <!-- nedflyttat eftersom det finns en hårdkodad kant under tabbarna -->
 </LinearLayout>
+</TabHost>

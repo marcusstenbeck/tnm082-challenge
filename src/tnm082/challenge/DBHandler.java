@@ -1,6 +1,5 @@
 package tnm082.challenge;
 
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,18 +24,18 @@ import android.util.Log;
 import android.widget.Toast;
 public class DBHandler extends ListActivity{
 	/**
-	 * Kodad av: Rikard / HC
+	 * Kodad av: Rikard unt HC
 	 * Task nr:2
-	 * Datum: 2012-03-23
+	 * Datum: 2012-04-17
 	 * Estimerad tid: 4h
-	 * Faktisk tid: 6h
-	 * Testad/av: Ja/Nej / namn
-	 * Utcheckad/av: Ja /	Rikard / HC
-	 * @param namn - beskrivning.
-	 * @return namn - beskrivning.
-
+	 * Faktisk tid: 12h+
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / Rikard unt HC
+	 * @param Inga inparametrar
+	 * @return List<Mission>, List<User>, List<Group> - Returnerar en lista med alla Missions, Users eller Groups i databasen.
 	 */
 
+	// Returnerar en lista med alla missions i databasen
 	public List<Mission> getMissions() 
 	{
 		JSONArray jArray;
@@ -102,9 +101,11 @@ public class DBHandler extends ListActivity{
 		{
 			e1.printStackTrace();
 		}
+		// Returnerar listan
 		return Mlist;
 	}
 
+	// Returnerar en lista med alla users i databasen
 	public List<User> getUsers() 
 	{
 		JSONArray jArray;
@@ -170,9 +171,11 @@ public class DBHandler extends ListActivity{
 		{
 			e1.printStackTrace();
 		}
+		// Returnerar listan
 		return Ulist;
 	}
 
+	// Returnerar en lista med alla groups i databasen
 	public List<Group> getGroups() 
 	{
 		JSONArray jArray;
@@ -239,6 +242,7 @@ public class DBHandler extends ListActivity{
 		{
 			e1.printStackTrace();
 		}
+		// Returnerar listan
 		return Glist;
 	}
 		

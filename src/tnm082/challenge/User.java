@@ -17,10 +17,12 @@ import java.util.List;
     */
 
 public class User {
+	//alla variabler
 	private String name, pass;
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
 	
+	//tom konstruktor initierar alla värdena
 	public User() {
 		this.name = "klas";
 		this.pass = "kalas";
@@ -32,12 +34,21 @@ public class User {
 		// En lista över uppdrag som användaren har klarat
 		this.completedMissions = new ArrayList<Mission>();
 	}
+	
+	//enkel konstruktor med basic initalvärden
 	public User(String new_name, String new_pass,int new_id){
 		this.name = new_name;
 		this.pass = new_pass;
 		this.id = new_id;
+		// En lista över uppdrag som ska utföras
+		this.acceptedMissions = new ArrayList<Mission>();
+		
+		// En lista över uppdrag som användaren har klarat
+		this.completedMissions = new ArrayList<Mission>();
 		
 	}
+	
+	//Full initierings konstruktor
 	public User(String new_name, String new_pass,int new_id, List<Mission> new_accepted, List<Mission> new_completed) {
 		this.name = new_name;
 		this.pass = new_pass;
@@ -52,7 +63,7 @@ public class User {
 			this.completedMissions.add(i, new_completed.get(i));
 		}
 	}
-	
+	//set o get för alla variabler
 	public String getName() {
 		return name;
 	}
@@ -74,7 +85,7 @@ public class User {
 	public int getId() {
 		return this.id;
 	}
-
+	//När man blitt klar med ett uppdrag tas den bort ur accepted o läggs in i completed
 	public void completeMission(Mission the_mission)
 	{				
 		for(int i = 0; i < acceptedMissions.size();i++)
@@ -87,6 +98,7 @@ public class User {
 		}
 		 
 	}
+	// Har man accepterat ett uppdrag
 	public boolean hasAcceptedMission(Mission the_mission)
 	{
 		for(int i = 0; i < acceptedMissions.size();i++)
@@ -100,11 +112,13 @@ public class User {
 		
 		
 	}
+	// Acceptera ett uppdrag
 	public void acceptMission(Mission the_mission)
 	{
 		acceptedMissions.add(acceptedMissions.size(), the_mission);
 	
 	}
+	// Vill inte fortsätta med uppdraget
 	public void cancelMission(Mission the_mission)
 	{
 		for(int i = 0; i < acceptedMissions.size();i++)

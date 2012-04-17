@@ -65,7 +65,14 @@
         <activity
        		android:name=".TutViewerActivity" >
         </activity>
+        
+        <!-- Behövs för testning -->
         <uses-library android:name="android.test.runner"/>
+        
+        <!-- varje tab är en separat aktivitet -->
+        <activity android:name=".FeedActivity" />
+        <activity android:name=".ListsActivity" />
+        <activity android:name=".TextActivity" />
     </application>
 	
     
