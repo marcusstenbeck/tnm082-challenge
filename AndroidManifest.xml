@@ -60,6 +60,11 @@
         <activity
        		android:name=".TutViewerActivity" >
         </activity>
+        
+        <!-- varje tab är en separat aktivitet -->
+        <activity android:name=".FeedActivity" />
+        <activity android:name=".ListsActivity" />
+        <activity android:name=".TextActivity" />
     </application>
 	
     

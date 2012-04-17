@@ -1,50 +1,54 @@
 package tnm082.challenge;
 
-import java.util.ArrayList;
-import java.util.List;
-import android.view.View;
-
-import android.app.Activity;
-import android.app.ListActivity;
+import android.app.TabActivity;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.util.Log;
+import android.widget.TabHost;
 
+/**
+ * Kodad av: Rikard
+ * Task nr: Inget (men borde ha varit...)
+ * Datum: 2012-04-17
+ * Estimerad tid: --h
+ * Faktisk tid: 3h
+ * Testad/av: Ja/Nej / namn
+ * Utcheckad/av: Ja/Nej / namn
+ */
 
-public class ChallengeActivity extends Activity {
-    /** Ropad när den aktivitet är först skapad. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-//        final Feed missionFeed = new Feed(); 
-//        //TODO lägg in feeden i vyn.
-//        
-//        setListAdapter(ArrayAdapter.createFromResource(getApplicationContext(),
-//                R.array.tut_titles, R.layout.list_item));
-        
+//challengeActivity extendar tabactivity eftersom tabbarna alltid är synliga 
+public class ChallengeActivity extends TabActivity {
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.main); //layouten designas i res/layout/main.xml
 
-        final TextView text1 = (TextView)findViewById(R.id.editText1);
-        final TextView text2 = (TextView)findViewById(R.id.editText2);
-        final TextView text3 = (TextView)findViewById(R.id.editText3);
-        
-        
-		DBHandler db = new DBHandler();
-		List<Mission> Mlist = new ArrayList<Mission>();
-		Mlist = db.getMissions();
+	    Resources res = getResources(); // Resource object to get Drawables
+	    TabHost tabHost = getTabHost();  // The activity TabHost
+	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
+	    Intent intent;  // Reusable Intent for each tab
 
-		text1.setText(Integer.toString(Mlist.get(0).getId()));
-		text2.setText(Mlist.get(0).getName());
-		text3.setText(Mlist.get(0).getDesc());
+	    // Create an Intent to launch an Activity for the tab (to be reused)
+	    intent = new Intent().setClass(this, FeedActivity.class);
 
-		for (Mission m : Mlist)
-		{
-			Log.d("ID",Integer.toString(m.getId()));
-			Log.d("Namn",m.getName());
-			Log.d("Beskrivning",m.getDesc());
+	    // Initialize a TabSpec for each tab and add it to the TabHost
+	    spec = tabHost.newTabSpec("artists").setIndicator("Feed", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
 
-		}
-    }
+	    // Do the same for the other tabs
+	    intent = new Intent().setClass(this, ListsActivity.class);
+	    spec = tabHost.newTabSpec("albums").setIndicator("Lists", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+
+	    intent = new Intent().setClass(this, TextActivity.class);
+	    spec = tabHost.newTabSpec("songs").setIndicator("Text", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+
+	    tabHost.setCurrentTab(0);
+	}
 }
