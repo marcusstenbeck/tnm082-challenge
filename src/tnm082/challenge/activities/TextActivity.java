@@ -1,4 +1,4 @@
-package tnm082.challenge;
+package tnm082.challenge.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
