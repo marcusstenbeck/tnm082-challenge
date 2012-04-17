@@ -25,7 +25,9 @@ public class Group {
 	{
 		name = "Übergruppen";
 		userList = new Vector<User>();
+		id = 0;
 	}
+	
 
 	public String getName() {
 		return name;

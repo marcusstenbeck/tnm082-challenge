@@ -156,12 +156,10 @@ public class DBHandler extends ListActivity{
 			JSONObject json_data=null;
 			for(int i = 0; i < jArray.length(); i++){
 				json_data = jArray.getJSONObject(i);
-				Utmp = new User();
 				u_id = json_data.getInt("User_ID");
 				u_name = json_data.getString("User_name");
 				u_pass = json_data.getString("User_password");
-				Utmp.setName(u_name);
-				Utmp.setPass(u_pass);
+				Utmp = new User(u_name, u_pass, u_id);
 				Ulist.add(i,Utmp);
 				
 			}
@@ -230,6 +228,7 @@ public class DBHandler extends ListActivity{
 				g_id = json_data.getInt("Group_ID");
 				g_name = json_data.getString("Group_name");
 				Gtmp.setName(g_name);
+				Gtmp.setId(g_id);
 				Glist.add(i,Gtmp);
 				
 			}
