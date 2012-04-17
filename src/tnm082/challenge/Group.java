@@ -17,6 +17,7 @@ import java.util.*;
 
 public class Group {
 	private String name;
+	private int id;
 
 	protected List<User> userList;
 	
@@ -30,6 +31,14 @@ public class Group {
 		return name;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
