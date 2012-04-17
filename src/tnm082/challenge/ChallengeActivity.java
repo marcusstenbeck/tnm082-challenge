@@ -8,10 +8,10 @@ import android.widget.TabHost;
 
 /**
  * Kodad av: Rikard
- * Task nr: Inget (men borde ha varit...)
+ * Task nr: 11,7,5,14
  * Datum: 2012-04-17
- * Estimerad tid: --h
- * Faktisk tid: 3h
+ * Estimerad tid: 1h+2h+8h+2h
+ * Faktisk tid: 1h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */

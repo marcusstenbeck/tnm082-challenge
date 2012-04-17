@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 /**
  * Kodad av: Rikard
- * Task nr: Inget (men borde ha varit...)
+ * Task nr: 5,7,11
  * Datum: 2012-04-17
- * Estimerad tid: --h
- * Faktisk tid: 3h
+ * Estimerad tid: 8h+2h+1h
+ * Faktisk tid: 1h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */

@@ -8,6 +8,15 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.util.Log;
 
+/**
+ * Kodad av: Rikard
+ * Task nr: 5,7,11
+ * Datum: 2012-04-17
+ * Estimerad tid: 8h+2h+1h
+ * Faktisk tid: 1h
+ * Testad/av: Ja/Nej / namn
+ * Utcheckad/av: Ja/Nej / namn
+ */
 
 public class FeedActivity extends Activity {
     /** Ropad när den aktivitet är först skapad. */
