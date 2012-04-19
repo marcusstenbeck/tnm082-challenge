@@ -2,6 +2,7 @@ package tnm082.challenge.activities;
 
 import tnm082.challenge.R;
 import android.app.TabActivity;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -41,7 +42,15 @@ public class ChallengeActivity extends TabActivity {
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
-
+	    
+	    //Tab fšr profilen
+	    intent = new Intent().setClass(this, UserActivity.class);
+	    spec = tabHost.newTabSpec("songs").setIndicator("Profile", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+		
+	    
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, ListsActivity.class);
 	    spec = tabHost.newTabSpec("albums").setIndicator("Lists", //Titel på tabben
@@ -49,11 +58,17 @@ public class ChallengeActivity extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
+
+
 	    intent = new Intent().setClass(this, GroupActivity.class);
 	    spec = tabHost.newTabSpec("songs").setIndicator("Groups", //Titel på tabben
+
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
+	    
+	    
+	    
 
 	    tabHost.setCurrentTab(0);
 	}
