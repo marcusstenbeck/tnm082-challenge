@@ -6,13 +6,9 @@ import java.util.List;
 import tnm082.challenge.DBHandler;
 import tnm082.challenge.Mission;
 import tnm082.challenge.R;
-import tnm082.challenge.R.id;
-import tnm082.challenge.R.layout;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.util.Log;
 
 /**
  * Kodad av: Rikard

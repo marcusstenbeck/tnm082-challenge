@@ -1,8 +1,6 @@
 package tnm082.challenge.activities;
 
 import tnm082.challenge.R;
-import tnm082.challenge.R.drawable;
-import tnm082.challenge.R.layout;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;

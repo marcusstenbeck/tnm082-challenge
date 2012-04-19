@@ -56,6 +56,25 @@ public class GroupTest extends TestCase {
 		public void testRemoveUser()
 		{
 			Group g = new Group();
+			
+			// Create a user to add
+			User u = new User();
+			
+			// Set the user id and name to something else than what the object initializes it to
+			int userId = 666;
+			String userName = "Satan Beelsebub";
+			u.setId(userId);
+			u.setName(userName);
+			
+			// Add the user to the Group object
+			g.addUser(u);
+			
+			// Remove the user
+			g.removeUser(u);
+			
+			// Make sure the user returned is not null...
+			User retrievedUser = g.getUser(userId);
+			assertNull(retrievedUser);
 		}
 		
 		public void testGetUser()
