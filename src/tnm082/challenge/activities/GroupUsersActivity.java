@@ -41,7 +41,7 @@ public class GroupUsersActivity extends ListActivity {
 	  List<User> Ulist = new ArrayList<User>();
 	  Ulist = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
 	  
-	  Log.d("ID in GroupUsers: ", Integer.toString(getIntent().getExtras().getInt("id")));
+	 
 	  String[] USERS = new String[]{Glist.get(getIntent().getExtras().getInt("id")).getName(),Ulist.get(0).getName(),Ulist.get(1).getName()};
 		
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));  
