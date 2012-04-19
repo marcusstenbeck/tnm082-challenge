@@ -73,8 +73,11 @@
         <!-- varje tab är en separat aktivitet -->
         <activity android:name=".activities.FeedActivity" />
         <activity android:name=".activities.ListsActivity" />
+        <activity android:name=".activities.TextActivity" />
+        <activity android:name=".activities.UserActivity" />
         <activity android:name=".activities.GroupActivity" />
         <activity android:name=".activities.GroupUsersActivity" />
+
     </application>
 	
     
