@@ -16,8 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.util.Log;
 
@@ -48,7 +46,7 @@ public class FeedActivity extends ListActivity{
   	  Mlist = db.getMissions();
   	  int feedSize = Mlist.size();
   	
-  	 String[] FEED = new String[feedSize];
+  	 final String[] FEED = new String[feedSize];
   	  for (int i=0; i<feedSize; i++)
   	  {FEED[i] = Mlist.get(i).getName();}
 	 
@@ -77,6 +75,7 @@ public class FeedActivity extends ListActivity{
 		    	//name
 		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
 		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
+		    	mi.putExtra("mission_id", FEED[position]);
 		    	startActivity(mi);
 		    	
 //		    	//Description
