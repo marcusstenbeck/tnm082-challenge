@@ -45,7 +45,7 @@ public class Group {
 		this.name = name;
 	}
 	
-	public List getUserList() {
+	public List<User> getUserList() {
 		return userList;
 	}
 	

@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tnm082.challenge.DBHandler;
-import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import tnm082.challenge.Group;
 import tnm082.challenge.R;
-import tnm082.challenge.R.id;
-import tnm082.challenge.R.layout;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import android.util.Log;
 import android.app.ListActivity;
 
 /**

@@ -1,5 +1,7 @@
 package tnm082.challenge.tests;
 
+import java.util.List;
+
 import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import junit.framework.TestCase;
@@ -80,10 +82,19 @@ public class UserTest extends TestCase {
 		// Cancel the mission
 		u.completeMission(m);
 		
-		// Make sure the mission doesn't exist no more!
-		//assertTrue(u.getCompletedMissions());
+		// Create a boolean that stores if the mission exists in among the completed missions 
+		boolean existsInCompletedMissionsList = false;
 		
-		fail("Not yet implemented");
+		// Get the list of completed missions for the user
+		List<Mission> completedMissions = u.getCompletedMissions();
+		
+		// Test if the mission exists within the completedMissions list from the user
+		for(int i = 0; i < completedMissions.size(); i++)
+			if(completedMissions.get(i).getId() == m.getId())
+				existsInCompletedMissionsList = true;
+		
+		// Report if the mission exists in the list
+		assertTrue(existsInCompletedMissionsList);
 	}
 
 	public void testAcceptMission() {
