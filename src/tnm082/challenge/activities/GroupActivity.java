@@ -8,6 +8,7 @@ import tnm082.challenge.R;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -47,6 +48,8 @@ public class GroupActivity extends ListActivity {
 
 	  
 	  ListView lv = getListView();
+	  
+	  
 	  lv.setTextFilterEnabled(true);
 	 
 	  
@@ -61,10 +64,11 @@ public class GroupActivity extends ListActivity {
 	      //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
 	      //    Toast.LENGTH_SHORT).show();
        	
-
+	     Log.d("ID output:", "" + Integer.toString((int)id));
 	     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
-	      startActivity(intent);
-	    	
+	     intent.putExtra("id", (int)(id));
+	     startActivity(intent);
+	     
 	    	
 	    }
 	  });

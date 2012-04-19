@@ -11,19 +11,27 @@
             android:gravity="fill_horizontal" >
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <Button
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Dela" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton1"
+                    android:layout_width="116dp"
+                    android:layout_height="match_parent"
+                    android:text="ToggleButton"
+                    android:textOff="Ej Accepterat"
+                    android:textOn="Accepterat" />
 
                 <CheckBox
                     android:id="@+id/checkBox1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Avklarat" />
 
             </LinearLayout>
