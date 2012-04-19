@@ -1,35 +1,46 @@
-package tnm082.challenge;
+package tnm082.challenge.tests;
 
+import tnm082.challenge.User;
 import junit.framework.TestCase;
 
 public class UserTest extends TestCase {
 	
-	public void testGetName() {
+	public void testGetName()
+	{
+		// Skapa en User
 		User u = new User();
 		
-		// kolla sÂ att vi fÂr tillbaka nÂgot
+// BORDE KOLLA SÅ ATT DET SOM RETURNERAS ÄR EN TEXTSTRÄNG
+		
+		// kolla sÂ att vi fÂr tillbaka nÂgot när vi ber om ett namn
 		assertNotNull(u.getName());
 	}
 
-	public void testSetName() {
+	public void testSetName()
+	{
+		// Skapa en User
 		User u = new User();
 		
 		// S‰tt ett namn
 		String theName = "Ture Sventon";
 		u.setName(theName);
 		
-		// Se till att det satta namnet returneras
+		// Se till att namnet som sattes returneras
 		assertEquals(theName, u.getName());
 	}
 
-	public void testGetPass() {
+	public void testGetPass()
+	{
+		// Skapa en User
 		User u = new User();
 		
 		// kolla sÂ att vi fÂr tillbaka nÂgot
 		assertNotNull(u.getPass());
 	}
 
-	public void testSetPass() {
+	public void testSetPass()
+	{
+		// Skapa en user
 		User u = new User();
 		
 		// S‰tt ett password
@@ -40,18 +51,21 @@ public class UserTest extends TestCase {
 		assertEquals(thePass, u.getPass());
 	}
 
-	public void testGetId() {
+	public void testGetId()
+	{
+		// Skapa en User
 		User u = new User();
 		
 		// kolla sÂ att vi fÂr tillbaka nÂgot
 		assertNotNull(u.getId());
 	}
 
-	public void completeMission() {
+	public void testCompleteMission()
+	{
 		fail("Not yet implemented");
 	}
 
-	public void acceptMission() {
+	public void testAcceptMission() {
 		/*
 		User u = new User();
 		
@@ -64,9 +78,10 @@ public class UserTest extends TestCase {
 		// Check if mission exists in acceptedMissions list
 		//u.
 		 */
+		fail("Not yet implemented");
 	}
 
-	public void cancelMission() {
+	public void testCancelMission() {
 		fail("Not yet implemented");
 	}
 

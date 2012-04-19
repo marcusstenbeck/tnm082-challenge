@@ -1,5 +1,8 @@
-package tnm082.challenge;
+package tnm082.challenge.activities;
 
+import tnm082.challenge.R;
+import tnm082.challenge.R.drawable;
+import tnm082.challenge.R.layout;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -8,10 +11,10 @@ import android.widget.TabHost;
 
 /**
  * Kodad av: Rikard
- * Task nr: Inget (men borde ha varit...)
+ * Task nr: 11,7,5,14
  * Datum: 2012-04-17
- * Estimerad tid: --h
- * Faktisk tid: 3h
+ * Estimerad tid: 1h+2h+8h+2h
+ * Faktisk tid: 1h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */
@@ -21,11 +24,11 @@ public class ChallengeActivity extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main); //layouten designas i res/layout/main.xml
-	    
+
 //	    Startar och avbryter ett uppdrag med userID 3 och missionID 1
 //	    DBHandler db = new DBHandler();
 //	    db.startMission(3, 1);	    
-//	    db.cancelMission(3, 1);
+//	    db.cancelMission(3, 1);	    
 	    
 	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
@@ -48,8 +51,8 @@ public class ChallengeActivity extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
-	    intent = new Intent().setClass(this, TextActivity.class);
-	    spec = tabHost.newTabSpec("songs").setIndicator("Text", //Titel på tabben
+	    intent = new Intent().setClass(this, GroupActivity.class);
+	    spec = tabHost.newTabSpec("songs").setIndicator("Groups", //Titel på tabben
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);

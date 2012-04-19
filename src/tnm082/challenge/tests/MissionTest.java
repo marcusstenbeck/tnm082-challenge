@@ -1,5 +1,6 @@
-package tnm082.challenge;
+package tnm082.challenge.tests;
 
+import tnm082.challenge.Mission;
 import junit.framework.TestCase;
 
 public class MissionTest extends TestCase {
