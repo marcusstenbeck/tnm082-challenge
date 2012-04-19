@@ -25,8 +25,5 @@ public class UserActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user); //Hämtar layout från res/layout/user.xml
-        
-        
-        
   	    }
     }
