@@ -85,6 +85,7 @@ public class User {
 	public int getId() {
 		return this.id;
 	}
+	
 	//När man blitt klar med ett uppdrag tas den bort ur accepted o läggs in i completed
 	public void completeMission(Mission the_mission)
 	{				
@@ -98,6 +99,7 @@ public class User {
 		}
 		 
 	}
+	
 	// Har man accepterat ett uppdrag
 	public boolean hasAcceptedMission(Mission the_mission)
 	{
@@ -109,15 +111,15 @@ public class User {
 			}
 		}
 		return false;
-		
-		
 	}
+	
 	// Acceptera ett uppdrag
 	public void acceptMission(Mission the_mission)
 	{
 		acceptedMissions.add(acceptedMissions.size(), the_mission);
 	
 	}
+	
 	// Vill inte fortsätta med uppdraget
 	public void cancelMission(Mission the_mission)
 	{
@@ -128,5 +130,15 @@ public class User {
 				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
 			}
 		}
+	}
+	
+	public List<Mission> getAcceptedMissions()
+	{
+		return acceptedMissions;
+	}
+	
+	public List<Mission> getCompletedMissions()
+	{
+		return  completedMissions;
 	}
 }
