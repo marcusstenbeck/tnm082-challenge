@@ -46,7 +46,7 @@ public class ChallengeActivity extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
-	    intent = new Intent().setClass(this, TextActivity.class);
+	    intent = new Intent().setClass(this, GroupActivity.class);
 	    spec = tabHost.newTabSpec("songs").setIndicator("Groups", //Titel på tabben
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
