@@ -22,6 +22,7 @@ import tnm082.challenge.Group;
 
 /**
  * Kodad av: Rikard
+ * Modad av: Flaaten
  * Task nr: 11,7
  * Datum: 2012-04-17
  * Estimerad tid: 1h+2h
