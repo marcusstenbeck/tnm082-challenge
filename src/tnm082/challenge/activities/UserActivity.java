@@ -14,9 +14,9 @@ import android.widget.TextView;
 /**
  * Kodad av: Markus Olsson
  * Task nr: 12
- * Datum: 2012-04-17
+ * Datum: 2012-04-19
  * Estimerad tid: 2h
- * Faktisk tid: xh
+ * Faktisk tid: 4h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */
