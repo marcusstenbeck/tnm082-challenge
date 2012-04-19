@@ -38,7 +38,15 @@ public class ChallengeActivity extends TabActivity {
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
-
+	    
+	    //Tab fšr profilen
+	    intent = new Intent().setClass(this, UserActivity.class);
+	    spec = tabHost.newTabSpec("songs").setIndicator("Profile", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+		
+	    
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, ListsActivity.class);
 	    spec = tabHost.newTabSpec("albums").setIndicator("Lists", //Titel på tabben
@@ -46,11 +54,15 @@ public class ChallengeActivity extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
+	    
 	    intent = new Intent().setClass(this, TextActivity.class);
 	    spec = tabHost.newTabSpec("songs").setIndicator("Text", //Titel på tabben
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
+	    
+	    
+	    
 
 	    tabHost.setCurrentTab(0);
 	}

@@ -85,6 +85,7 @@ public class User {
 	public int getId() {
 		return this.id;
 	}
+	
 	//När man blitt klar med ett uppdrag tas den bort ur accepted o läggs in i completed
 	public void completeMission(Mission the_mission)
 	{				

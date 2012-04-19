@@ -73,6 +73,7 @@
         <activity android:name=".activities.FeedActivity" />
         <activity android:name=".activities.ListsActivity" />
         <activity android:name=".activities.TextActivity" />
+        <activity android:name=".activities.UserActivity" />
     </application>
 	
     
