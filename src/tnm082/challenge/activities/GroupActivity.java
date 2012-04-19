@@ -37,8 +37,8 @@ public class GroupActivity extends ListActivity {
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
+  	  //skapa en string-array som är lika stor som Glist där namnen på varje grupp sparas för att kunna visas i feeden
 	  int feedSize = Glist.size();
-	  	
 	  	 String[] GROUPS = new String[feedSize];
 	  	  for (int i=0; i<feedSize; i++)
 	  	  {GROUPS[i] = Glist.get(i).getName();}
