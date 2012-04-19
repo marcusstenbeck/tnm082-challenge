@@ -34,14 +34,17 @@ public class GroupActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
+	  //skapar listor från JSON
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
+  	  //skapa en string-array som Šr lika stor som Glist dŠr namnen pŒ varje grupp sparas fšr att kunna visas i feeden
 	  int feedSize = Glist.size();
-	  	
+
 	  	 String[] GROUPS = new String[feedSize];
 	  	  for (int i=0; i<feedSize; i++)
 	  	  {GROUPS[i] = Glist.get(i).getName();}
+
 	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
 
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
@@ -66,7 +69,9 @@ public class GroupActivity extends ListActivity {
        	
 	     Log.d("ID output:", "" + Integer.toString((int)id));
 	     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
+	     //skickar med vilken plats det vi klickar på i listan har 
 	     intent.putExtra("id", (int)(id));
+	     //startar intent
 	     startActivity(intent);
 	     
 	    	
