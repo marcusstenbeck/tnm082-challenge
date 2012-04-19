@@ -61,6 +61,12 @@
             </intent-filter>
         </activity>
         
+        <!-- Aktivitet, uppdragsvy -->
+        <activity
+       		android:name=".activities.MissionActivity" >
+        </activity>
+        
+
         <!-- Behövs för testning -->
         <uses-library android:name="android.test.runner"/>
         
