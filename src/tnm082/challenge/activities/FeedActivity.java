@@ -44,11 +44,12 @@ public class FeedActivity extends ListActivity{
         DBHandler db = new DBHandler();
         List<Mission> Mlist = new ArrayList<Mission>();
   	  Mlist = db.getMissions();
+  	  //skapa en string-array som är lika stor som Mlist där namnen på varje mission sparas för att kunna visas i feeden
   	  int feedSize = Mlist.size();
   	
-  	 final String[] FEED = new String[feedSize];
+  	  final String[] FEED = new String[feedSize];
   	  for (int i=0; i<feedSize; i++)
-  	  {FEED[i] = Mlist.get(i).getName();}
+  		  FEED[i] = Mlist.get(i).getName();
 	 
 
   	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrÂn listan COUNTRIES (se l‰ngre ned)
@@ -77,11 +78,6 @@ public class FeedActivity extends ListActivity{
 		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
 		    	mi.putExtra("mission_id", FEED[position]);
 		    	startActivity(mi);
-		    	
-//		    	//Description
-//		    	Intent di = new Intent(getApplicationContext(), MissionActivity.class);
-//		    	di.setData(Uri.parse(tempMission.getDesc()));
-//		    	startActivity(di);
 		    }
 		  });
     }

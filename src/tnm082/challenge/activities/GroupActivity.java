@@ -8,6 +8,7 @@ import tnm082.challenge.R;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,20 +34,25 @@ public class GroupActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
+	  //skapar listor från JSON
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
+  	  //skapa en string-array som Šr lika stor som Glist dŠr namnen pŒ varje grupp sparas fšr att kunna visas i feeden
 	  int feedSize = Glist.size();
-	  	
+
 	  	 String[] GROUPS = new String[feedSize];
 	  	  for (int i=0; i<feedSize; i++)
 	  	  {GROUPS[i] = Glist.get(i).getName();}
+
 	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
 
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
 
 	  
 	  ListView lv = getListView();
+	  
+	  
 	  lv.setTextFilterEnabled(true);
 	 
 	  
@@ -61,10 +67,13 @@ public class GroupActivity extends ListActivity {
 	      //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
 	      //    Toast.LENGTH_SHORT).show();
        	
-
+	     Log.d("ID output:", "" + Integer.toString((int)id));
 	     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
-	      startActivity(intent);
-	    	
+	     //skickar med vilken plats det vi klickar på i listan har 
+	     intent.putExtra("id", (int)(id));
+	     //startar intent
+	     startActivity(intent);
+	     
 	    	
 	    }
 	  });
