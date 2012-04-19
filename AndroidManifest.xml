@@ -63,7 +63,7 @@
         
         <!-- Aktivitet, uppdragsvy -->
         <activity
-       		android:name=".TutViewerActivity" >
+       		android:name=".MissionActivity" >
         </activity>
         
         <!-- Behövs för testning -->

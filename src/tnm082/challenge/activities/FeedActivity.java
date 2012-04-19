@@ -10,8 +10,17 @@ import tnm082.challenge.R.id;
 import tnm082.challenge.R.layout;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.util.Log;
 
 /**
@@ -58,5 +67,26 @@ public class FeedActivity extends Activity {
 			Log.d("Beskrivning",m.getDesc());
 
 		}
+		
+		final Mission tempMission = new Mission(5, "tempname", "tempdesc");
+		
+		((AdapterView<ListAdapter>) Mlist).setOnItemClickListener(new OnItemClickListener() {
+		    public void onItemClick(AdapterView<?> parent, View view,
+		        int position, long id) {
+		    	
+		    	//name
+		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
+		    	mi.setData(Uri.parse(tempMission.getName()));
+		    	startActivity(mi);
+		    	
+		    	//Description
+		    	Intent di = new Intent(getApplicationContext(), MissionActivity.class);
+		    	di.setData(Uri.parse(tempMission.getDesc()));
+		    	startActivity(di);
+		    }
+		  });
     }
+    
+    
+    
 }
