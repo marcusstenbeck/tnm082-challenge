@@ -51,12 +51,5 @@ public class FeedActivity extends Activity {
 		text2.setText(Mlist.get(0).getName());
 		text3.setText(Mlist.get(0).getDesc());
 
-		for (Mission m : Mlist)
-		{
-			Log.d("ID",Integer.toString(m.getId()));
-			Log.d("Namn",m.getName());
-			Log.d("Beskrivning",m.getDesc());
-
-		}
     }
 }

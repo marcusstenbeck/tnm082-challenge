@@ -25,6 +25,11 @@ public class ChallengeActivity extends TabActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main); //layouten designas i res/layout/main.xml
 
+//	    Startar och avbryter ett uppdrag med userID 3 och missionID 1
+//	    DBHandler db = new DBHandler();
+//	    db.startMission(3, 1);	    
+//	    db.cancelMission(3, 1);	    
+	    
 	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
