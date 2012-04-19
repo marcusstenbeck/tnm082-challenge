@@ -17,6 +17,9 @@ public class AllTests {
 		// LŠgg till testklass fšr klassen User
 		suite.addTestSuite(UserTest.class);
 		
+		// LŠgg till testklass fšr klassen Group
+		suite.addTestSuite(GroupTest.class);
+		
 		//$JUnit-END$
 		return suite;
 	}
