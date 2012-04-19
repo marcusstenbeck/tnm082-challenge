@@ -23,7 +23,7 @@ public class Group {
 	
 	public Group()
 	{
-		name = "Übergruppen";
+		name = "†bergruppen";
 		userList = new Vector<User>();
 		id = 0;
 	}
@@ -45,7 +45,7 @@ public class Group {
 		this.name = name;
 	}
 	
-	public List getUserList() {
+	public List<User> getUserList() {
 		return userList;
 	}
 	

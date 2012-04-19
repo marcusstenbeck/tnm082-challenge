@@ -1,5 +1,8 @@
 package tnm082.challenge.tests;
 
+import java.util.List;
+
+import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import junit.framework.TestCase;
 
@@ -62,27 +65,76 @@ public class UserTest extends TestCase {
 
 	public void testCompleteMission()
 	{
-		fail("Not yet implemented");
-	}
-
-	public void testAcceptMission() {
-		/*
 		User u = new User();
 		
 		// Create mission
 		Mission m = new Mission();
+		int missionId = 383;
+		m.setId(missionId);
+		
 		
 		// Accept mission
 		u.acceptMission(m);
 		
 		// Check if mission exists in acceptedMissions list
-		//u.
-		 */
-		fail("Not yet implemented");
+		assertTrue(u.hasAcceptedMission(m));
+		
+		// Cancel the mission
+		u.completeMission(m);
+		
+		// Create a boolean that stores if the mission exists in among the completed missions 
+		boolean existsInCompletedMissionsList = false;
+		
+		// Get the list of completed missions for the user
+		List<Mission> completedMissions = u.getCompletedMissions();
+		
+		// Test if the mission exists within the completedMissions list from the user
+		for(int i = 0; i < completedMissions.size(); i++)
+			if(completedMissions.get(i).getId() == m.getId())
+				existsInCompletedMissionsList = true;
+		
+		// Report if the mission exists in the list
+		assertTrue(existsInCompletedMissionsList);
 	}
 
-	public void testCancelMission() {
-		fail("Not yet implemented");
+	public void testAcceptMission() {
+		
+		User u = new User();
+		
+		// Create mission
+		Mission m = new Mission();
+		int missionId = 383;
+		m.setId(missionId);
+		
+		
+		// Accept mission
+		u.acceptMission(m);
+		
+		// Check if mission exists in acceptedMissions list
+		assertTrue(u.hasAcceptedMission(m));
+	}
+
+	public void testCancelMission()
+	{
+		User u = new User();
+		
+		// Create mission
+		Mission m = new Mission();
+		int missionId = 383;
+		m.setId(missionId);
+		
+		
+		// Accept mission
+		u.acceptMission(m);
+		
+		// Check if mission exists in acceptedMissions list
+		assertTrue(u.hasAcceptedMission(m));
+		
+		// Cancel the mission
+		u.cancelMission(m);
+		
+		// Make sure the mission doesn't exist no more!
+		assertFalse(u.hasAcceptedMission(m));
 	}
 
 }

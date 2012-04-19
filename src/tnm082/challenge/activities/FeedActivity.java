@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tnm082.challenge.DBHandler;
-import tnm082.challenge.Group;
 import tnm082.challenge.Mission;
 import tnm082.challenge.R;
-import tnm082.challenge.R.id;
-import tnm082.challenge.R.layout;
+
 import android.app.ListActivity;
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import android.util.Log;
+
 
 /**
  * Kodad av: Rikard
@@ -65,32 +63,4 @@ public class FeedActivity extends ListActivity{
   	  });
     }
         
-//        final Feed missionFeed = new Feed(); 
-//        //TODO lägg in feeden i vyn.
-//        
-//        setListAdapter(ArrayAdapter.createFromResource(getApplicationContext(),
-//                R.array.tut_titles, R.layout.list_item));
-        
-
-       /* final TextView text1 = (TextView)findViewById(R.id.editText1);
-        final TextView text2 = (TextView)findViewById(R.id.editText2);
-        final TextView text3 = (TextView)findViewById(R.id.editText3);
-        
-        
-		
-		List<Mission> Mlist = new ArrayList<Mission>();
-		Mlist = db.getMissions();
-
-		text1.setText(Integer.toString(Mlist.get(0).getId()));
-		text2.setText(Mlist.get(0).getName());
-		text3.setText(Mlist.get(0).getDesc());
-
-		for (Mission m : Mlist)
-		{
-			Log.d("ID",Integer.toString(m.getId()));
-			Log.d("Namn",m.getName());
-			Log.d("Beskrivning",m.getDesc());
-
-		}
-    }*/
 }
