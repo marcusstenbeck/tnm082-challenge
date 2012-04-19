@@ -1,7 +1,6 @@
 package tnm082.challenge.activities;
 
 import tnm082.challenge.R;
-import tnm082.challenge.R.layout;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;

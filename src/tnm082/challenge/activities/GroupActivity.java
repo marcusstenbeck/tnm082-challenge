@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tnm082.challenge.DBHandler;
-import tnm082.challenge.Mission;
 import tnm082.challenge.R;
-import tnm082.challenge.R.layout;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +13,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import tnm082.challenge.DBHandler;
 import tnm082.challenge.Group;
 
 
@@ -41,9 +36,13 @@ public class GroupActivity extends ListActivity {
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
-	  String[] GROUPS = new String[]{Glist.get(0).getName(),Glist.get(1).getName()};
-	  
-	  //skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
+	  int feedSize = Glist.size();
+	  	
+	  	 String[] GROUPS = new String[feedSize];
+	  	  for (int i=0; i<feedSize; i++)
+	  	  {GROUPS[i] = Glist.get(i).getName();}
+	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
+
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
 
 	  
