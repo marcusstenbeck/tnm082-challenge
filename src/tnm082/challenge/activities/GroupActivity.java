@@ -38,7 +38,11 @@ public class GroupActivity extends ListActivity {
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
-	  String[] GROUPS = new String[]{Glist.get(0).getName(),Glist.get(1).getName()};
+	  int feedSize = Glist.size();
+	  	
+	  	 String[] GROUPS = new String[feedSize];
+	  	  for (int i=0; i<feedSize; i++)
+	  	  {GROUPS[i] = Glist.get(i).getName();}
 	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
 
