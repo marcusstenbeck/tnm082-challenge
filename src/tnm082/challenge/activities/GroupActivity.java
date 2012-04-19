@@ -38,11 +38,13 @@ public class GroupActivity extends ListActivity {
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
+  	  //skapa en string-array som är lika stor som Glist där namnen på varje grupp sparas för att kunna visas i feeden
 	  int feedSize = Glist.size();
-	  	
-	  String[] GROUPS = new String[feedSize];
-	  for (int i=0; i<feedSize; i++)
-	  	{GROUPS[i] = Glist.get(i).getName();}
+
+	  	 String[] GROUPS = new String[feedSize];
+	  	  for (int i=0; i<feedSize; i++)
+	  	  {GROUPS[i] = Glist.get(i).getName();}
+
 	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrÂn listan COUNTRIES (se l‰ngre ned)
 
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
