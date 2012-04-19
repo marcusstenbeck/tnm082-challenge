@@ -2,6 +2,7 @@ package tnm082.challenge.activities;
 
 import tnm082.challenge.R;
 import tnm082.challenge.R.layout;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,32 +23,19 @@ import android.widget.Toast;
  * Utcheckad/av: Ja/Nej / namn
  */
 
-public class UserActivity extends ListActivity {
+public class UserActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.user); //Hämtar layout från res/layout/user.xml
+        setContentView(R.layout.user); //Hämtar layout från res/layout/user.xml
         
-    	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrÂn listan COUNTRIES (se l‰ngre ned)
-  	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USER_INFO));  
+  	  //setListAdapter(new ArrayAdapter<String>(this, R.layout.user, listView1));
+  	  
+  	  //ListView mission_list = getListView();
+	  //mission_list.setTextFilterEnabled(true);
 
-  	  ListView lv = getListView();
-  	  lv.setTextFilterEnabled(true);
-
-  	  lv.setOnItemClickListener(new OnItemClickListener() {
-  	    public void onItemClick(AdapterView<?> parent, View view,
-  	        int position, long id) {
-  	      // When clicked, show a toast with the TextView text
-  	      Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-  	          Toast.LENGTH_SHORT).show();
   	    }
-  	  });
-        
-    }
-    static final String[] USER_INFO = new String[] {
-	    "Uppdrag 1", "Uppdrag 2", "Uppdrag 3" };
     
-    //String strShareBtn = new String("Share");
-    //String strAcceptBtn = new String("Accept");
-        
-        
-}
+    static final String[] listView1 = new String[] {
+    	"Current Mission", "Qued Mission 1", "Qued Mission 2", "Qued Mission 3", "Qued Mission 4",
+    	"Qued Mission 5", "Qued Mission 6"};
+    }
