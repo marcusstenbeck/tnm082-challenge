@@ -34,16 +34,17 @@ public class GroupUsersActivity extends ListActivity {
 	  super.onCreate(savedInstanceState);
 	 // setContentView(R.layout.group_view_of_users); //design som hittas i res/layout/feed_overview.xml
 
-
+	  //skapar listor från JSON 
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
 	  List<User> Ulist = new ArrayList<User>();
 	  Ulist = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
 	  
-	 
+	 //hämtar id:et från groupactivity och sparar den i en string array med usernames
 	  String[] USERS = new String[]{Glist.get(getIntent().getExtras().getInt("id")).getName(),Ulist.get(0).getName(),Ulist.get(1).getName()};
 		
+	  //skapar listan
 	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));  
 
 	  ListView lv = getListView();
