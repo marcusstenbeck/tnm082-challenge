@@ -99,6 +99,7 @@ public class User {
 		}
 		 
 	}
+	
 	// Har man accepterat ett uppdrag
 	public boolean hasAcceptedMission(Mission the_mission)
 	{
@@ -110,15 +111,15 @@ public class User {
 			}
 		}
 		return false;
-		
-		
 	}
+	
 	// Acceptera ett uppdrag
 	public void acceptMission(Mission the_mission)
 	{
 		acceptedMissions.add(acceptedMissions.size(), the_mission);
 	
 	}
+	
 	// Vill inte fortsätta med uppdraget
 	public void cancelMission(Mission the_mission)
 	{
@@ -129,5 +130,15 @@ public class User {
 				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
 			}
 		}
+	}
+	
+	public List<Mission> getAcceptedMissions()
+	{
+		return acceptedMissions;
+	}
+	
+	public List<Mission> getCompletedMissions()
+	{
+		return  completedMissions;
 	}
 }

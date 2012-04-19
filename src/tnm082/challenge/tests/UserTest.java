@@ -1,5 +1,6 @@
 package tnm082.challenge.tests;
 
+import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import junit.framework.TestCase;
 
@@ -62,27 +63,67 @@ public class UserTest extends TestCase {
 
 	public void testCompleteMission()
 	{
-		fail("Not yet implemented");
-	}
-
-	public void testAcceptMission() {
-		/*
 		User u = new User();
 		
 		// Create mission
 		Mission m = new Mission();
+		int missionId = 383;
+		m.setId(missionId);
+		
 		
 		// Accept mission
 		u.acceptMission(m);
 		
 		// Check if mission exists in acceptedMissions list
-		//u.
-		 */
+		assertTrue(u.hasAcceptedMission(m));
+		
+		// Cancel the mission
+		u.completeMission(m);
+		
+		// Make sure the mission doesn't exist no more!
+		//assertTrue(u.getCompletedMissions());
+		
 		fail("Not yet implemented");
 	}
 
-	public void testCancelMission() {
-		fail("Not yet implemented");
+	public void testAcceptMission() {
+		
+		User u = new User();
+		
+		// Create mission
+		Mission m = new Mission();
+		int missionId = 383;
+		m.setId(missionId);
+		
+		
+		// Accept mission
+		u.acceptMission(m);
+		
+		// Check if mission exists in acceptedMissions list
+		assertTrue(u.hasAcceptedMission(m));
+	}
+
+	public void testCancelMission()
+	{
+		User u = new User();
+		
+		// Create mission
+		Mission m = new Mission();
+		int missionId = 383;
+		m.setId(missionId);
+		
+		
+		// Accept mission
+		u.acceptMission(m);
+		
+		// Check if mission exists in acceptedMissions list
+		assertTrue(u.hasAcceptedMission(m));
+		
+		// Cancel the mission
+		u.cancelMission(m);
+		
+		// Make sure the mission doesn't exist no more!
+		assertFalse(u.hasAcceptedMission(m));
 	}
 
 }

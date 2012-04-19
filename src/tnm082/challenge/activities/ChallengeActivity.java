@@ -4,6 +4,7 @@ import tnm082.challenge.R;
 import tnm082.challenge.R.drawable;
 import tnm082.challenge.R.layout;
 import android.app.TabActivity;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -25,6 +26,11 @@ public class ChallengeActivity extends TabActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main); //layouten designas i res/layout/main.xml
 
+//	    Startar och avbryter ett uppdrag med userID 3 och missionID 1
+//	    DBHandler db = new DBHandler();
+//	    db.startMission(3, 1);	    
+//	    db.cancelMission(3, 1);	    
+	    
 	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
@@ -54,9 +60,11 @@ public class ChallengeActivity extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
-	    
-	    intent = new Intent().setClass(this, TextActivity.class);
-	    spec = tabHost.newTabSpec("songs").setIndicator("Text", //Titel på tabben
+
+
+	    intent = new Intent().setClass(this, GroupActivity.class);
+	    spec = tabHost.newTabSpec("songs").setIndicator("Groups", //Titel på tabben
+
 	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
