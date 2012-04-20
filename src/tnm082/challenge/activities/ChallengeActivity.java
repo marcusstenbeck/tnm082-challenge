@@ -1,5 +1,6 @@
 package tnm082.challenge.activities;
 
+import tnm082.challenge.DBHandler;
 import tnm082.challenge.R;
 import android.app.TabActivity;
 
@@ -25,9 +26,10 @@ public class ChallengeActivity extends TabActivity {
 	    setContentView(R.layout.main); //layouten designas i res/layout/main.xml
 
 //	    Startar och avbryter ett uppdrag med userID 3 och missionID 1
-//	    DBHandler db = new DBHandler();
-//	    db.startMission(3, 1);	    
-//	    db.cancelMission(3, 1);	    
+	    DBHandler db = new DBHandler();
+	    db.startMission(3, 1);	    
+//	    db.cancelMission(3, 1);
+	    db.updateMission(3, 1);
 	    
 	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
