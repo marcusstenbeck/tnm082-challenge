@@ -3,7 +3,10 @@ package tnm082.challenge.activities;
 import java.util.List;
 
 import tnm082.challenge.DBHandler;
+import tnm082.challenge.Group;
+import tnm082.challenge.Mission;
 import tnm082.challenge.R;
+import tnm082.challenge.User;
 import android.app.TabActivity;
 
 import android.content.Intent;
@@ -30,8 +33,10 @@ public class ChallengeActivity extends TabActivity {
 	    
 /**	    ------------------------ EXEMPEL PÅ DATABASFUNKTIONER ------------------------------------------ **/
 //	    DBHandler db = new DBHandler();				// Skapar en DBHandler som behövs för att anropa databasfunktioner
-//	    db.startMission(3, 1);	    				// Startar ett uppdrag med missionID 1 för userID 3
-//	    db.cancelMission(3, 1);						// Avbryter ett uppdrag med missionID 1 för userID 3
+//	    User u = new User("","",3);					// Dummy-user
+//	    Mission m = new Mission(1,"", "");			// Dummy-mission
+//	    db.accept(u, m);							// Accepterar Mission m för User u (går att byta ut Mission mot Group)
+//	    db.unaccept(u, m);							// Avaccepterar Mission m för User u (går att byta ut Mission mot Group)
 //	    db.updateMission(3, 1);						// Rapporterar ett uppdrag med missionID 1 för userID 3 som done
 //	    List<Mission> Mlist = db.getMissions();		// Läser in alla Missions från databasen till listan Mlist
 //	    List<User> 	UList = db.getUsers();			// Läser in alla Users från databsen till listan Ulist
