@@ -1,12 +1,20 @@
 package tnm082.challenge.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import tnm082.challenge.DBHandler;
+import tnm082.challenge.Mission;
 import tnm082.challenge.R;
+import tnm082.challenge.User;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 
 /**
- * Kodad av: Markus Olsson
+ * Kodad av: Markus Olsson/Mathias Bergqvist
  * Task nr: 12
  * Datum: 2012-04-19
  * Estimerad tid: 2h
@@ -19,5 +27,19 @@ public class UserActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user); //HŠmtar layout frŒn res/layout/user.xml
+        
+        DBHandler db = new DBHandler(); //Databashanterar
+        
+        //Hämtar alla users från databasen.
+        List<User> users = new ArrayList<User>();
+        users = db.getUsers();
+       
+        User tempUser = users.get(0); //Hämtar in for för temporär user, som skall vara sessionuser sen.
+        
+        //Skriver ut användarens namn som rubrik. 
+        final TextView nameText = (TextView)findViewById(R.id.textView2);
+        nameText.setText(tempUser.getName());
+        
+        
   	    }
     }
