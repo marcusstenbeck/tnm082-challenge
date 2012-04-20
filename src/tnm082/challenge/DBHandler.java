@@ -296,4 +296,23 @@ public class DBHandler extends ListActivity{
 			Log.e("log_tag", "Error in http connection"+e.toString());
 		}
 	}
+	
+	// Kallas när en användare (userID) rapporterar ett uppdrag (missionID) som klart/done/genomfört
+	public void updateMission(int userID, int missionID)
+	{
+		InputStream is = null;
+		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(userID)));
+		nameValuePairs.add( new BasicNameValuePair("Mission_ID", Integer.toString(missionID)));
+		try{
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-updateMission.php");
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+			is = entity.getContent();
+		}catch(Exception e){
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+	}	
 }

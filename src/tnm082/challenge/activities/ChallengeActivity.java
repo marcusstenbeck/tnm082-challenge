@@ -1,5 +1,8 @@
 package tnm082.challenge.activities;
 
+import java.util.List;
+
+import tnm082.challenge.DBHandler;
 import tnm082.challenge.R;
 import android.app.TabActivity;
 
@@ -24,10 +27,16 @@ public class ChallengeActivity extends TabActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main); //layouten designas i res/layout/main.xml
 
-//	    Startar och avbryter ett uppdrag med userID 3 och missionID 1
-//	    DBHandler db = new DBHandler();
-//	    db.startMission(3, 1);	    
-//	    db.cancelMission(3, 1);	    
+	    
+/**	    ------------------------ EXEMPEL PÅ DATABASFUNKTIONER ------------------------------------------ **/
+//	    DBHandler db = new DBHandler();				// Skapar en DBHandler som behövs för att anropa databasfunktioner
+//	    db.startMission(3, 1);	    				// Startar ett uppdrag med missionID 1 för userID 3
+//	    db.cancelMission(3, 1);						// Avbryter ett uppdrag med missionID 1 för userID 3
+//	    db.updateMission(3, 1);						// Rapporterar ett uppdrag med missionID 1 för userID 3 som done
+//	    List<Mission> Mlist = db.getMissions();		// Läser in alla Missions från databasen till listan Mlist
+//	    List<User> 	UList = db.getUsers();			// Läser in alla Users från databsen till listan Ulist
+//	    List<Group> Glist = db.getGroups();			// Läser in alla Groups från databasen till listan Glist
+	    	    
 	    
 	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
