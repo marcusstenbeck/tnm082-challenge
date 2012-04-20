@@ -44,8 +44,20 @@ public class DBHandler extends ListActivity{
 	 * Faktisk tid: 2h
 	 * Testad/av: Nej / namn
 	 * Utcheckad/av: Ja / HC
-	 * @param User_ID och Mission_ID
-	 * @return Inget - Accepterar eller avbryter ett uppdrag för en user.
+	 * @param User u och Mission m eller Group g
+	 * @return Inget - Accepterar eller avbryter ett uppdrag eller grupp för en user.
+	 */
+	
+	/**
+	 * Kodad av: HC
+	 * Task nr: 20
+	 * Datum: 2012-04-20
+	 * Estimerad tid: 2h
+	 * Faktisk tid: 2h
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / HC
+	 * @param User u och Mission m eller Group g
+	 * @return Inget - Accepterar eller avbryter ett uppdrag eller grupp för en user.
 	 */
 
 	// Returnerar en lista med alla missions i databasen
@@ -258,44 +270,6 @@ public class DBHandler extends ListActivity{
 		// Returnerar listan
 		return Glist;
 	}
-
-	// Kallas när en användare (userID) startar ett uppdrag (missionID)
-	public void startMission(int userID, int missionID)
-	{
-		InputStream is = null;
-		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(userID)));
-		nameValuePairs.add( new BasicNameValuePair("Mission_ID", Integer.toString(missionID)));
-		try{
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-startMission.php");
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-			is = entity.getContent();
-		}catch(Exception e){
-			Log.e("log_tag", "Error in http connection"+e.toString());
-		}
-	}
-	
-	// Kallas när en användare (userID) avbryter ett uppdrag (missionID
-	public void cancelMission(int userID, int missionID)
-	{
-		InputStream is = null;
-		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(userID)));
-		nameValuePairs.add( new BasicNameValuePair("Mission_ID", Integer.toString(missionID)));
-		try{
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-cancelMission.php");
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-			is = entity.getContent();
-		}catch(Exception e){
-			Log.e("log_tag", "Error in http connection"+e.toString());
-		}
-	}
 	
 	// Kallas när en användare (userID) rapporterar ett uppdrag (missionID) som klart/done/genomfört
 	public void updateMission(int userID, int missionID)
@@ -315,4 +289,62 @@ public class DBHandler extends ListActivity{
 			Log.e("log_tag", "Error in http connection"+e.toString());
 		}
 	}	
+
+	// Kallas när en User u accepterar ett Mission eller Grupp
+	public void accept(User u, Object o)
+	{				
+		InputStream is = null;
+		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(u.getId())));
+		
+		if(o instanceof Mission)
+			nameValuePairs.add( new BasicNameValuePair("Mission_ID", Integer.toString(((Mission) o).getId())));
+		else if (o instanceof Group)
+			nameValuePairs.add( new BasicNameValuePair("Group_ID", Integer.toString(((Group) o).getId())));				
+			
+		try{
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost();
+			if(o instanceof Mission)
+				httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-accept.php?type=mission");
+			else if(o instanceof Group)
+				httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-accept.php?type=group");
+			
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+			is = entity.getContent();
+		}catch(Exception e){
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+	}
+	
+	// Kallas när en User u avaktiverar ett Mission eller Grupp
+	public void unaccept(User u, Object o)
+	{				
+		InputStream is = null;
+		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(u.getId())));
+		
+		if(o instanceof Mission)
+			nameValuePairs.add( new BasicNameValuePair("Mission_ID", Integer.toString(((Mission) o).getId())));
+		else if (o instanceof Group)
+			nameValuePairs.add( new BasicNameValuePair("Group_ID", Integer.toString(((Group) o).getId())));				
+			
+		try{
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost();
+			if(o instanceof Mission)
+				httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-unaccept.php?type=mission");
+			else if(o instanceof Group)
+				httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-unaccept.php?type=group");
+			
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+			is = entity.getContent();
+		}catch(Exception e){
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+	}
 }
