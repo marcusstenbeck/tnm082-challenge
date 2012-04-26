@@ -90,10 +90,22 @@ public class MissionActivity extends Activity {
         
 
         
-      //Koppling mellan Done-knappen och xml
-      //
+      //**** Koppling mellan Done-knappen och xml **** 
       // Checkboxen ska vara unchecked om man inte har accepterat uppdraget.  
         checkDone = (CheckBox) findViewById(R.id.checkDone);
+        List<Mission> checkedMList = db.getMissions(uList.get(0),"completed");
+        
+        // Loop som kollar om checkboxen redan ar ikryssad
+        for(int i = 0; i < checkedMList.size(); i++)
+        {
+        	Log.d("Checkbox"," checkat: " + i + " dyngcheckat: " + checkedMList.get(i).getName());
+        	if(checkedMList.get(i).getId()==missionId)
+        	{
+        		checkDone.setChecked(true);//denna skall vara true om vi har checkat uppdraget
+        		Log.d("Checkbox"," Done-Knappen satts till true ");
+        	}
+        	
+        }
         
         checkDone.setOnClickListener(new OnClickListener()
         {
@@ -101,15 +113,21 @@ public class MissionActivity extends Activity {
         	{	
         		//Kolla om checkbox ar checkad.
         		if(checkDone.isChecked())
-        		{	//checkDone.visibility(true);
+        		{	//checkDone.setVisibility(1);
         			//db do stuff
+        			
+        			//*****ATT KANSKE FIXA TILL SENARE*****
+        			//ERS€TTA CHECKBOX OCH ACCEPTED 
+        			//TILL EN BANNER SOM S€GER "MISSION COMPLETE"
+        			//******************************
         			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
         			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
         		}
         		
         		else	
         		{
-        			//db do other stuff
+        			//Inte sŒ mycket just nu
+        			
         		}
         	}
         });
@@ -142,7 +160,6 @@ public class MissionActivity extends Activity {
 					
 					// Denna kan lŠggas till sen. Checkboxen kommer fram efter att man har klickat pŒ Acceptera uppdrag. 
 					//checkDone.setVisibility(View.VISIBLE);
-					
 					//anropar accept ifrån dbahandler
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());

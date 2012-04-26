@@ -33,10 +33,9 @@
                     android:id="@+id/checkDone"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textOff="Ej Avklarat"
-                    android:textOn="Avklarat"/>
-                    <!--  android:visibility="gone"--> 
-                    
+                    android:text="Avklarat" />
+                    <!--android:visibility="gone" -->
+                    <!--android:textOff="Ej Avklarat"-->
 
             </LinearLayout>
 
