@@ -17,7 +17,7 @@ import android.widget.TextView;
  * Kodad av: Markus Olsson/Mathias Bergqvist
  * Task nr: 12
  * Datum: 2012-04-19
- * Estimerad tid: 2h
+ * Estimerad tid: 4h
  * Faktisk tid: 4h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
@@ -33,13 +33,18 @@ public class UserActivity extends Activity {
         //Hämtar alla users från databasen.
         List<User> users = new ArrayList<User>();
         users = db.getUsers();
-       
+        
         User tempUser = users.get(0); //Hämtar in for för temporär user, som skall vara sessionuser sen.
         
+       
         //Skriver ut användarens namn som rubrik. 
-        final TextView nameText = (TextView)findViewById(R.id.textView2);
-        nameText.setText(tempUser.getName());
+        final TextView titleText = (TextView)findViewById(R.id.textView2);
+        titleText.setText(tempUser.getName());
         
+        //Fyller i uppdrag för användaren.
+        //TODO skapa en funktion i db som hämtar uppdrag baserat på användare.
+        final TextView userMissions = (TextView)findViewById(R.id.profile_missions);
+        userMissions.setText("Accepterade uppdrag\n" + tempUser.getAcceptedMissions());
         
   	    }
     }

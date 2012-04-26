@@ -43,7 +43,7 @@ public class FeedActivity extends ListActivity{
             
         DBHandler db = new DBHandler();
         List<Mission> Mlist = new ArrayList<Mission>();
-  	  Mlist = db.getMissions();
+      Mlist = db.getMissions();
   	  //skapa en string-array som är lika stor som Mlist där namnen på varje mission sparas för att kunna visas i feeden
   	  int feedSize = Mlist.size();
   	
