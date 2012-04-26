@@ -66,7 +66,7 @@ public class GroupActivity extends ListActivity {
 	      // When clicked, show a toast with the TextView text
 	      //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
 	      //    Toast.LENGTH_SHORT).show();
-       	
+       	 
 	     Log.d("ID output:", "" + Integer.toString((int)id));
 	     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
 	     //skickar med vilken plats det vi klickar på i listan har 
