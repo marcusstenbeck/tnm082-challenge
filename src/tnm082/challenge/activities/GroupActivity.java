@@ -62,6 +62,7 @@ public class GroupActivity extends ListActivity {
 		     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
 		     intent.putExtra("id", (int)(id));
 		     startActivity(intent);
+
 	     
 	    	
 	    }

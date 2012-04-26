@@ -63,9 +63,10 @@ public class MissionActivity extends Activity {
 	    final List<Mission> mList = db.getMissions();
 	    final List<User> uList = db.getUsers();
 	    int thisMission = 0;
-	    
-		// ######## HAMTA VAR SPECIFIKA MISSION ##########
-	    Log.d("Accept/avAccept","MissionId" + missionId);
+
+// ######## HÄMTA VÅR SPECIFIKA MISSION ##########
+	    Log.d("Accept/avAccept","MissionId " + missionId);
+
 	    //loop som hittar vilken plats vårt mission har i missionlistan och sparar den variabeln som en 
 	    //final value så vi kommer åt den i vår onclick
 	    for(int i=0;i<mList.size();i++){
@@ -74,7 +75,7 @@ public class MissionActivity extends Activity {
 	    		thisMission = i;
 	    	}
 	    }
-	    Log.d("Accept/avAccept","thisMission" + thisMission);
+	    Log.d("Accept/avAccept","thisMission " + thisMission);
 	    final int finalThisMission = thisMission;
 
 
@@ -119,6 +120,18 @@ public class MissionActivity extends Activity {
         //koppla ihop knappen med xml:en
 
         tb = (ToggleButton) findViewById(R.id.toggleButton1);
+        List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
+        
+        // Loop som kollar om uppdraget redan är accepterat
+        for(int i = 0;i<acceptedMList.size();i++)
+        {
+        	Log.d("Accept/avAccept"," element: " + i + " stuff: " + acceptedMList.get(i).getName());
+        	if(acceptedMList.get(i).getId()==missionId)
+        	{
+        		tb.setChecked(true);//denna skall vara true om vi har accepterat uppdraget
+        		Log.d("Accept/avAccept"," Knappen säts till true ");
+        	}
+        }
         tb.setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
