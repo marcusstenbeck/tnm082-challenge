@@ -65,10 +65,12 @@ public class Group {
 	
 	public void addUser(User a){
 		userList.add(a);	
+		db.accept(a, id);
 	}
 	
 	public void removeUser(User a){
-		userList.remove(a);	
+		userList.remove(a);
+		db.unaccept(a,id);
 	}
 	
 	public User getUser(int id){
