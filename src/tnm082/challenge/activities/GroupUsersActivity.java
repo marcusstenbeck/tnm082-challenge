@@ -30,7 +30,7 @@ import android.app.ListActivity;
  */
 
 
-public class GroupUsersActivity extends ListActivity {
+public class GroupUsersActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
@@ -39,14 +39,12 @@ public class GroupUsersActivity extends ListActivity {
 
 	  // Skapa en DBHandler fšr att hŠmta data
 	  DBHandler db = new DBHandler();
-	  List<Group> Glist = new ArrayList<Group>();
-	  Glist = db.getGroups();
-	  List<User> Ulist = new ArrayList<User>();
-	  List<Mission> Mlist = new ArrayList<Mission>();
-	  Ulist = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
+
+	  List<Mission> missionsList = new ArrayList<Mission>();
+	  
 	  int index = getIntent().getExtras().getInt("id") + 1;
 	  Log.d("index",Integer.toString(index));
-	  Mlist = db.getMissions(index);
+	  missionsList = db.getMissions(index);
 	  
 	  // HŠmta en grupps information
 	  Group group;
@@ -55,31 +53,8 @@ public class GroupUsersActivity extends ListActivity {
 	  List<User> memberList = new ArrayList<User>();
 	  memberList = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
 	  
-	 //hämtar id:et från groupactivity och sparar den i en string array med usernames
-	  String[] USERS = new String[]{Glist.get(getIntent().getExtras().getInt("id")).getName(),Ulist.get(0).getName(),Ulist.get(1).getName()};
-	  String[] Missions = new String[]{"Lista på uppdrag inom gruppen",Mlist.get(0).getName(),Mlist.get(1).getName()};
-		
-	  //skapar listan
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, Missions));  
-
-	  ListView lv = getListView();
-	  lv.setTextFilterEnabled(true);
-
-	  lv.setOnItemClickListener(new OnItemClickListener() {
-	    public void onItemClick(AdapterView<?> parent, View view,
-	        int position, long id) {
-	      // When clicked, show a toast with the TextView text
-	      //Toast.makeText(getApplicationContext(), Integer.toString(((TextView) view).getId()),
-	       //   Toast.LENGTH_SHORT).show();
-	    }
-	  });
-	}
+	  String[] Missions = new String[]{"Lista på uppdrag inom gruppen",missionsList.get(0).getName(),missionsList.get(1).getName()};
 	
-	static final String[] COUNTRIES = new String[] {
-	    "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra",
-	    "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina",
-	    "Armenia"
-	  };
 	  String[] USERS = new String[] {
 			  							"Klasse Dummy",
 										"Dummy Dalton",
@@ -100,7 +75,6 @@ public class GroupUsersActivity extends ListActivity {
 	  ListView lv = (ListView) findViewById(R.id.listGroupMembers);
 	  
 	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
-	  //lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
+	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
 	} 
-
-//}
+}
