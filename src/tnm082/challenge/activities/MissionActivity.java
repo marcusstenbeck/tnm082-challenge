@@ -100,7 +100,7 @@ public class MissionActivity extends Activity {
         	{	
         		//Kolla om checkbox ar checkad.
         		if(checkDone.isChecked())
-        		{	
+        		{	//checkDone.visibility(true);
         			//db do stuff
         			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
         			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
@@ -125,7 +125,11 @@ public class MissionActivity extends Activity {
 			{
 				//kolla vilket state knappen ‰r i
 				if(tb.isChecked())
-				{
+				{	
+					
+					// Denna kan läggas till sen. Checkboxen kommer fram efter att man har klickat på Acceptera uppdrag. 
+					//checkDone.setVisibility(View.VISIBLE);
+					
 					//anropar accept ifrÂn dbahandler
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
