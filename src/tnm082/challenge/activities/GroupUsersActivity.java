@@ -59,11 +59,5 @@ public class GroupUsersActivity extends ListActivity {
 	    }
 	  });
 	}
-	
-	static final String[] COUNTRIES = new String[] {
-	    "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra",
-	    "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina",
-	    "Armenia"
-	  };
 	  
 }
