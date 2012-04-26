@@ -26,8 +26,7 @@
                     android:layout_height="match_parent"
                     android:text="ToggleButton"
                     android:textOff="Ej Accepterat"
-                    android:textOn="Accepterat"
-                    android:onClick="onToggleClicked" />
+                    android:textOn="Accepterat" />
 
                 <CheckBox
                     android:id="@+id/checkBox1"
