@@ -12,6 +12,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TabHost;
 
 /**
@@ -33,7 +34,8 @@ public class ChallengeActivity extends TabActivity {
 	    
 /**	    ------------------------ EXEMPEL PÅ DATABASFUNKTIONER ------------------------------------------ **/
 //	    DBHandler db = new DBHandler();				// Skapar en DBHandler som behövs för att anropa databasfunktioner
-//	    User u = new User("","",3);					// Dummy-user
+//	    User u = new User("","",1);					// Dummy-user
+//	    List<Mission> Mlist = db.getMissions(u, "active");
 //	    Mission m = new Mission(1,"", "");			// Dummy-mission
 //	    db.accept(u, m);							// Accepterar Mission m för User u (går att byta ut Mission mot Group)
 //	    db.unaccept(u, m);							// Avaccepterar Mission m för User u (går att byta ut Mission mot Group)
