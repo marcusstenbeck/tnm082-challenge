@@ -26,13 +26,16 @@
                     android:layout_height="match_parent"
                     android:text="ToggleButton"
                     android:textOff="Acceptera"
-                    android:textOn="Avacceptera" />
+                    android:textOn="Avacceptera"
+                     />
 
                 <CheckBox
                     android:id="@+id/checkDone"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Avklarat" />
+                    <!--android:visibility="gone" -->
+                    <!--android:textOff="Ej Avklarat"-->
 
             </LinearLayout>
 
