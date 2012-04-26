@@ -42,8 +42,8 @@ public class FeedActivity extends ListActivity{
 
             
         DBHandler db = new DBHandler();
-        List<Mission> Mlist = new ArrayList<Mission>();
-  	  Mlist = db.getMissions();
+        final List<Mission> Mlist = db.getMissions();
+        
   	  //skapa en string-array som är lika stor som Mlist där namnen på varje mission sparas för att kunna visas i feeden
   	  int feedSize = Mlist.size();
   	
@@ -76,7 +76,8 @@ public class FeedActivity extends ListActivity{
 		    	//name
 		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
 		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
-		    	mi.putExtra("mission_id", FEED[position]);
+		    	mi.putExtra("mission_id", Mlist.get((int)id).getId());
+		    	//mi.putExtra("mission_id", FEED[position]);
 		    	startActivity(mi);
 		    }
 		  });

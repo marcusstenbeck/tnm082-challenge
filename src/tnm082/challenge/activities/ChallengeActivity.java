@@ -38,9 +38,9 @@ public class ChallengeActivity extends TabActivity {
 //	    db.accept(u, m);							// Accepterar Mission m för User u (går att byta ut Mission mot Group)
 //	    db.unaccept(u, m);							// Avaccepterar Mission m för User u (går att byta ut Mission mot Group)
 //	    db.updateMission(3, 1);						// Rapporterar ett uppdrag med missionID 1 för userID 3 som done
-//	    List<Mission> Mlist = db.getMissions();		// Läser in alla Missions från databasen till listan Mlist
-//	    List<User> 	UList = db.getUsers();			// Läser in alla Users från databsen till listan Ulist
-//	    List<Group> Glist = db.getGroups();			// Läser in alla Groups från databasen till listan Glist
+//	    List<Mission> Mlist = db.getMissions();		// Laser in alla Missions från databasen till listan Mlist
+//	    List<User> 	UList = db.getUsers();			// Laser in alla Users från databsen till listan Ulist
+//	    List<Group> Glist = db.getGroups();			// Laser in alla Groups från databasen till listan Glist
 	    	    
 	    
 	    Resources res = getResources(); // Resource object to get Drawables
