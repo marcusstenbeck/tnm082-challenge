@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tnm082.challenge.DBHandler;
+import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import tnm082.challenge.Group;
 import tnm082.challenge.R;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,13 +41,18 @@ public class GroupUsersActivity extends ListActivity {
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
 	  List<User> Ulist = new ArrayList<User>();
+	  List<Mission> Mlist = new ArrayList<Mission>();
 	  Ulist = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
+	  int index = getIntent().getExtras().getInt("id") + 1;
+	  Log.d("index",Integer.toString(index));
+	  Mlist = db.getMissions(index);
 	  
 	 //hämtar id:et från groupactivity och sparar den i en string array med usernames
 	  String[] USERS = new String[]{Glist.get(getIntent().getExtras().getInt("id")).getName(),Ulist.get(0).getName(),Ulist.get(1).getName()};
+	  String[] Missions = new String[]{"Lista på uppdrag inom gruppen",Mlist.get(0).getName(),Mlist.get(1).getName()};
 		
 	  //skapar listan
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));  
+	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, Missions));  
 
 	  ListView lv = getListView();
 	  lv.setTextFilterEnabled(true);
@@ -54,8 +61,8 @@ public class GroupUsersActivity extends ListActivity {
 	    public void onItemClick(AdapterView<?> parent, View view,
 	        int position, long id) {
 	      // When clicked, show a toast with the TextView text
-	      Toast.makeText(getApplicationContext(), Integer.toString(((TextView) view).getId()),
-	          Toast.LENGTH_SHORT).show();
+	      //Toast.makeText(getApplicationContext(), Integer.toString(((TextView) view).getId()),
+	       //   Toast.LENGTH_SHORT).show();
 	    }
 	  });
 	}

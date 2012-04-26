@@ -48,9 +48,9 @@ public class FeedActivity extends ListActivity{
   	  int feedSize = Mlist.size();
   	
   	  final String[] FEED = new String[feedSize];
+  	  
   	  for (int i=0; i<feedSize; i++)
   		  FEED[i] = Mlist.get(i).getName();
-	 
 
   	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
   	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED));  
