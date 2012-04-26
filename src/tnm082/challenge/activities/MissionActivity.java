@@ -76,6 +76,25 @@ public class MissionActivity extends Activity {
 
         
       //Koppling mellan Done-knappen och databasen
+        
+        checkDone = (CheckBox) findViewById(R.id.checkDone);
+        checkDone.setOnClickListener(new OnClickListener()
+        {
+        	public void onClick(View v)
+        	{
+        		if(checkDone.isChecked())
+        		{
+        			//db do stuff
+        			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
+        			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
+        		}
+        		
+        		else	
+        		{
+        			//db do other stuff
+        		}
+        	}
+        });
 
 
 
