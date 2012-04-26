@@ -31,8 +31,10 @@
                 <CheckBox
                     android:id="@+id/checkDone"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Avklarat" />
+                    android:layout_height="match_parent"/>
+                    <!--android:textOff="Ej Avklarat"-->
+                    <!--android:textOn="Avklarat"--> 
+                    
 
             </LinearLayout>
 

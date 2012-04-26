@@ -36,6 +36,7 @@ public class MissionActivity extends Activity {
 
 	ToggleButton tb;
 	
+	//Skapa en CheckBox
 	CheckBox checkDone;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -87,13 +88,15 @@ public class MissionActivity extends Activity {
         
 
         
-      //Koppling mellan Done-knappen och databasen
-        
+      //Koppling mellan Done-knappen och xml
+      //
+      // Checkboxen ska vara unchecked om man inte har accepterat uppdraget.  
         checkDone = (CheckBox) findViewById(R.id.checkDone);
         checkDone.setOnClickListener(new OnClickListener()
         {
         	public void onClick(View v)
-        	{
+        	{	
+        		//Kolla om checkbox ar checkad.
         		if(checkDone.isChecked())
         		{
         			//db do stuff
