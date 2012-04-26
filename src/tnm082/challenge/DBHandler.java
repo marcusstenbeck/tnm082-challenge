@@ -69,6 +69,81 @@ public class DBHandler extends ListActivity{
 		StringBuilder sb=null;		
 		
 		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		 nameValuePairs.add(new BasicNameValuePair("query", ""));
+		// Skapar en http post som initierar en php-fil på servern.
+		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		try
+		{
+		     HttpClient httpclient = new DefaultHttpClient();
+		     HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-Mission.php");
+		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+		// Läser in data från php-filen och sparar som JSON
+		try
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+			sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+
+			String line="0";
+			while ((line = reader.readLine()) != null) 
+			{
+				sb.append(line + "\n");
+			}
+			is.close();
+			result=sb.toString();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error converting result "+e.toString());
+		}
+		// Parsar den inlästa datan och sparar
+		int m_id;
+		String m_name, m_desc;
+		List<Mission> Mlist = new ArrayList<Mission>();
+		Mission Mtmp;
+		try
+		{
+			jArray = new JSONArray(result);
+			JSONObject json_data=null;
+			for(int i = 0; i < jArray.length(); i++){
+				json_data = jArray.getJSONObject(i);
+				m_id = json_data.getInt("Mission_ID");
+				m_name = json_data.getString("Mission_name");
+				m_desc = json_data.getString("Mission_description");
+				Mtmp = new Mission(m_id, m_name, m_desc);
+				Mlist.add(i,Mtmp);
+				
+				
+			}
+		}catch(JSONException e1)
+		{
+			Toast.makeText(getBaseContext(), "No Mission Found" ,Toast.LENGTH_LONG).show();
+		}catch (ParseException e1) 
+		{
+			e1.printStackTrace();
+		}
+		// Returnerar listan
+		return Mlist;
+	}
+
+	public List<Mission> getMissions(User u, String state) 
+	{
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;		
+		
+		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		 if (state.equals("active") || state.equals("completed"))
+			 nameValuePairs.add(new BasicNameValuePair("query", "WHERE Mission_ID IN (SELECT Mission_ID FROM UserMissions WHERE User_ID = " + u.getId() + " AND UserMissions_status = \"" + state + "\")"));
+		 
+
 		// Skapar en http post som initierar en php-fil på servern.
 		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
 		try
@@ -128,8 +203,8 @@ public class DBHandler extends ListActivity{
 		}
 		// Returnerar listan
 		return Mlist;
-	}
-
+	}	
+	
 	// Returnerar en lista med alla users i databasen
 	public List<User> getUsers() 
 	{

@@ -7,6 +7,7 @@ import tnm082.challenge.DBHandler;
 
 import tnm082.challenge.Mission;
 import tnm082.challenge.R;
+import tnm082.challenge.User;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -42,7 +43,16 @@ public class FeedActivity extends ListActivity{
 
             
         DBHandler db = new DBHandler();
-        final List<Mission> Mlist = db.getMissions();
+        
+	    User u = new User("","",1);					// Dummy-user
+	    List<Mission> UMlist = db.getMissions(u, "active");
+	    for (Mission m : UMlist)
+	    {
+	    	Log.d("Name",m.getName());
+	    	Log.d("ID", Integer.toString(m.getId()));
+	    }
+	    final List<Mission> Mlist = db.getMissions();
+        
         
   	  //skapa en string-array som är lika stor som Mlist där namnen på varje mission sparas för att kunna visas i feeden
   	  int feedSize = Mlist.size();
@@ -56,13 +66,13 @@ public class FeedActivity extends ListActivity{
   	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED));  
 
 
-		for (Mission m : Mlist)
-		{
-			Log.d("ID",Integer.toString(m.getId()));
-			Log.d("Namn",m.getName());
-			Log.d("Beskrivning",m.getDesc());
-
-		}
+//		for (Mission m : Mlist)
+//		{
+//			Log.d("ID",Integer.toString(m.getId()));
+//			Log.d("Namn",m.getName());
+//			Log.d("Beskrivning",m.getDesc());
+//
+//		}
 		   
 
 		  ListView lv = getListView();
