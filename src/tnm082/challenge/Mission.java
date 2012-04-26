@@ -18,7 +18,7 @@ public class Mission {
 	private int id;
 	
 	public Mission() {
-		// Sätt -1 som standard
+		// Satt -1 som standard
 		this.id = -1;
 		this.name = "no data";
 		this.desc = "no data";

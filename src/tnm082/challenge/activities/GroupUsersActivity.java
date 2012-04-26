@@ -56,9 +56,6 @@ public class GroupUsersActivity extends Activity {
 										"Duh Me",
 			  							"Kathult af Dhumey"
 			  						};
-		
-	  //skapar listan
-	  //setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
 	  
 	  // Hämta listview från XML-layouten
 	  ListView lv = (ListView) findViewById(R.id.listGroupMembers);
@@ -66,4 +63,5 @@ public class GroupUsersActivity extends Activity {
 	  // Bind en ArrayAdapter med en stränglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
 	} 
+
 }

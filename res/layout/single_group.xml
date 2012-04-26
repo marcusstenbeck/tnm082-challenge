@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-		android:layout_below="@+id/textView2">
+		android:layout_below="@+id/textGroupMembers">
     </ListView>
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textGroupName"
         android:text="Group Members" />
 
     <ToggleButton
