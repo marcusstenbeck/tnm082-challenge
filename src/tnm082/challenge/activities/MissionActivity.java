@@ -29,7 +29,11 @@ import android.widget.Button;
 
 public class MissionActivity extends Activity {
 
+
 	
+
+	//skapar en toggleknapp
+
 	ToggleButton tb;
 	
 	CheckBox checkDone;
@@ -53,13 +57,15 @@ public class MissionActivity extends Activity {
 	    final int missionId = extras.getInt("mission_id");
 	    
 	
-	    // Hämta missions så att vi kan leta upp vår mission
+	    // hämtar missions o users till listor som är final så vi kan använda dom i vår onclick
 	    final List<Mission> mList = db.getMissions();
 	    final List<User> uList = db.getUsers();
 	    int thisMission = 0;
 	    
 		// ######## HAMTA VAR SPECIFIKA MISSION ##########
 	    Log.d("Accept/avAccept","MissionId" + missionId);
+	    //loop som hittar vilken plats vårt mission har i missionlistan och sparar den variabeln som en 
+	    //final value så vi kommer åt den i vår onclick
 	    for(int i=0;i<mList.size();i++){
 	    	if(missionId==mList.get(i).getId())
 	    	{
@@ -69,9 +75,15 @@ public class MissionActivity extends Activity {
 	    Log.d("Accept/avAccept","thisMission" + thisMission);
 	    final int finalThisMission = thisMission;
 
+
+
+	    
+	    
+
 	    final TextView nameText = (TextView)findViewById(R.id.textView1);
         
         nameText.setText(contentName);
+
         
 
         
@@ -98,21 +110,25 @@ public class MissionActivity extends Activity {
 
 
 
+
+        //koppla ihop knappen med xml:en
+
         tb = (ToggleButton) findViewById(R.id.toggleButton1);
         tb.setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
 			{
+				//kolla vilket state knappen är i
 				if(tb.isChecked())
 				{
-					
+					//anropar accept ifrån dbahandler
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
 			    	
 			    } 
 				else 
 				{
-					
+					//anropar unaccept ifrån dbahandler
 					db.unaccept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" av Accepterar uppdraget " + mList.get(finalThisMission).getName());
 	
