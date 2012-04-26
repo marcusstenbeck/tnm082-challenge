@@ -115,12 +115,18 @@ public class MissionActivity extends Activity {
         //koppla ihop knappen med xml:en
 
         tb = (ToggleButton) findViewById(R.id.toggleButton1);
-        //List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
-       // for(int i = 0;i<acceptedMList.size();i++)
-        //{
-        //	if(acceptedMList.get(i).getId()==finalThisMission)
+        List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
+        
+        // Loop som kollar om uppdraget redan är accepterat
+        for(int i = 0;i<acceptedMList.size();i++)
+        {
+        	Log.d("Accept/avAccept"," element: " + i + " stuff: " + acceptedMList.get(i).getName());
+        	if(acceptedMList.get(i).getId()==missionId)
+        	{
         		tb.setChecked(true);//denna skall vara true om vi har accepterat uppdraget
-       // }
+        		Log.d("Accept/avAccept"," Knappen säts till true ");
+        	}
+        }
         tb.setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
