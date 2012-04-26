@@ -61,12 +61,12 @@ public class MissionActivity extends Activity {
         nameText.setText(contentName);
         //koppla ihop knappen med xml:en
         tb = (ToggleButton) findViewById(R.id.toggleButton1);
-        //list<Mission> acceptedMList = db.getMission(uList.get(0),"accepted")
-        //for(int i = 0;i<acceptedMList.size();i++)
+        //List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
+       // for(int i = 0;i<acceptedMList.size();i++)
         //{
         //	if(acceptedMList.get(i).getId()==finalThisMission)
         		tb.setChecked(true);//denna skall vara true om vi har accepterat uppdraget
-        //}
+       // }
         tb.setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
