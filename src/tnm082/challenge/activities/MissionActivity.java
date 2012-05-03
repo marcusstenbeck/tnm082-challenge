@@ -127,34 +127,7 @@ public class MissionActivity extends Activity {
         	
         }
         
-//        checkDone.setOnClickListener(new OnClickListener()
-//        {
-//        	public void onClick(View v)
-//        	{	
-//        		showDialog(0);
-//        		//Kolla om checkbox ar checkad.
-//        		if(checkDone.isChecked())
-//        		{
-//        			
-//        			//checkDone.setVisibility(1);
-//        			//db do stuff
-//        			
-//        			//*****ATT KANSKE FIXA TILL SENARE*****
-//        			//ERS�TTA CHECKBOX OCH ACCEPTED 
-//        			//TILL EN BANNER SOM S�GER "MISSION COMPLETE"
-//        			//******************************
-//        			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
-//        			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
-//        		}
-//=======
-//        		//checkDone.setEnabled(false);
-//        		tb.setChecked(true);
-//        		tb.setEnabled(false);
-//>>>>>>> branch 'master' of ssh://git@github.com/marcusstenbeck/tnm082-challenge.git
-//        		
-//        	}
-//        }
-     // Loop som kollar om uppdraget redan �r accepterat
+
         for(int i = 0;i<acceptedMList.size();i++)
         {
         	Log.d("Accept/avAccept"," element: " + i + " stuff: " + acceptedMList.get(i).getName());
