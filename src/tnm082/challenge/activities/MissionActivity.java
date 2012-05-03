@@ -23,7 +23,7 @@ import android.widget.Button;
  * Task nr: 3 Sprint 2
  * Datum: 2012-04-25
  * Estimerad tid: 4h
- * Faktisk tid: h
+ * Faktisk tid: 3h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */
@@ -120,12 +120,40 @@ public class MissionActivity extends Activity {
         	{
         		checkDone.setChecked(true);//denna skall vara true om vi har checkat uppdraget
         		Log.d("Checkbox"," Done-Knappen satts till true ");
-        		//checkDone.setEnabled(false);
         		tb.setChecked(true);
         		tb.setEnabled(false);
-        		
+
         	}
+        	
         }
+        
+//        checkDone.setOnClickListener(new OnClickListener()
+//        {
+//        	public void onClick(View v)
+//        	{	
+//        		showDialog(0);
+//        		//Kolla om checkbox ar checkad.
+//        		if(checkDone.isChecked())
+//        		{
+//        			
+//        			//checkDone.setVisibility(1);
+//        			//db do stuff
+//        			
+//        			//*****ATT KANSKE FIXA TILL SENARE*****
+//        			//ERS�TTA CHECKBOX OCH ACCEPTED 
+//        			//TILL EN BANNER SOM S�GER "MISSION COMPLETE"
+//        			//******************************
+//        			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
+//        			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
+//        		}
+//=======
+//        		//checkDone.setEnabled(false);
+//        		tb.setChecked(true);
+//        		tb.setEnabled(false);
+//>>>>>>> branch 'master' of ssh://git@github.com/marcusstenbeck/tnm082-challenge.git
+//        		
+//        	}
+//        }
      // Loop som kollar om uppdraget redan �r accepterat
         for(int i = 0;i<acceptedMList.size();i++)
         {
@@ -190,22 +218,26 @@ public class MissionActivity extends Activity {
         {
 			public void onClick(View v)
 			{
-
 				//kolla vilket state knappen �r i
 				if(tb.isChecked())
 				{	
 					
 					// Denna kan l�ggas till sen. Checkboxen kommer fram efter att man har klickat p� Acceptera uppdrag. 
 					//checkDone.setVisibility(View.VISIBLE);
-					//anropar accept ifr�n dbahandler
+					
+					//Popup som sager Uppdraget Accepterat
+					Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG).show();
+
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
 					checkDone.setEnabled(true);
 			    	
 			    } 
 				else 
-				{
-					//anropar unaccept ifr�n dbahandler
+
+				{	
+					//Popup som sager Uppdraget Avaccepterat
+					Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG).show();
 					db.unaccept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" av Accepterar uppdraget " + mList.get(finalThisMission).getName());
 					checkDone.setEnabled(false);
@@ -215,7 +247,7 @@ public class MissionActivity extends Activity {
         });
         
         
-	}    
+	}  
 
 }
 
