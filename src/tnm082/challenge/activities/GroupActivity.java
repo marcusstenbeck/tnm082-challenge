@@ -36,7 +36,7 @@ public class GroupActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  setContentView(R.layout.group_overview); //layouten designas i res/layout/main.xml
+	  setContentView(R.layout.list); //layouten designas i res/layout/list.xml
 	  
 	  List<Group> groupList;
 	  Group g = new Group();
@@ -47,9 +47,9 @@ public class GroupActivity extends Activity {
 		  GROUPS[i] = groupList.get(i).getName();
 	  }
 	    
-	  // Hämta listview från XML-layouten
+	  // Hamta listview fran XML-layouten
 	  ListView lv = (ListView) findViewById(R.id.listView1); 
-	  // Bind en ArrayAdapter med en stränglista fylld med gruppdatat
+	  // Bind en ArrayAdapter med en stranglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));
 
 	  lv.setOnItemClickListener(new OnItemClickListener() {
