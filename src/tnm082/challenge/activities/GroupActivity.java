@@ -5,7 +5,8 @@ import java.util.List;
 
 import tnm082.challenge.DBHandler;
 import tnm082.challenge.R;
-import android.app.ListActivity;
+import tnm082.challenge.User;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,45 +30,28 @@ import tnm082.challenge.Group;
  */
 
 //eftersom det är en sida måste man extenda listactivity 
-public class GroupActivity extends ListActivity {
+public class GroupActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  
-	  DBHandler db = new DBHandler();
-	  List<Group> Glist = new ArrayList<Group>();
-	  Glist = db.getGroups();
-	  int feedSize = Glist.size();
-	  	
-	  	 String[] GROUPS = new String[feedSize];
-	  	  for (int i=0; i<feedSize; i++)
-	  	  {GROUPS[i] = Glist.get(i).getName();}
-	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
 
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
+	  setContentView(R.layout.list); //layouten designas i res/layout/main.xml
+	  List<Group> groupList = Group.getAllGroups(); 
 
-	  ListView lv = getListView();
-	  
-	  lv.setTextFilterEnabled(true);
-	  
+	ListView lv = (ListView) findViewById(R.id.listView1); 
+	lv.setAdapter(new ArrayAdapter<Group>(this, R.layout.list_item, groupList));  
+
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 		  
-	    public void onItemClick(AdapterView<?> parent, View view,
-	        int position, long id) {
-	      // When clicked, show a toast with the TextView text
-	      //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-	      //    Toast.LENGTH_SHORT).show();
+	    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 		     Log.d("ID output:", "" + Integer.toString((int)id));
 		     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
-		     intent.putExtra("id", (int)(id));
+		     intent.putExtra("id", ( (Group) parent.getItemAtPosition(position)).getId());
+		     intent.putExtra("name", ( (Group) parent.getItemAtPosition(position)).getName());
 		     startActivity(intent);
-
 	    	
 	    }
 	  });
 	}
-	
-	/*static final String[] GROUPS = new String[] {
-	    
-	  };*/
 }

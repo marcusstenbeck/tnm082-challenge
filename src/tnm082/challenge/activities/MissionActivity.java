@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.widget.Toast;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ToggleButton;
@@ -30,11 +31,7 @@ import android.widget.Button;
 
 public class MissionActivity extends Activity {
 
-
-	
-
 	//skapar en toggleknapp
-
 	ToggleButton tb;
 	
 	//Skapa en CheckBox
@@ -72,7 +69,7 @@ public class MissionActivity extends Activity {
 
 	    int thisMission = 0;
 
-// ######## H�MTA V�R SPECIFIKA MISSION ##########
+	    //######## HAMTA VAR SPECIFIKA MISSION ##########
 	    Log.d("Accept/avAccept","MissionId " + missionId);
 
 	    //loop som hittar vilken plats v�rt mission har i missionlistan och sparar den variabeln som en 
@@ -86,28 +83,23 @@ public class MissionActivity extends Activity {
 	    Log.d("Accept/avAccept","thisMission " + thisMission);
 	    final int finalThisMission = thisMission;
 	    
-
-
-
-	    
-
 	    
 	    //skapar kopplingar till xmlen
 	    final TextView nameText = (TextView)findViewById(R.id.textView1);
 	    final TextView descText = (TextView)findViewById(R.id.textView2);
+	    
         //lägger in ny text i rutorna
         nameText.setText(contentName);
         descText.setText((mList.get(finalThisMission).getDesc()));
         
-
         
       //**** Koppling mellan Done-knappen och xml **** 
       // Checkboxen ska vara unchecked om man inte har accepterat uppdraget.  
         checkDone = (CheckBox) findViewById(R.id.checkDone);
         checkDone.setEnabled(false);
         
+        
         //koppla ihop Acceptknappen med xml:en
-
         tb = (ToggleButton) findViewById(R.id.toggleButton1);
         
         List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
@@ -136,6 +128,7 @@ public class MissionActivity extends Activity {
         for(int i = 0;i<acceptedMList.size();i++)
         {
         	Log.d("Accept/avAccept"," element: " + i + " stuff: " + acceptedMList.get(i).getName());
+        	
         	//om uppdraget är accepterat
         	if(acceptedMList.get(i).getId()==missionId)
         	{
@@ -157,6 +150,7 @@ public class MissionActivity extends Activity {
             		   //updaterar mot databasen
 	                	db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
 	           			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
+	           			
 	           			//sätter checkknappen "checkad" och inte ändringsbar samt acceptknappen oändringsbar
 	           			checkDone.setChecked(true);
 	           			checkDone.setEnabled(false);
@@ -179,19 +173,11 @@ public class MissionActivity extends Activity {
         {
         	public void onClick(View v)
         	{	
-        		
         		//Kolla om checkbox ar checkad.
         		if(checkDone.isChecked())
         		{	
         			//om man klickar för att checka i så anropa alertwindown
         			alert.show();
-        			
-        		}
-        		
-        		else	
-        		{
-        			//Inte s� mycket just nu
-        			
         		}
         		
         	}
@@ -205,12 +191,10 @@ public class MissionActivity extends Activity {
 				//kolla vilket state knappen �r i
 				if(tb.isChecked())
 				{	
-					
-					// Denna kan l�ggas till sen. Checkboxen kommer fram efter att man har klickat p� Acceptera uppdrag. 
-					//checkDone.setVisibility(View.VISIBLE);
-					
-					//Popup som sager Uppdraget Accepterat
-					Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG).show();
+					//Mittcentrerad popup som sager Uppdraget Accepterat
+					Toast toast = Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
 
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
@@ -220,8 +204,11 @@ public class MissionActivity extends Activity {
 				else 
 
 				{	
-					//Popup som sager Uppdraget Avaccepterat
-					Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG).show();
+					//Mittcentrerad popup som sager Uppdraget Avaccepterat
+					Toast toast = Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+					
 					db.unaccept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" av Accepterar uppdraget " + mList.get(finalThisMission).getName());
 					checkDone.setEnabled(false);
@@ -234,6 +221,3 @@ public class MissionActivity extends Activity {
 	}  
 
 }
-
-//getta ID f�r valda uppdraget
-//getta name och desc
