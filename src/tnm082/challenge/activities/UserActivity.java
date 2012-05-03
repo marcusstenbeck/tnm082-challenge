@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.util.Log;
 
+
 /**
  * Kodad av: Markus Olsson/Mathias Bergqvist
  * Task nr: 12
@@ -61,8 +62,7 @@ public class UserActivity extends Activity {
         //-----------------------------------------------------------
         
         //Lista accepterade uppdrag
-        List<Mission> acceptedMList  = new ArrayList<Mission>();
-        acceptedMList = tempUser.getAcceptedMissions();
+        final List<Mission> acceptedMList  = tempUser.getAcceptedMissions(); 
         
       //hamta namnen på uppdrag för att ha dem i listan
         int feedSize = acceptedMList.size();
@@ -72,10 +72,22 @@ public class UserActivity extends Activity {
         //koppla till lista i user.xml
         ListView lv = (ListView)findViewById(R.id.accepted_mission_list);
         lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED));
+		  
+        //gora uppdragen klickbara
+		  lv.setOnItemClickListener(new OnItemClickListener() {
+		    public void onItemClick(AdapterView<?> parent, View view,
+		        int position, long id) {
+		    	//name
+		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
+		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
+		    	mi.putExtra("mission_id", acceptedMList.get((int)id).getId());
+		    	//mi.putExtra("mission_id", FEED[position]);
+		    	startActivity(mi);
+		    }
+		  });
         
         //Lista avklarade uppdrag-----------------------------------
-        List<Mission> completedMList  = new ArrayList<Mission>();
-        completedMList = tempUser.getCompletedMissions();
+        final List<Mission> completedMList  = tempUser.getCompletedMissions();
         
         //hamta namnen på uppdrag för att ha dem i listan
         int feedSize2 = completedMList.size();
@@ -85,6 +97,19 @@ public class UserActivity extends Activity {
         //koppla till lista i user.xml
         ListView lv2 = (ListView)findViewById(R.id.completed_mission_list);
         lv2.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED2));
+        
+        //gora uppdragen klickbara
+		  lv2.setOnItemClickListener(new OnItemClickListener() {
+		    public void onItemClick(AdapterView<?> parent, View view,
+		        int position, long id) {
+		    	//name
+		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
+		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
+		    	mi.putExtra("mission_id", completedMList.get((int)id).getId());
+		    	//mi.putExtra("mission_id", FEED[position]);
+		    	startActivity(mi);
+		    }
+		  });
        
   	    }
     }
