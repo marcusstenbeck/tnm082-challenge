@@ -6,6 +6,8 @@ import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import tnm082.challenge.R;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -87,7 +89,20 @@ public class MissionActivity extends Activity {
         
         nameText.setText(contentName);
 
-        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to exit?")
+               .setCancelable(false)
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                        MissionActivity.this.finish();
+                   }
+               })
+               .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                   }
+               });
+        AlertDialog alert = builder.create();
 
         
       //**** Koppling mellan Done-knappen och xml **** 
@@ -154,6 +169,7 @@ public class MissionActivity extends Activity {
         {
 			public void onClick(View v)
 			{
+				
 				//kolla vilket state knappen är i
 				if(tb.isChecked())
 				{	
