@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textGroupName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Group Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"  
+        android:background="#4b0082"
+        android:padding="25dp" />
+    
+    <ListView
+        android:id="@+id/listGroupMembers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+		android:layout_below="@+id/textGroupMembers">
+    </ListView>
+
+    <TextView
+        android:id="@+id/textGroupMembers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textGroupName"
+        android:text="Group Members" />
+    <ListView
+        android:id="@+id/listGroupMissions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+		android:layout_below="@+id/textGroupMissions">
+    </ListView>
+
+    <TextView
+        android:id="@+id/textGroupMissions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/listGroupMembers"
+        android:text="Group Missions" />
+
+    <ToggleButton
+        android:id="@+id/toggleJoinLeaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textOn="JOIN"
+        android:textOff="LEAVE"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp" />
+
+</RelativeLayout>

@@ -85,17 +85,19 @@ public class MissionActivity extends Activity {
 	    }
 	    Log.d("Accept/avAccept","thisMission " + thisMission);
 	    final int finalThisMission = thisMission;
+	    
 
 
 
 	    
 
 	    
-
+	    //skapar kopplingar till xmlen
 	    final TextView nameText = (TextView)findViewById(R.id.textView1);
-        
+	    final TextView descText = (TextView)findViewById(R.id.textView2);
+        //lägger in ny text i rutorna
         nameText.setText(contentName);
-
+        descText.setText((mList.get(finalThisMission).getDesc()));
         
 
         
@@ -116,10 +118,13 @@ public class MissionActivity extends Activity {
         for(int i = 0; i < checkedMList.size(); i++)
         {
         	Log.d("Checkbox"," checkat: " + i + " dyngcheckat: " + checkedMList.get(i).getName());
+        	//om uppdraget är avklarat
         	if(checkedMList.get(i).getId()==missionId)
         	{
         		checkDone.setChecked(true);//denna skall vara true om vi har checkat uppdraget
         		Log.d("Checkbox"," Done-Knappen satts till true ");
+
+        		//sätter acceptknappen checked och inte ändringsbar
         		tb.setChecked(true);
         		tb.setEnabled(false);
 
@@ -131,32 +136,43 @@ public class MissionActivity extends Activity {
         for(int i = 0;i<acceptedMList.size();i++)
         {
         	Log.d("Accept/avAccept"," element: " + i + " stuff: " + acceptedMList.get(i).getName());
+        	//om uppdraget är accepterat
         	if(acceptedMList.get(i).getId()==missionId)
         	{
         		tb.setChecked(true);//denna skall vara true om vi har accepterat uppdraget
         		Log.d("Accept/avAccept"," Knappen s�ts till true ");
+        		//sätter check knappen ändringsbar
         		checkDone.setEnabled(true);
         	}
         }
-        
+        //kopierad kod
+        //skapa en alertdialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //de som ska stå
         builder.setMessage("Är du säker?")
                .setCancelable(false)
-               .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
+               .setPositiveButton("Ja", new DialogInterface.OnClickListener() {//när man trycker ja
+                   //event som ska ske när man klickar
+            	   public void onClick(DialogInterface dialog, int id) {
+            		   //updaterar mot databasen
 	                	db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
 	           			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
+	           			//sätter checkknappen "checkad" och inte ändringsbar samt acceptknappen oändringsbar
 	           			checkDone.setChecked(true);
 	           			checkDone.setEnabled(false);
 	           			tb.setEnabled(false);
                    }
                })
-               .setNegativeButton("Nej", new DialogInterface.OnClickListener() {
+               
+               .setNegativeButton("Nej", new DialogInterface.OnClickListener() {//när man trycker nej
                    public void onClick(DialogInterface dialog, int id) {
+                	   //cancla den actionen och sätt knappen ocheckad
                         dialog.cancel();
                         checkDone.setChecked(false);
                    }
                });
+
+        //skapar själva objektet som skall anropas
         final AlertDialog alert = builder.create();
         
         checkDone.setOnClickListener(new OnClickListener()
@@ -166,13 +182,8 @@ public class MissionActivity extends Activity {
         		
         		//Kolla om checkbox ar checkad.
         		if(checkDone.isChecked())
-        		{	//checkDone.setVisibility(1);
-        			//db do stuff
-        			
-        			//*****ATT KANSKE FIXA TILL SENARE*****
-        			//ERS�TTA CHECKBOX OCH ACCEPTED 
-        			//TILL EN BANNER SOM S�GER "MISSION COMPLETE"
-        			//******************************
+        		{	
+        			//om man klickar för att checka i så anropa alertwindown
         			alert.show();
         			
         		}

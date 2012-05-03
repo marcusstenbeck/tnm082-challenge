@@ -67,7 +67,6 @@ public class Group {
 		missionsList = db.getMissions(id);
 		return missionsList;
 	}
-	
 	/**
 	 * Kodad av: Rikard
 	 * Task nr: 12, sprint 2
