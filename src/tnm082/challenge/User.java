@@ -164,9 +164,9 @@ public class User {
 	public static User getDummy()
 	{
 		
-		//List<User> uList = db.getUsers();
+	
 		
-		
+	
 		return dbStatic.getUsers().get(0);
 	}
 }
