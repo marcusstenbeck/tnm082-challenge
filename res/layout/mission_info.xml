@@ -78,7 +78,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Här ska det stå massa massa massa massa massa information om det uppdraget man är inne på la la la la la la la la lala la la la la la la la lala la la la la la la la lala la la la la la la la lala la la la la la la la lala la la la la la la la la" />
+                android:text="" />
 
         </TableRow>
 
