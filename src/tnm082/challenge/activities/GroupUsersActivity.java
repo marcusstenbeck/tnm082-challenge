@@ -48,14 +48,14 @@ public class GroupUsersActivity extends Activity {
 	  int groupId = getIntent().getExtras().getInt("id"); 		//far id fran gruppen man tryckt pa	  
 	  String gname = getIntent().getExtras().getString("name");	//far namn fran gruppen man tryckt pa	  
 	  
-	  Group currentGroup = new Group(); //skapa grupp
+	  final Group currentGroup = new Group(); //skapa grupp
 	  currentGroup.setId(groupId); //satt index
 	  currentGroup.setName(gname);
 	  
 	//----------------GRUPP-PILL------------------\\\\\\\\\\\\
 		// Hämta den Intent som vyn har
 		    Intent nIntent = getIntent();
-		    final  DBHandler db = new DBHandler();
+		   // final  DBHandler db = new DBHandler();
 		    // Ja, detta är ju klurigt
 		    //String contentName = nIntent.getData().toString(); 
 		    
@@ -65,7 +65,7 @@ public class GroupUsersActivity extends Activity {
 		    // Hämta groupId från extravariablerna som kom med Intent
 		    //final int groupId = extras.getInt("group_id");
 		    
-		    final List<Group> gList = db.getGroups();
+		    final List<Group> gList = Group.getAllGroups();
 		    int thisGroup = 0;
 		    
 		    
@@ -73,14 +73,16 @@ public class GroupUsersActivity extends Activity {
 		    for(int i=0;i<gList.size();i++){
 		    	if(groupId==gList.get(i).getId())
 		    	{
-		    		thisGroup = i+1;
+		    		thisGroup = i;
 		    	}
 		    }
 		    Log.d("Accept/avAccept","thisGroup " + thisGroup);
 		    final int finalThisGroup = thisGroup;
 		    
 		  //koppla ihop knappen med xml:en
-		    final List<User> uList = db.getUsers();
+		    
+		    final List<User> uList = currentGroup.getUserList(); //ändra till Groups getUserList
+		    Log.d("Accept/avAccept","uList.size() " + uList.size());
 	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
 	        tbg.setOnClickListener(new OnClickListener()
 	        {
@@ -89,11 +91,11 @@ public class GroupUsersActivity extends Activity {
 					//kolla vilket state knappen är i
 					if(tbg.isChecked())
 					{
-						db.accept(uList.get(0), gList.get(finalThisGroup)); //ska komma från session
+						currentGroup.addUser(uList.get(0)); //ska komma från session (använd dummy-user)
 					}
 					else
 					{
-						db.unaccept(uList.get(0), gList.get(finalThisGroup)); //tar av nån anledning inte bort från databasen
+						currentGroup.addUser(uList.get(0)); //tar av nån anledning inte bort från databasen
 					
 				    }
 					
