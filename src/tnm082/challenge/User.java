@@ -33,6 +33,7 @@ public class User {
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
 	DBHandler db = new DBHandler(); 
+	static DBHandler dbstat = new DBHandler();
 	
 	//tom konstruktor initierar alla värdena
 	public User() {
@@ -75,6 +76,10 @@ public class User {
 		{
 			this.completedMissions.add(i, new_completed.get(i));
 		}
+	}
+	
+	public static User dummyUser(){
+		return dbstat.getUsers().get(0);
 	}
 	//set o get för alla variabler
 	public String getName() {
@@ -158,4 +163,7 @@ public class User {
 		completedMissions = db.getMissions(this,"completed");
 		return  completedMissions;
 	}
+	
+	
+	
 }

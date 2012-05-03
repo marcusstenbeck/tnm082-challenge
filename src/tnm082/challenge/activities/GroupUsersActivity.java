@@ -12,12 +12,14 @@ import tnm082.challenge.User;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ToggleButton;
 import android.widget.TextView;
@@ -91,12 +93,19 @@ public class GroupUsersActivity extends Activity {
 					//kolla vilket state knappen är i
 					if(tbg.isChecked())
 					{
-						currentGroup.addUser(uList.get(0)); //ska komma från session (använd dummy-user)
+						currentGroup.addUser(User.dummyUser()); //ska komma från session (använd dummy-user)
+						//Mittcentrerad popup som sager Uppdraget Accepterat
+						Toast toast = Toast.makeText(getBaseContext()," Gått med i gruppen", Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.CENTER, 0, 0);
+						toast.show();
 					}
 					else
 					{
-						currentGroup.addUser(uList.get(0)); //tar av nån anledning inte bort från databasen
-					
+						currentGroup.removeUser(User.dummyUser()); //tar av nån anledning inte bort från databasen
+						//Mittcentrerad popup som sager Uppdraget Accepterat
+						Toast toast = Toast.makeText(getBaseContext()," Gått ur gruppen", Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.CENTER, 0, 0);
+						toast.show();
 				    }
 					
 					
