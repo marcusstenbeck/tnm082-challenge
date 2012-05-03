@@ -2,6 +2,8 @@ package tnm082.challenge;
 
 import java.util.*;
 
+import android.util.Log;
+
 /**
  * Kodad av: Magnus S/Markus O
  * Task nr:15
