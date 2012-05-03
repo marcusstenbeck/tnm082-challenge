@@ -360,93 +360,6 @@ public class DBHandler extends ListActivity{
 	
 	/**
 	 * Kodad av: Mathias
-	 * Task nr: Ingen (men skulle ha varit), sprint 2
-	 * Datum: 2012-04-26
-	 * Estimerad tid: ???h
-	 * Faktisk tid: 
-	 * Testad/av: 
-	 * Utcheckad/av: 
-	 * @param userID - ID för den grupp vars användare man vill hämta ut.
-	 * @return List<User> - En lista över alla användare i gruppen. Använder sig av klassen User.
-	 */
-	public User getUserById(int userID){
-		
-		//Lokala metodvariabler.
-		JSONArray jArray;
-		String result = null;
-		InputStream is = null;
-		StringBuilder sb=null;
-		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		
-		//Textsträng som bestämmer vilken php-fil från FTP som skall användas. Skickar även med ett get-objekt för user-id, som kommer att hämtas och hanteras i php-filen.
-		String php_src = "http://marcusstenbeck.com/tnm082/DB-UserByID.php?user_id="+Integer.toString(userID); //Gör dessuom om id till en textsträng.
-		
-		// Skapar en http post som initierar en php-fil på servern.
-		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
-		try
-		{
-		     HttpClient httpclient = new DefaultHttpClient();
-		     HttpPost httppost = new HttpPost(php_src); //I php-filen hämas alla id'n för användare i en grupp.
-		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-		     HttpResponse response = httpclient.execute(httppost);
-		     HttpEntity entity = response.getEntity();
-		     is = entity.getContent(); //Hämatar innehållet och spar i variabeln is.
-		}catch(Exception e)
-		{
-			Log.e("log_tag", "Error in http connection"+e.toString());
-		}
-		
-		// Läser in data från php-filen och sparar som JSON
-		try
-		{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8); //Använder is för att läsa data med bufferedreader.
-			sb = new StringBuilder();
-			sb.append(reader.readLine() + "\n");
-			
-			String line="0";
-			while ((line = reader.readLine()) != null) //Så länge som det finns data att hämta ska det sparas över i en textsträng. 
-			{
-				sb.append(line + "\n");
-			}
-			is.close(); //Stänger is.
-			result=sb.toString(); //Läser in JSON-data till en textsträng.
-		}catch(Exception e)
-		{
-			Log.e("log_tag", "Error converting result "+e.toString());
-		}
-		
-		// Parsar den inlästa datan och sparar.
-		int u_id;
-		String u_name, u_pass;
-		List<User> Ulist = new ArrayList<User>();
-		User Utmp;
-		try
-		{
-			jArray = new JSONArray(result);
-			JSONObject json_data=null;
-			for(int i = 0; i < jArray.length(); i++){
-				json_data = jArray.getJSONObject(i);
-				u_id = json_data.getInt("User_ID");
-				u_name = json_data.getString("User_name");
-				u_pass = json_data.getString("User_password");
-				Utmp = new User(u_name, u_pass, u_id);
-				Ulist.add(i,Utmp);
-				
-			}
-		}catch(JSONException e1)
-		{
-			Toast.makeText(getBaseContext(), "No User Found" ,Toast.LENGTH_LONG).show();
-		}catch (ParseException e1) 
-		{
-			e1.printStackTrace();
-		}
-		
-		//Listan innehåller bara en user, så det är den som kommer retuneras.
-		return Ulist.get(0);
-	}
-	
-	/**
-	 * Kodad av: Mathias
 	 * Task nr: 8, sprint 2
 	 * Datum: 2012-04-26
 	 * Estimerad tid: 8h
@@ -500,19 +413,30 @@ public class DBHandler extends ListActivity{
 		{
 			Log.e("log_tag", "Error converting result "+e.toString());
 		}
-		// Parsar den inlästa datan och sparar.
+		
+		// Skapar variabler att lagra data i.
 		int u_id;
-		List<Integer> uIDList = new ArrayList<Integer>(); //En lista med inter som ska innehålla alla id'n för users i gruppen. 
-		User Utmp;
+		String u_name;
+		String u_pwd; 
+		
+		//Här är listan med users som kommer att returneras.
+		List<User> usersInGroup = new ArrayList<User>();
+		
 		try
 		{
 			jArray = new JSONArray(result);
 			JSONObject json_data=null;
 			for(int i = 0; i < jArray.length(); i++){
 				json_data = jArray.getJSONObject(i);
+				
+				//Hämtar data från json, lagrar över detta i variabler 
 				u_id = json_data.getInt("User_ID");
-				int tmp = u_id;
-				uIDList.add(i,tmp);		
+				u_name = json_data.getString("User_name");
+				u_pwd = json_data.getString("User_password");
+				
+				//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
+				User tmpUser = new User(u_name, u_pwd, u_id);
+				usersInGroup.add(i, tmpUser);		
 			}
 		}catch(JSONException e1)
 		{
@@ -520,15 +444,6 @@ public class DBHandler extends ListActivity{
 		}catch (ParseException e1) 
 		{
 			e1.printStackTrace();
-		}
-		
-		//Här är listan med users som kommer att returneras.
-		List<User> usersInGroup = new ArrayList<User>();
-		
-		//Gör om listan med user id'n till en lista med users genom att använda funktionen getUserById().
-		for(int i=0; i<uIDList.size(); i++){
-			User tmpUser = getUserById(uIDList.get(i));
-			usersInGroup.add(i, tmpUser);
 		}
 		
 		return usersInGroup;

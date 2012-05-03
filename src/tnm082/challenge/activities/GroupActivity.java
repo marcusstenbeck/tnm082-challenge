@@ -57,12 +57,11 @@ public class GroupActivity extends ListActivity {
 	      // When clicked, show a toast with the TextView text
 	      //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
 	      //    Toast.LENGTH_SHORT).show();
-       	
 		     Log.d("ID output:", "" + Integer.toString((int)id));
 		     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
 		     intent.putExtra("id", (int)(id));
 		     startActivity(intent);
-	     
+
 	    	
 	    }
 	  });
