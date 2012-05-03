@@ -26,8 +26,13 @@ import android.util.Log;
 /**
  * Kodad av: Markus Olsson/Mathias Bergqvist
  * Task nr: 12
+<<<<<<< HEAD
+ * Datum: 2012-04-19
+ * Estimerad tid: 4h
+=======
  * Datum: 2012-04-19 
  * Estimerad tid: 2h
+>>>>>>> branch 'master' of ssh://git@github.com/marcusstenbeck/tnm082-challenge.git
  * Faktisk tid: 4h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
@@ -54,6 +59,7 @@ public class UserActivity extends Activity {
         List<User> users = db.getUsers();
         User tempUser = users.get(0); //Hämtar in for för temporär user, som skall vara sessionuser sen.
         
+       
         //Skriver ut användarens namn som rubrik. 
         final TextView nameText = (TextView)findViewById(R.id.textView2);
         nameText.setText(tempUser.getName());
@@ -63,7 +69,7 @@ public class UserActivity extends Activity {
         //Lista accepterade uppdrag
         List<Mission> acceptedMList  = new ArrayList<Mission>();
         acceptedMList = tempUser.getAcceptedMissions();
-        
+
       //hamta namnen pŒ uppdrag fšr att ha dem i listan
         int feedSize = acceptedMList.size();
     	  final String[] FEED = new String[feedSize];

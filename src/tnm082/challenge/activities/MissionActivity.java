@@ -6,6 +6,8 @@ import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import tnm082.challenge.R;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -26,8 +28,6 @@ import android.widget.Button;
  * Utcheckad/av: Ja/Nej / namn
  */
 
-
-
 public class MissionActivity extends Activity {
 
 
@@ -46,29 +46,37 @@ public class MissionActivity extends Activity {
 	    
 	    final DBHandler db = new DBHandler();
 	    
-	    // Hämta den Intent som vyn har
+
+	    // Hï¿½mta den Intent som vyn har
+
 	    Intent nIntent = getIntent();
 	    
-	    // Ja, detta är ju klurigt
+
+	    // Ja, detta ï¿½r ju klurigt
+
 	    String contentName = nIntent.getData().toString(); 
 	    
-	    // Hämta allt extra som skickades med Intent
+
+	    // Hï¿½mta allt extra som skickades med Intent
+
 	    Bundle extras = nIntent.getExtras();
 	    
-	    // Hämta missionId från extravariablerna som kom med Intent
+	    // Hï¿½mta missionId frï¿½n extravariablerna som kom med Intent
 	    final int missionId = extras.getInt("mission_id");
 	    
 	
-	    // hämtar missions o users till listor som är final så vi kan använda dom i vår onclick
+	    // hï¿½mtar missions o users till listor som ï¿½r final sï¿½ vi kan anvï¿½nda dom i vï¿½r onclick
 	    final List<Mission> mList = db.getMissions();
 	    final List<User> uList = db.getUsers();
+
+
 	    int thisMission = 0;
 
-// ######## HÄMTA VÅR SPECIFIKA MISSION ##########
+// ######## Hï¿½MTA Vï¿½R SPECIFIKA MISSION ##########
 	    Log.d("Accept/avAccept","MissionId " + missionId);
 
-	    //loop som hittar vilken plats vårt mission har i missionlistan och sparar den variabeln som en 
-	    //final value så vi kommer åt den i vår onclick
+	    //loop som hittar vilken plats vï¿½rt mission har i missionlistan och sparar den variabeln som en 
+	    //final value sï¿½ vi kommer ï¿½t den i vï¿½r onclick
 	    for(int i=0;i<mList.size();i++){
 	    	if(missionId==mList.get(i).getId())
 	    	{
@@ -81,6 +89,7 @@ public class MissionActivity extends Activity {
 
 
 	    
+
 	    
 
 	    final TextView nameText = (TextView)findViewById(R.id.textView1);
@@ -93,6 +102,14 @@ public class MissionActivity extends Activity {
       //**** Koppling mellan Done-knappen och xml **** 
       // Checkboxen ska vara unchecked om man inte har accepterat uppdraget.  
         checkDone = (CheckBox) findViewById(R.id.checkDone);
+        checkDone.setEnabled(false);
+        
+        //koppla ihop Acceptknappen med xml:en
+
+        tb = (ToggleButton) findViewById(R.id.toggleButton1);
+        
+        List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
+        
         List<Mission> checkedMList = db.getMissions(uList.get(0),"completed");
         
         // Loop som kollar om checkboxen redan ar ikryssad
@@ -103,83 +120,127 @@ public class MissionActivity extends Activity {
         	{
         		checkDone.setChecked(true);//denna skall vara true om vi har checkat uppdraget
         		Log.d("Checkbox"," Done-Knappen satts till true ");
+        		tb.setChecked(true);
+        		tb.setEnabled(false);
+
         	}
         	
         }
         
-        checkDone.setOnClickListener(new OnClickListener()
-        {
-        	public void onClick(View v)
-        	{	
-        		showDialog(0);
-        		//Kolla om checkbox ar checkad.
-        		if(checkDone.isChecked())
-        		{
-        			
-        			//checkDone.setVisibility(1);
-        			//db do stuff
-        			
-        			//*****ATT KANSKE FIXA TILL SENARE*****
-        			//ERS€TTA CHECKBOX OCH ACCEPTED 
-        			//TILL EN BANNER SOM S€GER "MISSION COMPLETE"
-        			//******************************
-        			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
-        			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
-        		}
-        		
-        		else	
-        		{
-        			//Inte sŒ mycket just nu
-        			
-        		}
-        	}
-        });
-
-
-
-
-        //koppla ihop knappen med xml:en
-
-        tb = (ToggleButton) findViewById(R.id.toggleButton1);
-        List<Mission> acceptedMList = db.getMissions(uList.get(0),"active");
-        
-        // Loop som kollar om uppdraget redan är accepterat
+//        checkDone.setOnClickListener(new OnClickListener()
+//        {
+//        	public void onClick(View v)
+//        	{	
+//        		showDialog(0);
+//        		//Kolla om checkbox ar checkad.
+//        		if(checkDone.isChecked())
+//        		{
+//        			
+//        			//checkDone.setVisibility(1);
+//        			//db do stuff
+//        			
+//        			//*****ATT KANSKE FIXA TILL SENARE*****
+//        			//ERSï¿½TTA CHECKBOX OCH ACCEPTED 
+//        			//TILL EN BANNER SOM Sï¿½GER "MISSION COMPLETE"
+//        			//******************************
+//        			db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
+//        			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
+//        		}
+//=======
+//        		//checkDone.setEnabled(false);
+//        		tb.setChecked(true);
+//        		tb.setEnabled(false);
+//>>>>>>> branch 'master' of ssh://git@github.com/marcusstenbeck/tnm082-challenge.git
+//        		
+//        	}
+//        }
+     // Loop som kollar om uppdraget redan ï¿½r accepterat
         for(int i = 0;i<acceptedMList.size();i++)
         {
         	Log.d("Accept/avAccept"," element: " + i + " stuff: " + acceptedMList.get(i).getName());
         	if(acceptedMList.get(i).getId()==missionId)
         	{
         		tb.setChecked(true);//denna skall vara true om vi har accepterat uppdraget
-        		Log.d("Accept/avAccept"," Knappen säts till true ");
+        		Log.d("Accept/avAccept"," Knappen sï¿½ts till true ");
+        		checkDone.setEnabled(true);
         	}
         }
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to exit?")
+               .setCancelable(false)
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+	                	db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
+	           			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
+	           			checkDone.setChecked(true);
+	           			checkDone.setEnabled(false);
+	           			tb.setEnabled(false);
+                   }
+               })
+               .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        checkDone.setChecked(false);
+                   }
+               });
+        final AlertDialog alert = builder.create();
+        
+        checkDone.setOnClickListener(new OnClickListener()
+        {
+        	public void onClick(View v)
+        	{	
+        		
+        		//Kolla om checkbox ar checkad.
+        		if(checkDone.isChecked())
+        		{	//checkDone.setVisibility(1);
+        			//db do stuff
+        			
+        			//*****ATT KANSKE FIXA TILL SENARE*****
+        			//ERSï¿½TTA CHECKBOX OCH ACCEPTED 
+        			//TILL EN BANNER SOM Sï¿½GER "MISSION COMPLETE"
+        			//******************************
+        			alert.show();
+        			
+        		}
+        		
+        		else	
+        		{
+        			//Inte sï¿½ mycket just nu
+        			
+        		}
+        		
+        	}
+        });
+
+
         tb.setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
 			{
-				//kolla vilket state knappen ar i
+				//kolla vilket state knappen ï¿½r i
 				if(tb.isChecked())
 				{	
 					
-					// Denna kan lŠggas till sen. Checkboxen kommer fram efter att man har klickat pŒ Acceptera uppdrag. 
+					// Denna kan lï¿½ggas till sen. Checkboxen kommer fram efter att man har klickat pï¿½ Acceptera uppdrag. 
 					//checkDone.setVisibility(View.VISIBLE);
 					
 					//Popup som sager Uppdraget Accepterat
 					Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG).show();
-					
-					//anropar accept ifrån dbahandler
+
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
+					checkDone.setEnabled(true);
 			    	
 			    } 
 				else 
+
 				{	
 					//Popup som sager Uppdraget Avaccepterat
 					Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG).show();
-					
-					//anropar unaccept ifrån dbahandler
 					db.unaccept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" av Accepterar uppdraget " + mList.get(finalThisMission).getName());
+					checkDone.setEnabled(false);
 	
 			    }
 			}
@@ -190,5 +251,5 @@ public class MissionActivity extends Activity {
 
 }
 
-//getta ID för valda uppdraget
+//getta ID fï¿½r valda uppdraget
 //getta name och desc

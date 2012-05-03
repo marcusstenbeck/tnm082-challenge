@@ -37,44 +37,38 @@ public class GroupUsersActivity extends Activity {
 	  
 	  setContentView(R.layout.single_group);
 
-	  // Skapa en DBHandler fšr att hŠmta data
+	  // Skapa en DBHandler för att hämta data
 	  DBHandler db = new DBHandler();
-
 	  List<Mission> missionsList = new ArrayList<Mission>();
+	  List<User> memberList;
+	  int groupId = getIntent().getExtras().getInt("id");
+	  int dbIndex = groupId + 1;
 	  
-	  int index = getIntent().getExtras().getInt("id") + 1;
-	  Log.d("index",Integer.toString(index));
-	  missionsList = db.getMissions(index);
+	  Group currentGroup = new Group();
+	  currentGroup.setId(dbIndex);
 	  
-	  // HŠmta en grupps information
-	  Group group;
+	  	
+	  Log.d("index",Integer.toString(dbIndex));
+	  missionsList = db.getMissions(dbIndex);
 	  
-	  // Skapa en list item fšr att hŒlla alla users som Šr med i gruppen
-	  List<User> memberList = new ArrayList<User>();
-	  memberList = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
-	  
+	  //memberList = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
+	  memberList = currentGroup.getUserList();
+
 	  String[] Missions = new String[]{"Lista på uppdrag inom gruppen",missionsList.get(0).getName(),missionsList.get(1).getName()};
 	
-	  String[] USERS = new String[] {
-			  							"Klasse Dummy",
-										"Dummy Dalton",
-										"Dixie Dummy",
-										"Duh Me",
-										"Klasse Dummy",
-										"Dummy Dalton",
-										"Dixie Dummy",
-										"Duh Me",
-										"Klasse Dummy",
-										"Dummy Dalton",
-										"Dixie Dummy",
-										"Duh Me",
-			  							"Kathult af Dhumey"
-			  						};
+	  String[] USERS = new String[memberList.size()];
+	  
+	  for(int i=0; i<memberList.size(); i++){
+		  USERS[i] = memberList.get(i).getName();
+	  }
+	  
 	  
 	  // HŠmta listview frŒn XML-layouten
 	  ListView lv = (ListView) findViewById(R.id.listGroupMembers);
 	  
 	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
+
 	} 
 }
+

@@ -105,4 +105,6 @@ public class GroupTest extends TestCase {
 			assertEquals(userId, retrievedUser.getId());
 			assertEquals(userName, retrievedUser.getName());
 		}
+		
+		
 }
