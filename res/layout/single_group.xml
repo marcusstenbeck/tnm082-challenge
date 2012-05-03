@@ -31,6 +31,21 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/textGroupName"
         android:text="Group Members" />
+    <ListView
+        android:id="@+id/listGroupMissions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+		android:layout_below="@+id/textGroupMissions">
+    </ListView>
+
+    <TextView
+        android:id="@+id/textGroupMissions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/listGroupMembers"
+        android:text="Group Missions" />
 
     <ToggleButton
         android:id="@+id/toggleJoinLeaveButton"

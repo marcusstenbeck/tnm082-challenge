@@ -21,6 +21,7 @@ public class Group {
 	private DBHandler db;
 
 	protected List<User> userList;
+	protected List<Mission> missionsList;
 	
 	public Group()
 	{
@@ -58,9 +59,13 @@ public class Group {
 	 * @return List<User> - En lista över alla användare i gruppen. Använder sig av klassen User.
 	 */
 	public List<User> getUserList() {
-		
 		userList = db.getUsersInGroup(id);
 		return userList;
+	}
+	
+	public List<Mission> getMissionsList() {
+		missionsList = db.getMissions(id);
+		return missionsList;
 	}
 	
 	public void addUser(User a){

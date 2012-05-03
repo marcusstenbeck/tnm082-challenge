@@ -29,46 +29,39 @@ import android.app.ListActivity;
  * Utcheckad/av: Ja/Nej / namn
  */
 
-
 public class GroupUsersActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
 	  setContentView(R.layout.single_group);
-
-	  // Skapa en DBHandler för att hämta data
-	  DBHandler db = new DBHandler();
-	  List<Mission> missionsList = new ArrayList<Mission>();
-	  List<User> memberList;
+	  
 	  int groupId = getIntent().getExtras().getInt("id");
 	  int dbIndex = groupId + 1;
-	  
 	  Group currentGroup = new Group();
 	  currentGroup.setId(dbIndex);
 	  
-	  	
-	  Log.d("index",Integer.toString(dbIndex));
-	  missionsList = db.getMissions(dbIndex);
-	  
-	  //memberList = db.getUsers();//Notera att detta igentligen skall vara en funktion som hämtar users som tillhör denna gruppen
-	  memberList = currentGroup.getUserList();
-
-	  String[] Missions = new String[]{"Lista på uppdrag inom gruppen",missionsList.get(0).getName(),missionsList.get(1).getName()};
-	
+	  List<User> memberList;
+	  memberList = currentGroup.getUserList(); 
 	  String[] USERS = new String[memberList.size()];
-	  
 	  for(int i=0; i<memberList.size(); i++){
 		  USERS[i] = memberList.get(i).getName();
 	  }
-	  
-	  
 	  // HŠmta listview frŒn XML-layouten
-	  ListView lv = (ListView) findViewById(R.id.listGroupMembers);
-	  
+	  ListView lv = (ListView) findViewById(R.id.listGroupMembers);  
 	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
-
+	  
+	  List<Mission> missionsList;
+	  missionsList = currentGroup.getMissionsList();
+	  String[] MISSIONS = new String[missionsList.size()];
+	  for(int i=0; i<missionsList.size(); i++){
+		  MISSIONS[i] = missionsList.get(i).getName();
+	  }
+	  // HŠmta listview frŒn XML-layouten
+	  ListView lv2 = (ListView) findViewById(R.id.listGroupMissions); 
+	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
+	  lv2.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, MISSIONS));
 	} 
 }
 

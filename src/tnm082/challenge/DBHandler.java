@@ -234,10 +234,7 @@ public class DBHandler extends ListActivity{
 		StringBuilder sb=null;		
 		
 		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		// nameValuePairs.add( new BasicNameValuePair("Group_ID", Integer.toString(((Group) o).getId())));
-		 nameValuePairs.add(new BasicNameValuePair("Group_ID", Integer.toString(o))); //for att veta vilken grupp uppdraget hor till
-		 nameValuePairs.add(new BasicNameValuePair("group", "yes")); //for att veta att uppdragen ska hora till en sarskild grupp
-		
+		 nameValuePairs.add(new BasicNameValuePair("query", "WHERE Mission_ID IN (SELECT Mission_ID FROM MissionsInGroup WHERE Group_ID = " + o + ")"));
 		 // Skapar en http post som initierar en php-fil på servern.
 		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
 		try
