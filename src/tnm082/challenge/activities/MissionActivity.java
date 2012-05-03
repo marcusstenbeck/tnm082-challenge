@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.widget.Toast;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ToggleButton;
@@ -190,8 +191,10 @@ public class MissionActivity extends Activity {
 				//kolla vilket state knappen �r i
 				if(tb.isChecked())
 				{	
-					//Popup som sager Uppdraget Accepterat
-					Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG).show();
+					//Mittcentrerad popup som sager Uppdraget Accepterat
+					Toast toast = Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
 
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
@@ -201,8 +204,10 @@ public class MissionActivity extends Activity {
 				else 
 
 				{	
-					//Popup som sager Uppdraget Avaccepterat
-					Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG).show();
+					//Mittcentrerad popup som sager Uppdraget Avaccepterat
+					Toast toast = Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
 					
 					db.unaccept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" av Accepterar uppdraget " + mList.get(finalThisMission).getName());

@@ -13,11 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ToggleButton;
 import android.widget.TextView;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -39,17 +41,70 @@ public class GroupUsersActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
+	  final ToggleButton tbg;
 	  setContentView(R.layout.single_group);
 	  TextView groupName = (TextView)findViewById(R.id.textGroupName);
 	  
-	  int groupId = getIntent().getExtras().getInt("id"); //far id fran gruppen man tryckt pa
+	  int groupId = getIntent().getExtras().getInt("id"); 		//far id fran gruppen man tryckt pa	  
+	  String gname = getIntent().getExtras().getString("name");	//far namn fran gruppen man tryckt pa	  
 	  
-	  String gname = getIntent().getExtras().getString("name");
-	  
-	  int dbIndex = groupId + 1; //okad id eftersom databasen inte ar nollbaserad
 	  Group currentGroup = new Group(); //skapa grupp
-	  currentGroup.setId(dbIndex); //satt index
+	  currentGroup.setId(groupId); //satt index
 	  currentGroup.setName(gname);
+	  
+	//----------------GRUPP-PILL------------------\\\\\\\\\\\\
+		// Hämta den Intent som vyn har
+		    Intent nIntent = getIntent();
+		    final  DBHandler db = new DBHandler();
+		    // Ja, detta är ju klurigt
+		    //String contentName = nIntent.getData().toString(); 
+		    
+		    // Hämta allt extra som skickades med Intent
+		    Bundle extras = nIntent.getExtras();
+		    
+		    // Hämta groupId från extravariablerna som kom med Intent
+		    //final int groupId = extras.getInt("group_id");
+		    
+		    final List<Group> gList = db.getGroups();
+		    int thisGroup = 0;
+		    
+		    
+		    Log.d("Accept/avAccept","GroupId " + groupId);
+		    for(int i=0;i<gList.size();i++){
+		    	if(groupId==gList.get(i).getId())
+		    	{
+		    		thisGroup = i+1;
+		    	}
+		    }
+		    Log.d("Accept/avAccept","thisGroup " + thisGroup);
+		    final int finalThisGroup = thisGroup;
+		    
+		  //koppla ihop knappen med xml:en
+		    final List<User> uList = db.getUsers();
+	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
+	        tbg.setOnClickListener(new OnClickListener()
+	        {
+				public void onClick(View v)
+				{
+					//kolla vilket state knappen är i
+					if(tbg.isChecked())
+					{
+						db.accept(uList.get(0), gList.get(finalThisGroup)); //ska komma från session
+					}
+					else
+					{
+						db.unaccept(uList.get(0), gList.get(finalThisGroup)); //tar av nån anledning inte bort från databasen
+					
+				    }
+					
+					
+				}
+	        });
+		   //////--------------END OF GRUPP-PILL-------------------------\\\\\\\\\\\
+
+	  
+	  
+		  
 	  
 	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
