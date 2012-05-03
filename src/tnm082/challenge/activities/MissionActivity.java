@@ -21,7 +21,7 @@ import android.widget.Button;
  * Task nr: 3 Sprint 2
  * Datum: 2012-04-25
  * Estimerad tid: 4h
- * Faktisk tid: h
+ * Faktisk tid: 3h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */
@@ -111,9 +111,12 @@ public class MissionActivity extends Activity {
         {
         	public void onClick(View v)
         	{	
+        		showDialog(0);
         		//Kolla om checkbox ar checkad.
         		if(checkDone.isChecked())
-        		{	//checkDone.setVisibility(1);
+        		{
+        			
+        			//checkDone.setVisibility(1);
         			//db do stuff
         			
         			//*****ATT KANSKE FIXA TILL SENARE*****
@@ -154,19 +157,26 @@ public class MissionActivity extends Activity {
         {
 			public void onClick(View v)
 			{
-				//kolla vilket state knappen är i
+				//kolla vilket state knappen ar i
 				if(tb.isChecked())
 				{	
 					
 					// Denna kan lŠggas till sen. Checkboxen kommer fram efter att man har klickat pŒ Acceptera uppdrag. 
 					//checkDone.setVisibility(View.VISIBLE);
+					
+					//Popup som sager Uppdraget Accepterat
+					Toast.makeText(getBaseContext()," Uppdaget Accepterat", Toast.LENGTH_LONG).show();
+					
 					//anropar accept ifrån dbahandler
 					db.accept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" Acceptera uppdraget " + mList.get(finalThisMission).getName());
 			    	
 			    } 
 				else 
-				{
+				{	
+					//Popup som sager Uppdraget Avaccepterat
+					Toast.makeText(getBaseContext()," Uppdaget Avaccepterat", Toast.LENGTH_LONG).show();
+					
 					//anropar unaccept ifrån dbahandler
 					db.unaccept(uList.get(0), mList.get(finalThisMission));
 					Log.d("Accept/avAccept",uList.get(0).getName()+" av Accepterar uppdraget " + mList.get(finalThisMission).getName());
@@ -176,7 +186,7 @@ public class MissionActivity extends Activity {
         });
         
         
-	}    
+	}  
 
 }
 
