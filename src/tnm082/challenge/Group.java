@@ -19,19 +19,20 @@ import java.util.*;
 public class Group{
 	private String name;
 	private int id;
-	private DBHandler db;
+	private static DBHandler db = new DBHandler();
 
 	protected List<User> userList;
 	protected List<Mission> missionsList;
+	protected static List<Group> groupsList;
+
 	
 	public Group()
 	{
 		name = "†bergruppen";
 		userList = new Vector<User>();
 		id = 0;
-		db = new DBHandler();
+		
 	}
-	
 
 	public String getName() {
 		return name;
@@ -67,6 +68,11 @@ public class Group{
 	public List<Mission> getMissionsList() {
 		missionsList = db.getMissions(id);
 		return missionsList;
+	}
+	
+	public static List<Group> getAllGroups(){
+		groupsList = db.getGroups();
+		return groupsList;
 	}
 	/**
 	 * Kodad av: Rikard
