@@ -18,8 +18,8 @@ import java.util.*;
 public class Group {
 	private String name;
 	private int id;
+	private DBHandler db;
 
-	protected DBHandler db = new DBHandler();
 	protected List<User> userList;
 	
 	public Group()
@@ -27,6 +27,7 @@ public class Group {
 		name = "†bergruppen";
 		userList = new Vector<User>();
 		id = 0;
+		db = new DBHandler();
 	}
 	
 
@@ -46,10 +47,32 @@ public class Group {
 		this.name = name;
 	}
 	
+	/**
+	 * Kodad av: Mathias
+	 * Task nr: 7, sprint 2
+	 * Datum: 2012-04-26
+	 * Estimerad tid: 4h
+	 * Faktisk tid: 
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / Rikard unt HC
+	 * @return List<User> - En lista över alla användare i gruppen. Använder sig av klassen User.
+	 */
 	public List<User> getUserList() {
+		
+		userList = db.getUsersInGroup(id);
 		return userList;
 	}
 	
+	/**
+	 * Kodad av: Rikard
+	 * Task nr: 12, sprint 2
+	 * Datum: 2012-04-26
+	 * Estimerad tid: 4h
+	 * Faktisk tid: 1h
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / Rikard unt HC
+	 * @return List<User> - En lista över alla användare i gruppen. Använder sig av klassen User.
+	 */
 	public void addUser(User a){
 		userList.add(a);	
 		db.accept(a, this);
