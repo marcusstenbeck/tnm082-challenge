@@ -34,7 +34,8 @@ public class User {
 	private String name, pass;
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
-	DBHandler db = new DBHandler(); 
+	DBHandler db = new DBHandler();
+	static DBHandler dbStatic = new DBHandler();
 	
 	//tom konstruktor initierar alla värdena
 	public User() {
@@ -160,12 +161,12 @@ public class User {
 		completedMissions = db.getMissions(this,"completed");
 		return  completedMissions;
 	}
-	public User getDummy()
+	public static User getDummy()
 	{
-		Log.d("Accept/avAccept","Dummyuser 1");
-		List<User> uList = db.getUsers();
 		
-		Log.d("Accept/avAccept","Dummyuser ");
-		return db.getUsers().get(0);
+		//List<User> uList = db.getUsers();
+		
+		
+		return dbStatic.getUsers().get(0);
 	}
 }
