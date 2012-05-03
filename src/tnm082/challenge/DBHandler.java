@@ -59,6 +59,19 @@ public class DBHandler extends ListActivity{
 	 * @param User u och Mission m eller Group g
 	 * @return Inget - Accepterar eller avbryter ett uppdrag eller grupp för en user.
 	 */
+	
+	/**
+	 * Kodad av: HC
+	 * Task nr: 4 och 5
+	 * Datum: 2012-04-26
+	 * Estimerad tid: 16h
+	 * Faktisk tid: 4h
+	 * Testad/av: Ja
+	 * Utcheckad/av: Ja / HC
+	 * @param User u och String state = "active" eller "completed"
+	 * @return List<Mission> - Returnerar alla aktiva eller avklarade uppdrag för en user.
+	 */
+	
 
 	// Returnerar en lista med alla missions i databasen
 	public List<Mission> getMissions() 
@@ -134,6 +147,7 @@ public class DBHandler extends ListActivity{
 		return Mlist;
 	}
 
+	// Returnerar en lista med alla aktiva eller avklarade missions för en user
 	public List<Mission> getMissions(User u, String state) 
 	{
 		JSONArray jArray;
@@ -209,7 +223,7 @@ public class DBHandler extends ListActivity{
 	}	
 
 	
-	// Returnerar en lista med alla missions i databasen
+	// Returnerar en lista med alla missions för en grupp
 	public List<Mission> getMissions(int o) 
 	
 	//hämta alla missions i en grupp
@@ -286,7 +300,6 @@ public class DBHandler extends ListActivity{
 	}
 	
 	
-
 
 	// Returnerar en lista med alla users i databasen
 	public List<User> getUsers() 
