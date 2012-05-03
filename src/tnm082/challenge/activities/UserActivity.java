@@ -26,9 +26,18 @@ import android.util.Log;
 /**
  * Kodad av: Markus Olsson/Mathias Bergqvist
  * Task nr: 12
- * Datum: 2012-04-19
+ * Datum: 2012-04-19 
  * Estimerad tid: 2h
  * Faktisk tid: 4h
+ * Testad/av: Ja/Nej / namn
+ * Utcheckad/av: Ja/Nej / namn
+ */
+/**
+ * Kodad av: Kristina
+ * Task nr: 6 (sprint2)
+ * Datum: 2012-04-26 
+ * Estimerad tid: 4h
+ * Faktisk tid: 5h
  * Testad/av: Ja/Nej / namn
  * Utcheckad/av: Ja/Nej / namn
  */
@@ -48,22 +57,14 @@ public class UserActivity extends Activity {
         //Skriver ut anv‰ndarens namn som rubrik. 
         final TextView nameText = (TextView)findViewById(R.id.textView2);
         nameText.setText(tempUser.getName());
-        //----------------------------------------------------------
-       /* Test för att kolla på en befintlig lista
-        int feedSize = users.size();
-    	  final String[] FEED = new String[feedSize];
-    	  for (int i=0; i<(feedSize); i++)
-    		  FEED[i] = users.get(i).getName();
-        
-        ListView lv = (ListView)findViewById(R.id.user_mission_list);
-        lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED));*/
+     
         //-----------------------------------------------------------
         
         //Lista accepterade uppdrag
-        //List<Mission> acceptedMList  = new ArrayList<Mission>();
-       // acceptedMList = tempUser.getAcceptedMissions();
-        List<User> acceptedMList  = new ArrayList<User>();
-        acceptedMList = users;
+        List<Mission> acceptedMList  = new ArrayList<Mission>();
+        acceptedMList = tempUser.getAcceptedMissions();
+        
+      //hamta namnen på uppdrag för att ha dem i listan
         int feedSize = acceptedMList.size();
     	  final String[] FEED = new String[feedSize];
     	  for (int i=0; i<feedSize; i++)
@@ -73,11 +74,10 @@ public class UserActivity extends Activity {
         lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED));
         
         //Lista avklarade uppdrag-----------------------------------
-        //List<Mission> completedMList  = new ArrayList<Mission>();
-        //completedMList = tempUser.getAcceptedMissions();
-        List<User> completedMList  = new ArrayList<User>();
-        completedMList = users;
+        List<Mission> completedMList  = new ArrayList<Mission>();
+        completedMList = tempUser.getCompletedMissions();
         
+        //hamta namnen på uppdrag för att ha dem i listan
         int feedSize2 = completedMList.size();
     	  final String[] FEED2 = new String[feedSize2];
     	  for (int i=0; i<feedSize2; i++)

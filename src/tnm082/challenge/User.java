@@ -4,6 +4,7 @@ package tnm082.challenge;
 
 import java.util.ArrayList;
 import java.util.List;
+import tnm082.challenge.Mission;
 
 /**
     * Kodad av: Flaaten	
@@ -15,12 +16,23 @@ import java.util.List;
     * Utcheckad: Nej
     
     */
+/**
+ * Kodad av: Kristina	
+ * Task nr: 6 (sprint2)
+ * Datum: 2012-04-26
+ * Estimerad tid: 4 h
+ * Faktisk tid: 5 h
+ * Testad/av: Nej
+ * Utcheckad: Nej
+ 
+ */
 
 public class User {
 	//alla variabler
 	private String name, pass;
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
+	DBHandler db = new DBHandler(); 
 	
 	//tom konstruktor initierar alla värdena
 	public User() {
@@ -42,6 +54,7 @@ public class User {
 		this.id = new_id;
 		// En lista över uppdrag som ska utföras
 		this.acceptedMissions = new ArrayList<Mission>();
+
 		
 		// En lista över uppdrag som användaren har klarat
 		this.completedMissions = new ArrayList<Mission>();
@@ -134,11 +147,15 @@ public class User {
 	
 	public List<Mission> getAcceptedMissions()
 	{
+		//hamta accepterade uppdrag for den aktuella anvandaren
+		acceptedMissions = db.getMissions(this, "active");
 		return acceptedMissions;
 	}
 	
 	public List<Mission> getCompletedMissions()
 	{
+		//hamta avklarade uppdrag for den aktuella anvandaren
+		completedMissions = db.getMissions(this,"completed");
 		return  completedMissions;
 	}
 }
