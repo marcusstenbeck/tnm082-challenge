@@ -7,6 +7,7 @@ import tnm082.challenge.DBHandler;
 import tnm082.challenge.R;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import tnm082.challenge.Group;
 
 
@@ -34,6 +36,8 @@ public class GroupActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
+	  
+	  
 	  DBHandler db = new DBHandler();
 	  List<Group> Glist = new ArrayList<Group>();
 	  Glist = db.getGroups();
@@ -49,7 +53,7 @@ public class GroupActivity extends ListActivity {
 	  ListView lv = getListView();
 	  
 	  lv.setTextFilterEnabled(true);
-	  
+	
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 		  
 	    public void onItemClick(AdapterView<?> parent, View view,
@@ -60,6 +64,7 @@ public class GroupActivity extends ListActivity {
 		     Log.d("ID output:", "" + Integer.toString((int)id));
 		     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
 		     intent.putExtra("id", (int)(id));
+		     intent.putExtra("name", parent.getItemAtPosition(position).toString());
 		     startActivity(intent);
 
 	    	

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -35,11 +36,16 @@ public class GroupUsersActivity extends Activity {
 	  super.onCreate(savedInstanceState);
 	  
 	  setContentView(R.layout.single_group);
+	  TextView groupName = (TextView)findViewById(R.id.textGroupName);
 	  
 	  int groupId = getIntent().getExtras().getInt("id"); //far id fran gruppen man tryckt pa
+	  
+	  String gname = getIntent().getExtras().getString("name");
+	  
 	  int dbIndex = groupId + 1; //okad id eftersom databasen inte ar nollbaserad
 	  Group currentGroup = new Group(); //skapa grupp
 	  currentGroup.setId(dbIndex); //satt index
+	  currentGroup.setName(gname);
 	  
 	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
@@ -62,6 +68,7 @@ public class GroupUsersActivity extends Activity {
 	  }
 	  // Hämta listview från XML-layouten
 	  ListView lv2 = (ListView) findViewById(R.id.listGroupMissions); 
+	  groupName.setText(gname);
 	  // Bind en ArrayAdapter med en stränglista fylld med gruppdatat
 	  lv2.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, MISSIONS));
 	} 
