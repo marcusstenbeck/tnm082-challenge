@@ -4,6 +4,8 @@ package tnm082.challenge;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.util.Log;
 import tnm082.challenge.Mission;
 
 /**
@@ -157,5 +159,13 @@ public class User {
 		//hamta avklarade uppdrag for den aktuella anvandaren
 		completedMissions = db.getMissions(this,"completed");
 		return  completedMissions;
+	}
+	public User getDummy()
+	{
+		Log.d("Accept/avAccept","Dummyuser 1");
+		List<User> uList = db.getUsers();
+		
+		Log.d("Accept/avAccept","Dummyuser ");
+		return db.getUsers().get(0);
 	}
 }
