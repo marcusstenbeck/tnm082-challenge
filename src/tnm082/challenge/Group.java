@@ -3,6 +3,8 @@ package tnm082.challenge;
 import java.util.*;
 
 
+import android.util.Log;
+
 /**
  * Kodad av: Magnus S/Markus O
  * Task nr:15
@@ -88,7 +90,8 @@ public class Group{
 		userList.add(a);	
 		db.accept(a, this);
 	}
-		
+	
+	
 	public void removeUser(User a){
 		userList.remove(a);
 		db.unaccept(a, this);

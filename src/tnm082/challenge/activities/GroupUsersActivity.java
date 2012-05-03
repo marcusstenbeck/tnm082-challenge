@@ -18,11 +18,13 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ToggleButton;
 import android.widget.TextView;
+
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -39,25 +41,30 @@ import android.content.Intent;
  */
 
 public class GroupUsersActivity extends Activity {
+	//skapar en toggleknapp
+
+	ToggleButton tb;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
 	  final ToggleButton tbg;
+
 	  setContentView(R.layout.single_group);
 	  TextView groupName = (TextView)findViewById(R.id.textGroupName);
 	  
 	  int groupId = getIntent().getExtras().getInt("id"); 		//far id fran gruppen man tryckt pa	  
 	  String gname = getIntent().getExtras().getString("name");	//far namn fran gruppen man tryckt pa	  
 	  
-	  final Group currentGroup = new Group(); //skapa grupp
+	final  Group currentGroup = new Group(); //skapa grupp
 	  currentGroup.setId(groupId); //satt index
 	  currentGroup.setName(gname);
 	  
 	//----------------GRUPP-PILL------------------\\\\\\\\\\\\
 		// Hämta den Intent som vyn har
 		    Intent nIntent = getIntent();
-		   // final  DBHandler db = new DBHandler();
+		    final  DBHandler db = new DBHandler();
 		    // Ja, detta är ju klurigt
 		    //String contentName = nIntent.getData().toString(); 
 		    
@@ -67,7 +74,7 @@ public class GroupUsersActivity extends Activity {
 		    // Hämta groupId från extravariablerna som kom med Intent
 		    //final int groupId = extras.getInt("group_id");
 		    
-		    final List<Group> gList = Group.getAllGroups();
+		    final List<Group> gList = db.getGroups();
 		    int thisGroup = 0;
 		    
 		    
@@ -75,16 +82,14 @@ public class GroupUsersActivity extends Activity {
 		    for(int i=0;i<gList.size();i++){
 		    	if(groupId==gList.get(i).getId())
 		    	{
-		    		thisGroup = i;
+		    		thisGroup = i+1;
 		    	}
 		    }
 		    Log.d("Accept/avAccept","thisGroup " + thisGroup);
 		    final int finalThisGroup = thisGroup;
 		    
 		  //koppla ihop knappen med xml:en
-		    
-		    final List<User> uList = currentGroup.getUserList(); //ändra till Groups getUserList
-		    Log.d("Accept/avAccept","uList.size() " + uList.size());
+		    final List<User> uList = db.getUsers();
 	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
 	        tbg.setOnClickListener(new OnClickListener()
 	        {
@@ -93,19 +98,23 @@ public class GroupUsersActivity extends Activity {
 					//kolla vilket state knappen är i
 					if(tbg.isChecked())
 					{
+
 						currentGroup.addUser(User.dummyUser()); //ska komma från session (använd dummy-user)
 						//Mittcentrerad popup som sager Uppdraget Accepterat
 						Toast toast = Toast.makeText(getBaseContext()," Gått med i gruppen", Toast.LENGTH_LONG);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
+
 					}
 					else
 					{
+
 						currentGroup.removeUser(User.dummyUser()); //tar av nån anledning inte bort från databasen
 						//Mittcentrerad popup som sager Uppdraget Accepterat
 						Toast toast = Toast.makeText(getBaseContext()," Gått ur gruppen", Toast.LENGTH_LONG);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
+
 				    }
 					
 					
@@ -117,6 +126,7 @@ public class GroupUsersActivity extends Activity {
 	  
 		  
 	  
+
 	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
 	  memberList = currentGroup.getUserList(); 
@@ -124,9 +134,9 @@ public class GroupUsersActivity extends Activity {
 	  for(int i=0; i<memberList.size(); i++){
 		  USERS[i] = memberList.get(i).getName();
 	  }
-	  // HŠmta listview frŒn XML-layouten
+	  // Hmta listview frn XML-layouten
 	  ListView lv = (ListView) findViewById(R.id.listGroupMembers);  
-	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
+	  // Bind en ArrayAdapter med en strnglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
 	  
 	  //skapar en lista och fyller den med tillhorande uppdrag
@@ -136,7 +146,7 @@ public class GroupUsersActivity extends Activity {
 	  for(int i=0; i<missionsList.size(); i++){
 		  MISSIONS[i] = missionsList.get(i).getName();
 	  }
-	  // HŠmta listview frŒn XML-layouten
+	  // Hmta listview frn XML-layouten
 	  ListView lv2 = (ListView) findViewById(R.id.listGroupMissions); 
 	  groupName.setText(gname);
 	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
@@ -154,6 +164,7 @@ public class GroupUsersActivity extends Activity {
 		    	startActivity(mi);
 		    }
 		  });
+
 	} 
 }
 

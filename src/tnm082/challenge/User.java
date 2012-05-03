@@ -4,6 +4,8 @@ package tnm082.challenge;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.util.Log;
 import tnm082.challenge.Mission;
 
 /**
@@ -32,8 +34,10 @@ public class User {
 	private String name, pass;
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
+
 	DBHandler db = new DBHandler(); 
 	static DBHandler dbstat = new DBHandler();
+
 	
 	//tom konstruktor initierar alla värdena
 	public User() {
@@ -163,7 +167,5 @@ public class User {
 		completedMissions = db.getMissions(this,"completed");
 		return  completedMissions;
 	}
-	
-	
-	
+
 }
