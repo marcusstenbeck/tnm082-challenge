@@ -139,9 +139,9 @@ public class MissionActivity extends Activity {
         }
         
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to exit?")
+        builder.setMessage("Är du säker?")
                .setCancelable(false)
-               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+               .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
 	                	db.updateMission(uList.get(0).getId(), mList.get(finalThisMission).getId());
 	           			Log.d("Checkat/AvCheckat",uList.get(0).getId()+" Avklarat Uppdrag " + mList.get(finalThisMission).getId());
@@ -150,7 +150,7 @@ public class MissionActivity extends Activity {
 	           			tb.setEnabled(false);
                    }
                })
-               .setNegativeButton("No", new DialogInterface.OnClickListener() {
+               .setNegativeButton("Nej", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         checkDone.setChecked(false);
