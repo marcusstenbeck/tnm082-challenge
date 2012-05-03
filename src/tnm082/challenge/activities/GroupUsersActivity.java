@@ -9,6 +9,7 @@ import tnm082.challenge.User;
 import tnm082.challenge.Group;
 import tnm082.challenge.R;
 import tnm082.challenge.User;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,9 +20,11 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 
 /**
  * Kodad av: Flaaten
+ * Modad av: Kristina
  * Task nr: 19
  * Datum: 2012-04-19
  * Estimerad tid: 2h
@@ -60,8 +63,8 @@ public class GroupUsersActivity extends Activity {
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
 	  
 	  //skapar en lista och fyller den med tillhorande uppdrag
-	  List<Mission> missionsList;
-	  missionsList = currentGroup.getMissionsList();
+	  final List<Mission> missionsList = currentGroup.getMissionsList();
+	  
 	  String[] MISSIONS = new String[missionsList.size()];
 	  for(int i=0; i<missionsList.size(); i++){
 		  MISSIONS[i] = missionsList.get(i).getName();
@@ -71,6 +74,19 @@ public class GroupUsersActivity extends Activity {
 	  groupName.setText(gname);
 	  // Bind en ArrayAdapter med en stränglista fylld med gruppdatat
 	  lv2.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, MISSIONS));
+	  
+	  //gora uppdragen klickbara sa man kommer in på det valda uppdraget
+	  lv2.setOnItemClickListener(new OnItemClickListener() {
+		    public void onItemClick(AdapterView<?> parent, View view,
+		        int position, long id) {
+		    	//name
+		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
+		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
+		    	mi.putExtra("mission_id", missionsList.get((int)id).getId());
+		    	//mi.putExtra("mission_id", FEED[position]);
+		    	startActivity(mi);
+		    }
+		  });
 	} 
 }
 
