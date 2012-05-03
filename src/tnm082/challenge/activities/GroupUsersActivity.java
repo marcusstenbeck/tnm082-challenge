@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 import android.app.Activity;
 import android.app.ListActivity;
 
@@ -40,6 +41,10 @@ public class GroupUsersActivity extends Activity {
 	  int dbIndex = groupId + 1; //okad id eftersom databasen inte ar nollbaserad
 	  Group currentGroup = new Group(); //skapa grupp
 	  currentGroup.setId(dbIndex); //satt index
+	  
+	  String groupName = currentGroup.getName();
+	  TextView t = (TextView)findViewById(R.id.textGroupName);
+	  t.setText(groupName);
 	  
 	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
