@@ -63,6 +63,16 @@ public class Group {
 		return userList;
 	}
 	
+	/**
+	 * Kodad av: Rikard
+	 * Task nr: 12, sprint 2
+	 * Datum: 2012-04-26
+	 * Estimerad tid: 4h
+	 * Faktisk tid: 1h
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / Rikard unt HC
+	 * @return List<User> - En lista över alla användare i gruppen. Använder sig av klassen User.
+	 */
 	public void addUser(User a){
 		userList.add(a);	
 		db.accept(a, this);
