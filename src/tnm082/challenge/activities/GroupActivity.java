@@ -8,6 +8,7 @@ import tnm082.challenge.R;
 import tnm082.challenge.User;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import tnm082.challenge.Group;
 
 
@@ -39,7 +41,7 @@ public class GroupActivity extends Activity {
 	  List<Group> groupList;
 	  Group g = new Group();
 	  groupList = g.getAllGroups(); 
-	  
+
 	  String[] GROUPS = new String[groupList.size()];
 	  for(int i=0; i<groupList.size(); i++){
 		  GROUPS[i] = groupList.get(i).getName();
@@ -49,11 +51,12 @@ public class GroupActivity extends Activity {
 	  ListView lv = (ListView) findViewById(R.id.listView1); 
 	  // Bind en ArrayAdapter med en strŠnglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));
-	  
+
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 		  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			  Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
 			  intent.putExtra("id", (int)(id));
+			  intent.putExtra("name", parent.getItemAtPosition(position).toString());
 			  startActivity(intent);
 		  }
 	  });
