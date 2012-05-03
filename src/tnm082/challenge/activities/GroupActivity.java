@@ -48,7 +48,7 @@ public class GroupActivity extends ListActivity {
 	  	  {GROUPS[i] = Glist.get(i).getName();}
 	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
 
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, GROUPS));  
+	  setListAdapter(new ArrayAdapter<Group>(this, R.layout.list_item, Glist));  
 
 	  ListView lv = getListView();
 	  
@@ -63,8 +63,8 @@ public class GroupActivity extends ListActivity {
 	      //    Toast.LENGTH_SHORT).show();
 		     Log.d("ID output:", "" + Integer.toString((int)id));
 		     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
-		     intent.putExtra("id", (int)(id));
-		     intent.putExtra("name", parent.getItemAtPosition(position).toString());
+		     intent.putExtra("id", ( (Group) parent.getItemAtPosition(position)).getId());
+		     intent.putExtra("name", ( (Group) parent.getItemAtPosition(position)).getName());
 		     startActivity(intent);
 
 	    	

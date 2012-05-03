@@ -41,13 +41,11 @@ public class GroupUsersActivity extends Activity {
 	  setContentView(R.layout.single_group);
 	  TextView groupName = (TextView)findViewById(R.id.textGroupName);
 	  
-	  int groupId = getIntent().getExtras().getInt("id"); //far id fran gruppen man tryckt pa
+	  int groupId = getIntent().getExtras().getInt("id"); 		//far id fran gruppen man tryckt pa	  
+	  String gname = getIntent().getExtras().getString("name");	//far namn fran gruppen man tryckt pa	  
 	  
-	  String gname = getIntent().getExtras().getString("name");
-	  
-	  int dbIndex = groupId + 1; //okad id eftersom databasen inte ar nollbaserad
 	  Group currentGroup = new Group(); //skapa grupp
-	  currentGroup.setId(dbIndex); //satt index
+	  currentGroup.setId(groupId); //satt index
 	  currentGroup.setName(gname);
 	  
 	  //skapar en lista och fyller den med tillhorande medlemmar
