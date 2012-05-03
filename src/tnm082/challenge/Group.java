@@ -2,6 +2,7 @@ package tnm082.challenge;
 
 import java.util.*;
 
+
 /**
  * Kodad av: Magnus S/Markus O
  * Task nr:15
@@ -15,21 +16,22 @@ import java.util.*;
 
  */
 
-public class Group {
+public class Group{
 	private String name;
 	private int id;
-	private static DBHandler db;
+	private static DBHandler db = new DBHandler();
 
 	protected List<User> userList;
 	protected List<Mission> missionsList;
 	protected static List<Group> groupsList;
+
 	
 	public Group()
 	{
 		name = "†bergruppen";
 		userList = new Vector<User>();
 		id = 0;
-		db = new DBHandler();
+		
 	}
 
 	public String getName() {
@@ -86,10 +88,15 @@ public class Group {
 		userList.add(a);	
 		db.accept(a, this);
 	}
-	
+		
 	public void removeUser(User a){
 		userList.remove(a);
 		db.unaccept(a, this);
+	}
+	
+	public String toString()
+	{
+		return getName();
 	}
 	
 	public User getUser(int id){
