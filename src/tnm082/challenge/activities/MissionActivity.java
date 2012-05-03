@@ -85,6 +85,7 @@ public class MissionActivity extends Activity {
 	    }
 	    Log.d("Accept/avAccept","thisMission " + thisMission);
 	    final int finalThisMission = thisMission;
+	    
 
 
 
@@ -93,9 +94,10 @@ public class MissionActivity extends Activity {
 	    
 
 	    final TextView nameText = (TextView)findViewById(R.id.textView1);
+	    final TextView descText = (TextView)findViewById(R.id.textView2);
         
         nameText.setText(contentName);
-
+        descText.setText((mList.get(finalThisMission).getDesc()));
         
 
         
