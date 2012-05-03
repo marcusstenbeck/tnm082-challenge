@@ -1,5 +1,7 @@
 package tnm082.challenge;
 
+import java.util.List;
+
 public class Mission {
 	/**
 	 * Kodad av: Magnus S/Markus O

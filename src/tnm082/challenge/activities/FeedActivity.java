@@ -56,16 +56,7 @@ public class FeedActivity extends ListActivity{
 
   	//skapar listan med design som hittas i res/layout/list_item.xml och fylls med data ifrån listan COUNTRIES (se längre ned)
   	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED));  
-
-
-//		for (Mission m : Mlist)
-//		{
-//			Log.d("ID",Integer.toString(m.getId()));
-//			Log.d("Namn",m.getName());
-//			Log.d("Beskrivning",m.getDesc());
-//
-//		}
-		   
+   
 
 		  ListView lv = getListView();
 		  lv.setTextFilterEnabled(true);

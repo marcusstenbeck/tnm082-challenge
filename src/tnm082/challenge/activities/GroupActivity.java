@@ -34,9 +34,9 @@ public class GroupActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  setContentView(R.layout.group_overview); //layouten designas i res/layout/main.xml
-	  List<Group> groupList = Group.getAllGroups(); 
 
+	  setContentView(R.layout.list); //layouten designas i res/layout/main.xml
+	  List<Group> groupList = Group.getAllGroups(); 
 
 	ListView lv = (ListView) findViewById(R.id.listView1); 
 	lv.setAdapter(new ArrayAdapter<Group>(this, R.layout.list_item, groupList));  
