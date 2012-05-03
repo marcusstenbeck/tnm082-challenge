@@ -36,11 +36,12 @@ public class GroupUsersActivity extends Activity {
 	  
 	  setContentView(R.layout.single_group);
 	  
-	  int groupId = getIntent().getExtras().getInt("id");
-	  int dbIndex = groupId + 1;
-	  Group currentGroup = new Group();
-	  currentGroup.setId(dbIndex);
+	  int groupId = getIntent().getExtras().getInt("id"); //far id fran gruppen man tryckt pa
+	  int dbIndex = groupId + 1; //okad id eftersom databasen inte ar nollbaserad
+	  Group currentGroup = new Group(); //skapa grupp
+	  currentGroup.setId(dbIndex); //satt index
 	  
+	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
 	  memberList = currentGroup.getUserList(); 
 	  String[] USERS = new String[memberList.size()];
@@ -52,6 +53,7 @@ public class GroupUsersActivity extends Activity {
 	  // Bind en ArrayAdapter med en stränglista fylld med gruppdatat
 	  lv.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, USERS));
 	  
+	  //skapar en lista och fyller den med tillhorande uppdrag
 	  List<Mission> missionsList;
 	  missionsList = currentGroup.getMissionsList();
 	  String[] MISSIONS = new String[missionsList.size()];
