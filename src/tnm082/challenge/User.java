@@ -48,7 +48,7 @@ public class User {
 	}
 	
 	//enkel konstruktor med basic initalvärden
-	public User(String new_name, String new_pass,int new_id){
+	public User(String new_name, String new_pass, int new_id){
 		this.name = new_name;
 		this.pass = new_pass;
 		this.id = new_id;

@@ -234,10 +234,7 @@ public class DBHandler extends ListActivity{
 		StringBuilder sb=null;		
 		
 		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		// nameValuePairs.add( new BasicNameValuePair("Group_ID", Integer.toString(((Group) o).getId())));
-		 nameValuePairs.add(new BasicNameValuePair("Group_ID", Integer.toString(o))); //for att veta vilken grupp uppdraget hor till
-		 nameValuePairs.add(new BasicNameValuePair("group", "yes")); //for att veta att uppdragen ska hora till en sarskild grupp
-		
+		 nameValuePairs.add(new BasicNameValuePair("query", "WHERE Mission_ID IN (SELECT Mission_ID FROM MissionsInGroup WHERE Group_ID = " + o + ")"));
 		 // Skapar en http post som initierar en php-fil på servern.
 		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
 		try
@@ -369,6 +366,97 @@ public class DBHandler extends ListActivity{
 		}
 		// Returnerar listan
 		return Ulist;
+	}
+	
+	/**
+	 * Kodad av: Mathias
+	 * Task nr: 8, sprint 2
+	 * Datum: 2012-04-26
+	 * Estimerad tid: 8h
+	 * Faktisk tid:1h 
+	 * Testad/av: Nej/Ja / namn
+	 * Utcheckad/av: Ja/Nej / namn
+	 * @param groupID - ID för den grupp vars användare man vill hämta ut.
+	 * @return List<User> - En lista över alla användare i gruppen. Använder sig av klassen User.
+	 */
+	public List<User> getUsersInGroup(int groupID){
+		
+		//Lokala metodvariabler.
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;
+		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		
+		//Textsträng som bestämmer vilken php-fil från FTP som skall användas. Skickar även med ett get-objekt för grupp-id, som kommer att hämtas och hanteras i php-filen.
+		String php_src = "http://marcusstenbeck.com/tnm082/DB-UsersInGroup.php?group_id="+Integer.toString(groupID); //Gör dessuom om id till en textsträng.
+		// Skapar en http post som initierar en php-fil på servern.
+		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		try
+		{
+		     HttpClient httpclient = new DefaultHttpClient();
+		     HttpPost httppost = new HttpPost(php_src); //I php-filen hämas alla id'n för användare i en grupp.
+		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent(); //Hämatar innehållet och spar i variabeln is.
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+		
+		// Läser in data från php-filen och sparar som JSON
+		try
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8); //Använder is för att läsa data med bufferedreader.
+			sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+			
+			String line="0";
+			while ((line = reader.readLine()) != null) //Så länge som det finns data att hämta ska det sparas över i en textsträng. 
+			{
+				sb.append(line + "\n");
+			}
+			is.close(); //Stänger is.
+			result=sb.toString(); //Läser in JSON-data till en textsträng.
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error converting result "+e.toString());
+		}
+		
+		// Skapar variabler att lagra data i.
+		int u_id;
+		String u_name;
+		String u_pwd; 
+		
+		//Här är listan med users som kommer att returneras.
+		List<User> usersInGroup = new ArrayList<User>();
+		
+		try
+		{
+			jArray = new JSONArray(result);
+			JSONObject json_data=null;
+			for(int i = 0; i < jArray.length(); i++){
+				json_data = jArray.getJSONObject(i);
+				
+				//Hämtar data från json, lagrar över detta i variabler 
+				u_id = json_data.getInt("User_ID");
+				u_name = json_data.getString("User_name");
+				u_pwd = json_data.getString("User_password");
+				
+				//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
+				User tmpUser = new User(u_name, u_pwd, u_id);
+				usersInGroup.add(i, tmpUser);		
+			}
+		}catch(JSONException e1)
+		{
+			Toast.makeText(getBaseContext(), "No User Found" ,Toast.LENGTH_LONG).show();
+		}catch (ParseException e1) 
+		{
+			e1.printStackTrace();
+		}
+		
+		return usersInGroup;
 	}
 
 	// Returnerar en lista med alla groups i databasen

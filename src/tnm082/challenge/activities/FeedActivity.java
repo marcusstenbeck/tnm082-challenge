@@ -42,18 +42,10 @@ public class FeedActivity extends ListActivity{
         //setContentView(R.layout.feed_overview); //design som hittas i res/layout/feed_overview.xml
 
             
-        DBHandler db = new DBHandler();
-        
-	    User u = new User("","",1);					// Dummy-user
-	    List<Mission> UMlist = db.getMissions(u, "active");
-	    for (Mission m : UMlist)
-	    {
-	    	Log.d("Name",m.getName());
-	    	Log.d("ID", Integer.toString(m.getId()));
-	    }
-	    final List<Mission> Mlist = db.getMissions();
-        
-        
+      DBHandler db = new DBHandler();
+
+      final List<Mission> Mlist = db.getMissions();
+
   	  //skapa en string-array som är lika stor som Mlist där namnen på varje mission sparas för att kunna visas i feeden
   	  int feedSize = Mlist.size();
   	
