@@ -84,6 +84,7 @@ public class Group {
 		db.accept(a, this);
 	}
 	
+	
 	public void removeUser(User a){
 		userList.remove(a);
 		db.unaccept(a, this);
