@@ -90,7 +90,19 @@ public class GroupUsersActivity extends Activity {
 		    
 		  //koppla ihop knappen med xml:en
 		    final List<User> uList = db.getUsers();
+		    
 	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
+	        
+	        for(int i=0;i<gList.get(finalThisGroup).getUserList().size();i++)
+		    {	
+		    	if(gList.get(finalThisGroup).getUserList().get(i).getId()==1)
+		    	{
+		    		tbg.setChecked(true);
+		    	}
+		    	
+		    	
+		    }
+	        
 	        tbg.setOnClickListener(new OnClickListener()
 	        {
 				public void onClick(View v)
