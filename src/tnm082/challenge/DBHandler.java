@@ -340,7 +340,7 @@ public class DBHandler extends ListActivity{
 			Log.e("log_tag", "Error converting result "+e.toString());
 		}
 		// Parsar den inlästa datan och sparar
-		int u_id;
+		int u_id, u_adminStatus;
 		String u_name, u_pass;
 		List<User> Ulist = new ArrayList<User>();
 		User Utmp;
@@ -353,7 +353,8 @@ public class DBHandler extends ListActivity{
 				u_id = json_data.getInt("User_ID");
 				u_name = json_data.getString("User_name");
 				u_pass = json_data.getString("User_password");
-				Utmp = new User(u_name, u_pass, u_id);
+				u_adminStatus = json_data.getInt("User_adminStatus");
+				Utmp = new User(u_name, u_pass, u_id, u_adminStatus);
 				Ulist.add(i,Utmp);
 				
 			}
@@ -425,7 +426,7 @@ public class DBHandler extends ListActivity{
 		}
 		
 		// Skapar variabler att lagra data i.
-		int u_id;
+		int u_id, u_adminStatus;
 		String u_name;
 		String u_pwd; 
 		
@@ -443,9 +444,10 @@ public class DBHandler extends ListActivity{
 				u_id = json_data.getInt("User_ID");
 				u_name = json_data.getString("User_name");
 				u_pwd = json_data.getString("User_password");
+				u_adminStatus = json_data.getInt("User_adminStatus");
 				
 				//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
-				User tmpUser = new User(u_name, u_pwd, u_id);
+				User tmpUser = new User(u_name, u_pwd, u_id, u_adminStatus);
 				usersInGroup.add(i, tmpUser);		
 			}
 		}catch(JSONException e1)
