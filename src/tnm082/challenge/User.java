@@ -32,7 +32,7 @@ import tnm082.challenge.Mission;
 public class User {
 	//alla variabler
 	private String name, pass;
-	private int id;
+	private int id, adminStatus;
 	private List<Mission> acceptedMissions, completedMissions;
 
 	DBHandler db = new DBHandler(); 
@@ -44,6 +44,7 @@ public class User {
 		this.name = "klas";
 		this.pass = "kalas";
 		this.id = 0;
+		this.adminStatus = 0;
 		
 		// En lista över uppdrag som ska utföras
 		this.acceptedMissions = new ArrayList<Mission>();
@@ -53,10 +54,11 @@ public class User {
 	}
 	
 	//enkel konstruktor med basic initalvärden
-	public User(String new_name, String new_pass, int new_id){
+	public User(String new_name, String new_pass, int new_id, int new_adminStatus){
 		this.name = new_name;
 		this.pass = new_pass;
 		this.id = new_id;
+		this.adminStatus = new_adminStatus;
 		// En lista över uppdrag som ska utföras
 		this.acceptedMissions = new ArrayList<Mission>();
 
@@ -67,10 +69,11 @@ public class User {
 	}
 	
 	//Full initierings konstruktor
-	public User(String new_name, String new_pass,int new_id, List<Mission> new_accepted, List<Mission> new_completed) {
+	public User(String new_name, String new_pass,int new_id, int new_adminStatus, List<Mission> new_accepted, List<Mission> new_completed) {
 		this.name = new_name;
 		this.pass = new_pass;
 		this.id = new_id;
+		this.adminStatus = new_adminStatus;
 		
 		for(int i = 0; i < new_accepted.size();i++)
 		{
@@ -85,11 +88,11 @@ public class User {
 	public static User dummyUser(){
 		return dbstat.getUsers().get(0);
 	}
+	
 	//set o get för alla variabler
 	public String getName() {
 		return name;
-	}
-	
+	}	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -97,15 +100,22 @@ public class User {
 	public String getPass() {
 		return pass;
 	}
-
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 	public int getId() {
 		return this.id;
+	}
+	
+	public void setadminStatus(int adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+	public int getAdminStatus() {
+		return this.adminStatus;
 	}
 	
 	//När man blitt klar med ett uppdrag tas den bort ur accepted o läggs in i completed
