@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import tnm082.challenge.Group;
 
-
 /**
  * Kodad av: Rikard
  * Modad av: Flaaten
@@ -33,25 +32,22 @@ import tnm082.challenge.Group;
 public class GroupActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	  super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 
-	  setContentView(R.layout.list); //layouten designas i res/layout/main.xml
-	  List<Group> groupList = Group.getAllGroups(); 
+		setContentView(R.layout.list); //layouten designas i res/layout/main.xml
+		List<Group> groupList = Group.getAllGroups(); 
 
-	ListView lv = (ListView) findViewById(R.id.listView1); 
-	lv.setAdapter(new ArrayAdapter<Group>(this, R.layout.list_item, groupList));  
+		ListView lv = (ListView) findViewById(R.id.listView1); 
+		lv.setAdapter(new ArrayAdapter<Group>(this, R.layout.list_item, groupList));  
 
-	  lv.setOnItemClickListener(new OnItemClickListener() {
-		  
-	    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-		     Log.d("ID output:", "" + Integer.toString((int)id));
-		     Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
-		     intent.putExtra("id", ( (Group) parent.getItemAtPosition(position)).getId());
-		     intent.putExtra("name", ( (Group) parent.getItemAtPosition(position)).getName());
-		     startActivity(intent);
-	    	
-	    }
-	  });
+		lv.setOnItemClickListener(new OnItemClickListener() { 
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Log.d("ID output:", "" + Integer.toString((int)id));
+				Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
+				intent.putExtra("id", ( (Group) parent.getItemAtPosition(position)).getId());
+				intent.putExtra("name", ( (Group) parent.getItemAtPosition(position)).getName());
+				startActivity(intent);	
+			}
+		});
 	}
 }
