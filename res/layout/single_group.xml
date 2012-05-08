@@ -43,30 +43,37 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#fff" />
 
-    <ListView
-        android:id="@+id/listGroupMembers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-
-    <TextView
+    	
+        <TextView
         android:id="@+id/textGroupMembers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Group Members" />
-
-    <ListView
-        android:id="@+id/listGroupMissions"
+    
+    	
+        <ListView
+        android:id="@+id/listGroupMembers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </ListView>
-
-    <TextView
+    	</ListView>
+    
+		<TextView
         android:id="@+id/textGroupMissions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Group Missions" />
+
+        <ListView
+        android:id="@+id/listGroupMissions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    	</ListView>
+    
+    
+
+
+
 
 </LinearLayout>
