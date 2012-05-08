@@ -39,25 +39,24 @@ public class ChallengeActivity extends TabActivity {
 	    // Create an Intent to launch an Activity for the tab (to be reused)
 	    intent = new Intent().setClass(this, FeedActivity.class);
 
-	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("artists").setIndicator("Feed", //Titel på tabben
-	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	    // Tabb for feeden
+	    spec = tabHost.newTabSpec("Feed").setIndicator("Feed", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_feed_design)) //fil som styr over loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	    
-	    //Tab fšr profilen
+	    //Tab for profilen
 	    intent = new Intent().setClass(this, UserActivity.class);
-	    spec = tabHost.newTabSpec("songs").setIndicator("Profile", //Titel på tabben
-	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	    spec = tabHost.newTabSpec("Profil").setIndicator("Profil", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_user_design)) //fil som styr over loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
 
-
+	    //Tab for grupp
 	    intent = new Intent().setClass(this, GroupActivity.class);
-	    spec = tabHost.newTabSpec("songs").setIndicator("Groups", //Titel på tabben
-
-	                      res.getDrawable(R.drawable.tab_design)) //fil som styr över loggan
+	    spec = tabHost.newTabSpec("Grupper").setIndicator("Grupper", //Titel på tabben
+	                      res.getDrawable(R.drawable.tab_group_design)) //fil som styr over loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	    
