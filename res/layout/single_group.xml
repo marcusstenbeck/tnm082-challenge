@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="94dp"
+                android:layout_height="72dp"
+                android:src="@drawable/mtd" />
+
+            <ToggleButton
+                android:id="@+id/toggleJoinLeaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:textOff="Gå med"
+                android:textOn="Gå ur" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textGroupName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:background="#000"
+        android:padding="25dp"
         android:text="Group Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#fff"  
-        android:background="#4b0082"
-        android:padding="25dp" />
-    
+        android:textColor="#fff" />
+
     <ListView
         android:id="@+id/listGroupMembers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-		android:layout_below="@+id/textGroupMembers">
+        android:layout_height="wrap_content" >
     </ListView>
 
     <TextView
@@ -29,14 +54,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/textGroupName"
         android:text="Group Members" />
+
     <ListView
         android:id="@+id/listGroupMissions"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-		android:layout_below="@+id/textGroupMissions">
+        android:layout_height="wrap_content" >
     </ListView>
 
     <TextView
@@ -44,18 +67,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/listGroupMembers"
         android:text="Group Missions" />
 
-    <ToggleButton
-        android:id="@+id/toggleJoinLeaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textOn="Gå ur"
-        android:textOff="Gå med"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp" />
-
-</RelativeLayout>
+</LinearLayout>
