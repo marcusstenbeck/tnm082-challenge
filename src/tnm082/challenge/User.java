@@ -34,6 +34,7 @@ public class User {
 	private String name, pass;
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
+	private List<Group> JoinedGroups;
 
 	DBHandler db = new DBHandler(); 
 	static DBHandler dbstat = new DBHandler();
@@ -166,6 +167,13 @@ public class User {
 		//hamta avklarade uppdrag for den aktuella anvandaren
 		completedMissions = db.getMissions(this,"completed");
 		return  completedMissions;
+	}
+	
+	public List<Group> getJoinedGroups()
+	{
+		//hamta avklarade uppdrag for den aktuella anvandaren
+		JoinedGroups = db.getGroups(this);
+		return  JoinedGroups;
 	}
 
 }
