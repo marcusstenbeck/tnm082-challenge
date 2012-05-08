@@ -54,9 +54,10 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_width="83dp"
+                    android:layout_height="62dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/mtd" />
 
                 <TextView
                     android:id="@+id/textView1"
