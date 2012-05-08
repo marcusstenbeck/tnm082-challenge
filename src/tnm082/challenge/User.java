@@ -181,7 +181,7 @@ public class User {
 	
 	public List<Group> getJoinedGroups()
 	{
-		//hamta avklarade uppdrag for den aktuella anvandaren
+		//hamtar grupper for den aktuella anvandaren
 		JoinedGroups = db.getGroups(this);
 		return  JoinedGroups;
 	}

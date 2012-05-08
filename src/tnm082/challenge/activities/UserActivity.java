@@ -119,7 +119,6 @@ public class UserActivity extends Activity {
 	        final List<Group> groupList  = tempUser.getJoinedGroups();
 	        
 	        //hamta namnen på uppdrag för att ha dem i listan
-	        Log.d("haha","fasasf");
 	        int feedSize3 = groupList.size();
 	    	  final String[] FEED3 = new String[feedSize3];
 	    	  for (int i=0; i<feedSize3; i++)
@@ -129,17 +128,17 @@ public class UserActivity extends Activity {
 	        lv3.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, FEED3));
 	        
 	        //gora uppdragen klickbara
-			//  lv3.setOnItemClickListener(new OnItemClickListener() {
-			  //  public void onItemClick(AdapterView<?> parent, View view,
-			    //    int position, long id) {
+			lv3.setOnItemClickListener(new OnItemClickListener() {
+			  public void onItemClick(AdapterView<?> parent, View view,
+				  int position, long id) {
 			    	//name
-			    	//Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
-			    	//mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
-			    	//mi.putExtra("mission_id", completedMList.get((int)id).getId());
-			    	//mi.putExtra("mission_id", FEED[position]);
-			    	//startActivity(mi);
-			   // }
-			  //});  
+			    	Intent mi = new Intent(getApplicationContext(), GroupActivity.class);
+			    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
+			    	mi.putExtra("id", ( (Group) parent.getItemAtPosition(position)).getId());
+					mi.putExtra("name", ( (Group) parent.getItemAtPosition(position)).getName());
+			    	startActivity(mi);
+			    }
+			});  
 		  
 		  
 		  

@@ -533,7 +533,7 @@ public class DBHandler extends ListActivity{
 		return Glist;
 	}
 	
-	// Returnerar en lista med alla groups i databasen
+	// Returnerar en lista med alla groups som anvandaren ar med i fran databasen
 	public List<Group> getGroups(User u) 
 	{
 		JSONArray jArray;
