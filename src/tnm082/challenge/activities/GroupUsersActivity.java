@@ -68,24 +68,17 @@ public class GroupUsersActivity extends Activity {
 		    Bundle extras = nIntent.getExtras();
 
 		    final List<Group> gList = Group.getAllGroups();
-		    int thisGroup = 0;
 		        
-		    Log.d("Accept/avAccept","GroupId " + groupId);
-		    for(int i=0;i<gList.size();i++){
-		    	if(groupId==gList.get(i).getId())
-		    	{
-		    		thisGroup = i+1;
-		    	}
-		    }
-		    Log.d("Accept/avAccept","thisGroup " + thisGroup);
-		    final int finalThisGroup = thisGroup;
+//		    Log.d("Accept/avAccept","GroupId " + groupId);
+		    Log.d("Accept/avAccept","thisGroup " + groupId);
+		    final int groupIndex = groupId - 1;
 		  //koppla ihop knappen med xml:en
 	
 	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
 	        
-	        for(int i=0;i<gList.get(finalThisGroup).getUserList().size();i++)
+	        for(int i=0; i < gList.get(groupIndex).getUserList().size();i++)
 		    {	
-		    	if(gList.get(finalThisGroup).getUserList().get(i).getId()==1)
+		    	if(gList.get(groupIndex).getUserList().get(i).getId()==1)
 		    	{
 		    		tbg.setChecked(true);
 		    	}

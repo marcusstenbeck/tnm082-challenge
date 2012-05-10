@@ -123,7 +123,7 @@ public class UserActivity extends Activity {
 			lv3.setOnItemClickListener(new OnItemClickListener() {
 			  public void onItemClick(AdapterView<?> parent, View view,
 				  int position, long id) {
-				  	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
+				  	Intent mi = new Intent(getApplicationContext(), GroupUsersActivity.class);
 			    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
 			    	mi.putExtra("id", groupList.get((int)id).getId());
 					mi.putExtra("name", groupList.get((int)id).getName());
