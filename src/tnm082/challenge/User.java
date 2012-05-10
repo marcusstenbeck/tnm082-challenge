@@ -112,16 +112,18 @@ public class User {
 	
 	
 	//När man blitt klar med ett uppdrag tas den bort ur accepted o läggs in i completed
-	public void completeMission(Mission the_mission)
+	public void completeMission(int the_mission)
 	{				
-		for(int i = 0; i < acceptedMissions.size();i++)
+		/*for(int i = 0; i < acceptedMissions.size();i++)
 		{
 			if(acceptedMissions.get(i).getId() == the_mission.getId())
 			{
 				acceptedMissions.remove(i); // kan bli fel isf ta fram indexet och ta bort det indexet bara.
 				completedMissions.add(completedMissions.size(), the_mission);
 			}
-		}
+		}*/
+		
+		db.updateMission(id, the_mission);
 		 
 	}
 	

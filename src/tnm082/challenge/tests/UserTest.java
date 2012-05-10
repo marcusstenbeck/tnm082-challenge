@@ -10,12 +10,12 @@ public class UserTest extends TestCase {
 	
 	public void testGetName()
 	{
-		// Skapa en User
+		//Skapa en User
 		User u = new User();
 		
-// BORDE KOLLA SÅ ATT DET SOM RETURNERAS ÄR EN TEXTSTRÄNG
+// BORDE KOLLA SA ATT DET SOM RETURNERAS AR EN TEXTSTRANG
 		
-		// kolla sÂ att vi fÂr tillbaka nÂgot när vi ber om ett namn
+		//kolla sa att vi fÂr tillbaka nagot nar vi ber om ett namn
 		assertNotNull(u.getName());
 	}
 
@@ -24,7 +24,7 @@ public class UserTest extends TestCase {
 		// Skapa en User
 		User u = new User();
 		
-		// S‰tt ett namn
+		// Satt ett namn
 		String theName = "Ture Sventon";
 		u.setName(theName);
 		
@@ -37,7 +37,7 @@ public class UserTest extends TestCase {
 		// Skapa en User
 		User u = new User();
 		
-		// kolla sÂ att vi fÂr tillbaka nÂgot
+		// kolla sa att vi far tillbaka nagot
 		assertNotNull(u.getPass());
 	}
 
@@ -46,7 +46,7 @@ public class UserTest extends TestCase {
 		// Skapa en user
 		User u = new User();
 		
-		// S‰tt ett password
+		// Satt ett password
 		String thePass = "mellon";
 		u.setPass(thePass);
 		
@@ -59,7 +59,7 @@ public class UserTest extends TestCase {
 		// Skapa en User
 		User u = new User();
 		
-		// kolla sÂ att vi fÂr tillbaka nÂgot
+		// kolla sa att vi far tillbaka nagot
 		assertNotNull(u.getId());
 	}
 
@@ -80,7 +80,7 @@ public class UserTest extends TestCase {
 		assertTrue(u.hasAcceptedMission(m));
 		
 		// Cancel the mission
-		u.completeMission(m);
+		u.completeMission(m.getId());
 		
 		// Create a boolean that stores if the mission exists in among the completed missions 
 		boolean existsInCompletedMissionsList = false;
