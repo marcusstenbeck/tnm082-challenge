@@ -56,7 +56,7 @@ public class GroupUsersActivity extends Activity {
 	  
 	  int groupId = getIntent().getExtras().getInt("id"); 		//far id fran gruppen man tryckt pa	  
 	  String gname = getIntent().getExtras().getString("name");	//far namn fran gruppen man tryckt pa	  
-	  
+	  Log.d("skapar grupp","efter detta");
 	final  Group currentGroup = new Group(); //skapa grupp
 	  currentGroup.setId(groupId); //satt index
 	  currentGroup.setName(gname);
@@ -67,13 +67,13 @@ public class GroupUsersActivity extends Activity {
 		    final  DBHandler db = new DBHandler();
 		    // Ja, detta är ju klurigt
 		    //String contentName = nIntent.getData().toString(); 
-		    
+		    Log.d("hämtar extra","efter detta");
 		    // Hämta allt extra som skickades med Intent
 		    Bundle extras = nIntent.getExtras();
 		    
 		    // Hämta groupId från extravariablerna som kom med Intent
 		    //final int groupId = extras.getInt("group_id");
-		    
+		    Log.d("hämtar grupper","efter detta");
 		    final List<Group> gList = db.getGroups();
 		    int thisGroup = 0;
 		    
@@ -87,10 +87,10 @@ public class GroupUsersActivity extends Activity {
 		    }
 		    Log.d("Accept/avAccept","thisGroup " + thisGroup);
 		    final int finalThisGroup = thisGroup;
-		    
+		    Log.d("hämtar användare","efter detta");
 		  //koppla ihop knappen med xml:en
 		    final List<User> uList = db.getUsers();
-		    
+		    Log.d("har hämtat användare","nyss");
 	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
 	        
 	        for(int i=0;i<gList.get(finalThisGroup).getUserList().size();i++)
@@ -138,7 +138,7 @@ public class GroupUsersActivity extends Activity {
 	  
 		  
 	  
-
+	        Log.d("skapar  lista med  medlemmar","efter detta");
 	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
 	  memberList = currentGroup.getUserList(); 
@@ -153,7 +153,7 @@ public class GroupUsersActivity extends Activity {
 	  
 	  //skapar en lista och fyller den med tillhorande uppdrag
 	  final List<Mission> missionsList = currentGroup.getMissionsList();
-	  
+	  Log.d("skapar lista med uppdrag","efter detta");
 	  String[] MISSIONS = new String[missionsList.size()];
 	  for(int i=0; i<missionsList.size(); i++){
 		  MISSIONS[i] = missionsList.get(i).getName();
