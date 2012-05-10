@@ -28,6 +28,7 @@ public class Group{
 	protected static List<Group> groupsList;
 	protected List<Mission> acceptedMissions;
 	protected List<Mission> completedMissions;
+	protected List<User> userListmissions;
 
 	
 	public Group()
@@ -142,5 +143,12 @@ public class Group{
 		completedMissions = db.getMissionsInGroup(id, "completed");
 		return completedMissions;
 	}
+	
+	public List<User> getUserByMission(int userid){
+		userListmissions = db.getUsersFromCurrentGroupWhoHasAcceptedORCompletedThisMission(id, userid);
+		return userListmissions;
+	}
+	
+	
 
 }
