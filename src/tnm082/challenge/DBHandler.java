@@ -443,7 +443,6 @@ public class DBHandler extends ListActivity{
 				u_id = json_data.getInt("User_ID");
 				u_name = json_data.getString("User_name");
 				u_pwd = json_data.getString("User_password");
-				
 				//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
 				User tmpUser = new User(u_name, u_pwd, u_id);
 				usersInGroup.add(i, tmpUser);		
@@ -679,4 +678,164 @@ public class DBHandler extends ListActivity{
 			Log.e("log_tag", "Error in http connection"+e.toString());
 		}
 	}
+
+	
+	/**
+	 * Kodad av: HC
+	 * Task nr: 13, sprint 3
+	 * Datum: 2012-05-10
+	 * Estimerad tid: 1h
+	 * Faktisk tid:1h 
+	 * Testad/av: Nej/Ja / namn
+	 * Utcheckad/av: Ja/Nej / namn
+	 * @param User u, Group g
+	 * @return bool - Boolean om User u är admin för Group g.
+	 */
+	public boolean isAdmin(User u, Group g)
+	{
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;		
+		
+		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		 nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(u.getId())));
+		 nameValuePairs.add(new BasicNameValuePair("Group_ID", Integer.toString(g.getId())));
+
+		// Skapar en http post som initierar en php-fil på servern.
+		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		try
+		{
+		     HttpClient httpclient = new DefaultHttpClient();
+		     HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-AdminForGroup.php");
+		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+		// Läser in data från php-filen och sparar som JSON
+		try
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+			sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+
+			String line="0";
+			while ((line = reader.readLine()) != null) 
+			{
+				sb.append(line + "\n");
+			}
+			is.close();
+			result=sb.toString();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error converting result "+e.toString());
+		}
+		// Parsar den inlästa datan och sparar
+		boolean bool = false;;
+		try
+		{
+			jArray = new JSONArray(result);
+			JSONObject json_data=null;
+			for(int i = 0; i < jArray.length(); i++){
+				json_data = jArray.getJSONObject(i);
+				bool = json_data.getBoolean("Bool");
+				
+			}
+		}catch(JSONException e1)
+		{
+			Toast.makeText(getBaseContext(), "No Mission Found" ,Toast.LENGTH_LONG).show();
+		}catch (ParseException e1) 
+		{
+			e1.printStackTrace();
+		}
+		// Returnerar listan
+		return bool;
+	
+	}
+	
+	public List<Mission> getMissionsInGroup(int id, String condition){
+		//Lokala metodvariabler.
+				JSONArray jArray;
+				String result = null;
+				InputStream is = null;
+				StringBuilder sb=null;
+				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+				
+				//Textsträng som bestämmer vilken php-fil från FTP som skall användas. Skickar även med ett get-objekt för grupp-id, som kommer att hämtas och hanteras i php-filen.
+				String php_src = "http://marcusstenbeck.com/tnm082/DB-MissionsInGroup.php?group_ID="+Integer.toString(id)+"&cond="+condition; //Gör dessutom om id till en textsträng.
+				// Skapar en http post som initierar en php-fil på servern.
+				// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+				try
+				{
+				     HttpClient httpclient = new DefaultHttpClient();
+				     HttpPost httppost = new HttpPost(php_src); //I php-filen hämas alla id'n för användare i en grupp.
+				     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				     HttpResponse response = httpclient.execute(httppost);
+				     HttpEntity entity = response.getEntity();
+				     is = entity.getContent(); //Hämatar innehållet och spar i variabeln is.
+				}catch(Exception e)
+				{
+					Log.e("log_tag", "Error in http connection"+e.toString());
+				}
+				
+				// Läser in data från php-filen och sparar som JSON
+				try
+				{
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8); //Använder is för att läsa data med bufferedreader.
+					sb = new StringBuilder();
+					sb.append(reader.readLine() + "\n");
+					
+					String line="0";
+					while ((line = reader.readLine()) != null) //Så länge som det finns data att hämta ska det sparas över i en textsträng. 
+					{
+						sb.append(line + "\n");
+					}
+					is.close(); //Stänger is.
+					result=sb.toString(); //Läser in JSON-data till en textsträng.
+				}catch(Exception e)
+				{
+					Log.e("log_tag", "Error converting result "+e.toString());
+				}
+				
+				// Skapar variabler att lagra data i.
+				int mission_id;
+				String mission_name;
+				String mission_desc;
+				
+				//Här är listan med missions som kommer att returneras.
+				List<Mission> missionsInGroup = new ArrayList<Mission>();
+				
+				try
+				{
+					jArray = new JSONArray(result);
+					JSONObject json_data=null;
+					for(int i = 0; i < jArray.length(); i++){
+						json_data = jArray.getJSONObject(i);
+						
+						//Hämtar data från json, lagrar över detta i variabler 
+						mission_id = json_data.getInt("Mission_ID");
+						mission_name = json_data.getString("Mission_name");
+						mission_desc = json_data.getString("Mission_description");
+						//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
+						Mission tmpMission = new Mission(mission_id, mission_name, mission_desc);
+						missionsInGroup.add(i, tmpMission);		
+					}
+				}catch(JSONException e1)
+				{
+					Toast.makeText(getBaseContext(), "No User Found" ,Toast.LENGTH_LONG).show();
+				}catch (ParseException e1) 
+				{
+					e1.printStackTrace();
+				}
+				
+				return missionsInGroup;
+			}
+	
+	
+
+
 }

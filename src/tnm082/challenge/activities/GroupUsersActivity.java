@@ -56,7 +56,6 @@ public class GroupUsersActivity extends Activity {
 	  
 	  int groupId = getIntent().getExtras().getInt("id"); 		//far id fran gruppen man tryckt pa	  
 	  String gname = getIntent().getExtras().getString("name");	//far namn fran gruppen man tryckt pa	  
-	  
 	final  Group currentGroup = new Group(); //skapa grupp
 	  currentGroup.setId(groupId); //satt index
 	  currentGroup.setName(gname);
@@ -64,20 +63,13 @@ public class GroupUsersActivity extends Activity {
 	//----------------GRUPP-PILL------------------\\\\\\\\\\\\
 		// Hämta den Intent som vyn har
 		    Intent nIntent = getIntent();
-		    final  DBHandler db = new DBHandler();
-		    // Ja, detta är ju klurigt
-		    //String contentName = nIntent.getData().toString(); 
-		    
+ 
 		    // Hämta allt extra som skickades med Intent
 		    Bundle extras = nIntent.getExtras();
-		    
-		    // Hämta groupId från extravariablerna som kom med Intent
-		    //final int groupId = extras.getInt("group_id");
-		    
-		    final List<Group> gList = db.getGroups();
+
+		    final List<Group> gList = Group.getAllGroups();
 		    int thisGroup = 0;
-		    
-		    
+		        
 		    Log.d("Accept/avAccept","GroupId " + groupId);
 		    for(int i=0;i<gList.size();i++){
 		    	if(groupId==gList.get(i).getId())
@@ -87,10 +79,8 @@ public class GroupUsersActivity extends Activity {
 		    }
 		    Log.d("Accept/avAccept","thisGroup " + thisGroup);
 		    final int finalThisGroup = thisGroup;
-		    
 		  //koppla ihop knappen med xml:en
-		    final List<User> uList = db.getUsers();
-		    
+	
 	        tbg = (ToggleButton) findViewById(R.id.toggleJoinLeaveButton);
 	        
 	        for(int i=0;i<gList.get(finalThisGroup).getUserList().size();i++)
@@ -99,8 +89,6 @@ public class GroupUsersActivity extends Activity {
 		    	{
 		    		tbg.setChecked(true);
 		    	}
-		    	
-		    	
 		    }
 	        
 	        tbg.setOnClickListener(new OnClickListener()
@@ -110,7 +98,6 @@ public class GroupUsersActivity extends Activity {
 					//kolla vilket state knappen är i
 					if(tbg.isChecked())
 					{
-
 						currentGroup.addUser(User.dummyUser()); //ska komma från session (använd dummy-user)
 						//Mittcentrerad popup som sager Uppdraget Accepterat
 						Toast toast = Toast.makeText(getBaseContext()," Gått med i gruppen", Toast.LENGTH_LONG);
@@ -120,24 +107,15 @@ public class GroupUsersActivity extends Activity {
 					}
 					else
 					{
-
 						currentGroup.removeUser(User.dummyUser()); //tar av nån anledning inte bort från databasen
 						//Mittcentrerad popup som sager Uppdraget Accepterat
 						Toast toast = Toast.makeText(getBaseContext()," Gått ur gruppen", Toast.LENGTH_LONG);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
-
 				    }
-					
-					
 				}
 	        });
 		   //////--------------END OF GRUPP-PILL-------------------------\\\\\\\\\\\
-
-	  
-	  
-		  
-	  
 
 	  //skapar en lista och fyller den med tillhorande medlemmar
 	  List<User> memberList;
@@ -153,7 +131,6 @@ public class GroupUsersActivity extends Activity {
 	  
 	  //skapar en lista och fyller den med tillhorande uppdrag
 	  final List<Mission> missionsList = currentGroup.getMissionsList();
-	  
 	  String[] MISSIONS = new String[missionsList.size()];
 	  for(int i=0; i<missionsList.size(); i++){
 		  MISSIONS[i] = missionsList.get(i).getName();
@@ -176,7 +153,5 @@ public class GroupUsersActivity extends Activity {
 		    	startActivity(mi);
 		    }
 		  });
-
 	} 
 }
-

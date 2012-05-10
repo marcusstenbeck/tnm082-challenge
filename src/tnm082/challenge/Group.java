@@ -26,6 +26,8 @@ public class Group{
 	protected List<User> userList;
 	protected List<Mission> missionsList;
 	protected static List<Group> groupsList;
+	protected List<Mission> acceptedMissions;
+	protected List<Mission> completedMissions;
 
 	
 	public Group()
@@ -115,4 +117,30 @@ public class Group{
 		}
 		return null;
 	}
+	/**
+	 * Kodad av: HC
+	 * Task nr: 14, sprint 3
+	 * Datum: 2012-05-10
+	 * Estimerad tid: 1h
+	 * Faktisk tid: 1.5h
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / HC
+	 * @return Boolean - Returnerar true/false om User u är admin för gruppen.
+	 */
+	public boolean isAdmin(User u)
+	{		
+		return db.isAdmin(u, this);
+	}
+
+	
+	public List<Mission> getAcceptedMission(){
+		acceptedMissions = db.getMissionsInGroup(id, "active");
+		return acceptedMissions;
+	}
+	
+	public List<Mission> getCompleteMission(){
+		completedMissions = db.getMissionsInGroup(id, "completed");
+		return completedMissions;
+	}
+
 }
