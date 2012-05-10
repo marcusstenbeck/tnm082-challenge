@@ -443,7 +443,6 @@ public class DBHandler extends ListActivity{
 				u_id = json_data.getInt("User_ID");
 				u_name = json_data.getString("User_name");
 				u_pwd = json_data.getString("User_password");
-				
 				//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
 				User tmpUser = new User(u_name, u_pwd, u_id);
 				usersInGroup.add(i, tmpUser);		
@@ -679,4 +678,71 @@ public class DBHandler extends ListActivity{
 			Log.e("log_tag", "Error in http connection"+e.toString());
 		}
 	}
+
+	public boolean isAdmin(User u, Group g)
+	{
+		JSONArray jArray;
+		String result = null;
+		InputStream is = null;
+		StringBuilder sb=null;		
+		
+		 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		 nameValuePairs.add(new BasicNameValuePair("User_ID", Integer.toString(u.getId())));
+		 nameValuePairs.add(new BasicNameValuePair("Group_ID", Integer.toString(g.getId())));
+
+		// Skapar en http post som initierar en php-fil på servern.
+		// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+		try
+		{
+		     HttpClient httpclient = new DefaultHttpClient();
+		     HttpPost httppost = new HttpPost("http://marcusstenbeck.com/tnm082/DB-AdminForGroup.php");
+		     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		     HttpResponse response = httpclient.execute(httppost);
+		     HttpEntity entity = response.getEntity();
+		     is = entity.getContent();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error in http connection"+e.toString());
+		}
+		// Läser in data från php-filen och sparar som JSON
+		try
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+			sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+
+			String line="0";
+			while ((line = reader.readLine()) != null) 
+			{
+				sb.append(line + "\n");
+			}
+			is.close();
+			result=sb.toString();
+		}catch(Exception e)
+		{
+			Log.e("log_tag", "Error converting result "+e.toString());
+		}
+		// Parsar den inlästa datan och sparar
+		boolean bool = false;;
+		try
+		{
+			jArray = new JSONArray(result);
+			JSONObject json_data=null;
+			for(int i = 0; i < jArray.length(); i++){
+				json_data = jArray.getJSONObject(i);
+				bool = json_data.getBoolean("Bool");
+				
+			}
+		}catch(JSONException e1)
+		{
+			Toast.makeText(getBaseContext(), "No Mission Found" ,Toast.LENGTH_LONG).show();
+		}catch (ParseException e1) 
+		{
+			e1.printStackTrace();
+		}
+		// Returnerar listan
+		return bool;
+	
+	}
+
 }

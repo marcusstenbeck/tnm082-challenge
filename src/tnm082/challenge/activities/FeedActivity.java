@@ -5,6 +5,7 @@ import java.util.List;
 
 import tnm082.challenge.DBHandler;
 
+import tnm082.challenge.Group;
 import tnm082.challenge.Mission;
 import tnm082.challenge.R;
 import tnm082.challenge.User;
@@ -43,7 +44,6 @@ public class FeedActivity extends ListActivity{
 
             
       DBHandler db = new DBHandler();
-      
       
       final List<Mission> Mlist = db.getMissions();
 
