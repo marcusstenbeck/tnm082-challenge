@@ -2,7 +2,8 @@
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="@color/grey0" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -12,7 +13,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="@color/grey0" >
 
                 <Button
                     android:id="@+id/button1"
@@ -46,11 +48,13 @@
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:background="@color/grey0" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="@color/grey0" >
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -64,7 +68,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Uppdragsnamn"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                     />
 
             </LinearLayout>
 

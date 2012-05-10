@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- XML-fil for att andra farger pa bakgrunder m.m. -->
+
+<!-- XML-fil for att andra farger pa bakgrunder m.m. 
+De olika numrena efter fargerna ar refenser fran
+http://www.computerhope.com/htmcolor.htm -->
 
 <resources>
    <color name="opaque_red">#f00</color>
    <color name="translucent_red">#80ff0000</color>
+   
+   <color name="grey">#808080</color>
+   <color name="grey35">#4C4646</color>
+   <color name="grey26">#34282C</color>
+   <color name="grey28">#3B3131</color>
+   <color name="grey1">#4E4E4E</color>
+   
+   <color name="midnight_blue">#151B54</color>
+   <color name="spring_green4">#347C2C</color>
+   <color name="dark_orange">#F88017</color>
+   <color name="lavender_blush4">#817679</color>
+   <color name="light_goldenrod1">#FFE87C</color>
+   <color name="salmon2">#E67451</color>
+   <color name="deep_sky_blue3">#3090C7</color>
+   <color name="grey0">#150517</color>
+   <color name="violet">#8D38C9</color>
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 </resources>

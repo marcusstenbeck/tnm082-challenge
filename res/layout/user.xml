@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@android:style/Theme.Black" >
+    android:background="@color/grey0">
 
     <TableLayout
         android:id="@+id/tableLayout1"
@@ -26,7 +26,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"/>
 
         </TableRow>
     </TableLayout>
@@ -47,6 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Accepterade Uppdrag"
+            android:textStyle="bold"
+            android:textColor="@color/dark_orange"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
     
@@ -72,6 +75,8 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="Avklarade Uppdrag"
+	            android:textStyle="bold"
+	            android:textColor="@color/dark_orange"
 	            android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	 </TableRow>
@@ -95,6 +100,8 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="Medlem i grupper"
+	            android:textStyle="bold"
+	            android:textColor="@color/dark_orange"
 	            android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	 </TableRow>
