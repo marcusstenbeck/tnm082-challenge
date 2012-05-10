@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import tnm082.challenge.Group;
 
 /**
@@ -35,6 +36,9 @@ public class GroupActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.list); //layouten designas i res/layout/main.xml
+//        final TextView flikNamn = (TextView)findViewById(R.id.flikNamn);
+//        flikNamn.setText("Grupper");
+        
 		List<Group> groupList = Group.getAllGroups(); 
 
 		ListView lv = (ListView) findViewById(R.id.listView1); 

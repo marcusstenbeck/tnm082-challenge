@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.util.Log;
 
@@ -40,7 +41,7 @@ public class FeedActivity extends ListActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.feed_overview); //design som hittas i res/layout/feed_overview.xml
+//        setContentView(R.layout.list2); //design som hittas i res/layout/feed_overview.xml
 
             
       DBHandler db = new DBHandler();
@@ -70,8 +71,7 @@ public class FeedActivity extends ListActivity{
 
 		  ListView lv = getListView();
 		  lv.setTextFilterEnabled(true);
-		 
-		  
+	  
 
 		  lv.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View view,

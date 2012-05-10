@@ -40,7 +40,7 @@ public class ChallengeActivity extends TabActivity {
 	    intent = new Intent().setClass(this, FeedActivity.class);
 
 	    // Tabb for feeden
-	    spec = tabHost.newTabSpec("Feed").setIndicator("Feed", //Titel på tabben
+	    spec = tabHost.newTabSpec("Flöde").setIndicator("Flöde", //Titel på tabben
 	                      res.getDrawable(R.drawable.tab_feed_design)) //fil som styr over loggan
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
