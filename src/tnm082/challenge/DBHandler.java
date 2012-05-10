@@ -757,7 +757,7 @@ public class DBHandler extends ListActivity{
 	
 	}
 	
-	public List<Mission> getActiveMissionsInGroup(int id){
+	public List<Mission> getMissionsInGroup(int id, String condition){
 		//Lokala metodvariabler.
 				JSONArray jArray;
 				String result = null;
@@ -766,7 +766,8 @@ public class DBHandler extends ListActivity{
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 				
 				//Textsträng som bestämmer vilken php-fil från FTP som skall användas. Skickar även med ett get-objekt för grupp-id, som kommer att hämtas och hanteras i php-filen.
-				String php_src = "http://marcusstenbeck.com/tnm082/DB-activeMissionInGroup.php?group_ID="+Integer.toString(id); //Gör dessutom om id till en textsträng.
+				String php_src = "http://marcusstenbeck.com/tnm082/DB-MissionsInGroup.php?group_ID="+Integer.toString(id)+"&cond="+condition; //Gör dessutom om id till en textsträng.
+				
 				// Skapar en http post som initierar en php-fil på servern.
 				// Php-filen gör queryn och skriver ut den hämtade datan i JSON
 				try
@@ -820,6 +821,7 @@ public class DBHandler extends ListActivity{
 						mission_id = json_data.getInt("Mission_ID");
 						mission_name = json_data.getString("Mission_name");
 						mission_desc = json_data.getString("Mission_description");
+						Log.d("ID i loop", Integer.toString(mission_id));
 						//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
 						Mission tmpMission = new Mission(mission_id, mission_name, mission_desc);
 						missionsInGroup.add(i, tmpMission);		
@@ -832,8 +834,89 @@ public class DBHandler extends ListActivity{
 					e1.printStackTrace();
 				}
 				
-				return missionsInGroup;
+			      
+			     return missionsInGroup;
 			}
-
+	
+	
+	public List<User> getUsersFromCurrentGroupWhoHasAcceptedORCompletedThisMission(int missionid, int groupid){
+		//Lokala metodvariabler.
+				JSONArray jArray;
+				String result = null;
+				InputStream is = null;
+				StringBuilder sb=null;
+				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+				
+				//Textsträng som bestämmer vilken php-fil från FTP som skall användas. Skickar även med ett get-objekt för grupp-id, som kommer att hämtas och hanteras i php-filen.
+				String php_src = "http://marcusstenbeck.com/tnm082/DB-UsersInGroupMission.php?group_ID="+Integer.toString(groupid)+"&mission_ID="+Integer.toString(missionid); //Gör dessutom om id till en textsträng.
+				
+				// Skapar en http post som initierar en php-fil på servern.
+				// Php-filen gör queryn och skriver ut den hämtade datan i JSON
+				try
+				{
+				     HttpClient httpclient = new DefaultHttpClient();
+				     HttpPost httppost = new HttpPost(php_src); //I php-filen hämas alla id'n för användare i en grupp.
+				     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				     HttpResponse response = httpclient.execute(httppost);
+				     HttpEntity entity = response.getEntity();
+				     is = entity.getContent(); //Hämatar innehållet och spar i variabeln is.
+				}catch(Exception e)
+				{
+					Log.e("log_tag", "Error in http connection"+e.toString());
+				}
+				
+				// Läser in data från php-filen och sparar som JSON
+				try
+				{
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8); //Använder is för att läsa data med bufferedreader.
+					sb = new StringBuilder();
+					sb.append(reader.readLine() + "\n");
+					
+					String line="0";
+					while ((line = reader.readLine()) != null) //Så länge som det finns data att hämta ska det sparas över i en textsträng. 
+					{
+						sb.append(line + "\n");
+					}
+					is.close(); //Stänger is.
+					result=sb.toString(); //Läser in JSON-data till en textsträng.
+				}catch(Exception e)
+				{
+					Log.e("log_tag", "Error converting result "+e.toString());
+				}
+				
+				// Skapar variabler att lagra data i.
+				int user_id;
+				String user_name;
+				
+				//Här är listan med missions som kommer att returneras.
+				List<User>  UserList = new ArrayList<User>();
+				
+				try
+				{
+					jArray = new JSONArray(result);
+					JSONObject json_data=null;
+					for(int i = 0; i < jArray.length(); i++){
+						json_data = jArray.getJSONObject(i);
+						
+						//Hämtar data från json, lagrar över detta i variabler 
+						user_id = json_data.getInt("User_ID");
+						user_name = json_data.getString("User_name");
+						
+						//Log.d("ID i loop", Integer.toString(mission_id));
+						//Skapar tillfällig uservariabel och sätter in denna i listan som skall returneras.
+						User tmpUser = new User(user_name, "pwd", user_id);
+						UserList.add(i, tmpUser);		
+					}
+				}catch(JSONException e1)
+				{
+					Toast.makeText(getBaseContext(), "No User Found" ,Toast.LENGTH_LONG).show();
+				}catch (ParseException e1) 
+				{
+					e1.printStackTrace();
+				}
+				
+			      
+			     return UserList;
+			}
 
 }

@@ -44,6 +44,15 @@ public class FeedActivity extends ListActivity{
 
             
       DBHandler db = new DBHandler();
+      List<Mission> Mtmp = db.getMissionsInGroup(2, "active");
+      
+//      for (Mission m : Mtmp)
+//      {
+//    	  Log.d("ID",Integer.toString(m.getId()));
+//    	  Log.d("Namn",m.getName());
+//      }
+      
+      
       
       final List<Mission> Mlist = db.getMissions();
 

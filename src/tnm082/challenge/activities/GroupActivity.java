@@ -42,7 +42,7 @@ public class GroupActivity extends Activity {
 
 		lv.setOnItemClickListener(new OnItemClickListener() { 
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.d("ID output:", "" + Integer.toString((int)id));
+//				Log.d("ID output:", "" + Integer.toString((int)id));
 				Intent intent = new Intent(view.getContext() , GroupUsersActivity.class);
 				intent.putExtra("id", ( (Group) parent.getItemAtPosition(position)).getId());
 				intent.putExtra("name", ( (Group) parent.getItemAtPosition(position)).getName());
