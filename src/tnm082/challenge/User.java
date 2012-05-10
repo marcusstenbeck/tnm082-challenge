@@ -35,8 +35,9 @@ public class User {
 	private int id;
 	private List<Mission> acceptedMissions, completedMissions;
 	private List<Group> JoinedGroups;
+	private static List<User> usersList;
 
-	DBHandler db = new DBHandler(); 
+	static DBHandler db = new DBHandler(); 
 	static DBHandler dbstat = new DBHandler();
 
 	
@@ -176,5 +177,11 @@ public class User {
 		JoinedGroups = db.getGroups(this);
 		return  JoinedGroups;
 	}
-
+	
+	public static List<User> getAllUsers()
+	{
+		//hamtar grupper for den aktuella anvandaren
+		usersList = db.getUsers();
+		return  usersList;
+	}
 }
