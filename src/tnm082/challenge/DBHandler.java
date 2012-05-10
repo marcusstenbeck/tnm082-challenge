@@ -757,7 +757,7 @@ public class DBHandler extends ListActivity{
 	
 	}
 	
-	public List<Mission> getActiveMissionsInGroup(int id){
+	public List<Mission> getMissionsInGroup(int id, String condition){
 		//Lokala metodvariabler.
 				JSONArray jArray;
 				String result = null;
@@ -766,7 +766,7 @@ public class DBHandler extends ListActivity{
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 				
 				//Textsträng som bestämmer vilken php-fil från FTP som skall användas. Skickar även med ett get-objekt för grupp-id, som kommer att hämtas och hanteras i php-filen.
-				String php_src = "http://marcusstenbeck.com/tnm082/DB-activeMissionInGroup.php?group_ID="+Integer.toString(id); //Gör dessutom om id till en textsträng.
+				String php_src = "http://marcusstenbeck.com/tnm082/DB-MissionsInGroup.php?group_ID="+Integer.toString(id)+"&cond="+condition; //Gör dessutom om id till en textsträng.
 				// Skapar en http post som initierar en php-fil på servern.
 				// Php-filen gör queryn och skriver ut den hämtade datan i JSON
 				try
@@ -834,6 +834,8 @@ public class DBHandler extends ListActivity{
 				
 				return missionsInGroup;
 			}
+	
+	
 
 
 }
