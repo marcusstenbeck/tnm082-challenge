@@ -679,6 +679,18 @@ public class DBHandler extends ListActivity{
 		}
 	}
 
+	
+	/**
+	 * Kodad av: HC
+	 * Task nr: 13, sprint 3
+	 * Datum: 2012-05-10
+	 * Estimerad tid: 1h
+	 * Faktisk tid:1h 
+	 * Testad/av: Nej/Ja / namn
+	 * Utcheckad/av: Ja/Nej / namn
+	 * @param User u, Group g
+	 * @return bool - Boolean om User u är admin för Group g.
+	 */
 	public boolean isAdmin(User u, Group g)
 	{
 		JSONArray jArray;
