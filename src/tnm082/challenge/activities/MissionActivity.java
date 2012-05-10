@@ -2,6 +2,8 @@ package tnm082.challenge.activities;
 
 import java.util.List;
 import tnm082.challenge.DBHandler;
+import tnm082.challenge.IntentIntegrator;
+import tnm082.challenge.IntentResult;
 import tnm082.challenge.Mission;
 import tnm082.challenge.User;
 import tnm082.challenge.R;
@@ -10,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -36,6 +39,39 @@ public class MissionActivity extends Activity {
 	
 	//Skapa en CheckBox
 	CheckBox checkDone;
+	 String barcode;
+	
+	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		 IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		 if (requestCode == 0) {
+			 if (resultCode == RESULT_OK) {
+				 //if (scanResult != null) {
+				 // handle scan result
+				 barcode = scanResult.getContents();
+				 if(Integer.parseInt(barcode) == getIntent().getExtras().getInt("mission_id")){
+					 User.dummyUser().completeMission(getIntent().getExtras().getInt("mission_id"));
+					 //sätter checkknappen "checkad" och inte ändringsbar samt acceptknappen oändringsbar
+					 checkDone.setChecked(true);
+					 checkDone.setEnabled(false);
+					 tb.setEnabled(false);
+					 Toast toast = Toast.makeText(getBaseContext(),"Uppdraget avklarat. Bra gjort!", Toast.LENGTH_LONG);
+					 toast.setGravity(Gravity.CENTER, 0, 0);
+					 toast.show();
+				 }else{
+					 checkDone.setChecked(false);
+					 Toast toast = Toast.makeText(getBaseContext(),"Tyvärr, det där var fel kod.", Toast.LENGTH_LONG);
+					 toast.setGravity(Gravity.CENTER, 0, 0);
+					 toast.show();
+				 }
+			 } else if (resultCode == RESULT_CANCELED) {
+				 // Handle cancel
+				 checkDone.setChecked(false);
+				 Toast toast = Toast.makeText(this, "Scan was Cancelled!", Toast.LENGTH_LONG);
+				 toast.setGravity(Gravity.TOP, 25, 400);
+				 toast.show();
+			 }
+		 }
+	 }
 
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -92,12 +128,10 @@ public class MissionActivity extends Activity {
         nameText.setText(contentName);
         descText.setText((mList.get(finalThisMission).getDesc()));
         
-        
       //**** Koppling mellan Done-knappen och xml **** 
       // Checkboxen ska vara unchecked om man inte har accepterat uppdraget.  
         checkDone = (CheckBox) findViewById(R.id.checkDone);
         checkDone.setEnabled(false);
-        
         
         //koppla ihop Acceptknappen med xml:en
         tb = (ToggleButton) findViewById(R.id.toggleButton1);
@@ -119,9 +153,7 @@ public class MissionActivity extends Activity {
         		//sätter acceptknappen checked och inte ändringsbar
         		tb.setChecked(true);
         		tb.setEnabled(false);
-
         	}
-        	
         }
         
 
@@ -169,6 +201,8 @@ public class MissionActivity extends Activity {
         //skapar själva objektet som skall anropas
         final AlertDialog alert = builder.create();
         
+        
+        
         checkDone.setOnClickListener(new OnClickListener()
         {
         	public void onClick(View v)
@@ -177,9 +211,9 @@ public class MissionActivity extends Activity {
         		if(checkDone.isChecked())
         		{	
         			//om man klickar för att checka i så anropa alertwindown
-        			alert.show();
+        			IntentIntegrator integrator = new IntentIntegrator(MissionActivity.this);
+        			integrator.initiateScan();	  
         		}
-        		
         	}
         });
 
