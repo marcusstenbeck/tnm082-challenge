@@ -26,6 +26,7 @@ public class Group{
 	protected List<User> userList;
 	protected List<Mission> missionsList;
 	protected static List<Group> groupsList;
+	protected List<Mission> acceptedMissions;
 
 	
 	public Group()
@@ -129,4 +130,11 @@ public class Group{
 	{		
 		return db.isAdmin(u, this);
 	}
+
+	
+	public List<Mission> getAcceptedMission(){
+		acceptedMissions = db.getActiveMissionsInGroup(id);
+		return acceptedMissions;
+	}
+
 }
