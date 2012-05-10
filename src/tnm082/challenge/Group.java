@@ -115,4 +115,18 @@ public class Group{
 		}
 		return null;
 	}
+	/**
+	 * Kodad av: HC
+	 * Task nr: 13, sprint 3
+	 * Datum: 2012-05-10
+	 * Estimerad tid: 1h
+	 * Faktisk tid: 2h
+	 * Testad/av: Nej / namn
+	 * Utcheckad/av: Ja / HC
+	 * @return Boolean - Returnerar true/false om User u är admin för gruppen.
+	 */
+	public boolean isAdmin(User u)
+	{		
+		return db.isAdmin(u, this);
+	}
 }
