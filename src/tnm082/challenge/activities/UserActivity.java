@@ -51,14 +51,10 @@ public class UserActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user); //HŠmtar layout frŒn res/layout/user.xml
         
-        DBHandler db = new DBHandler(); //Databashanterar
-        
-        //Hämtar alla users från databasen.
-        
-        List<User> users = db.getUsers();
+        //Hämtar alla users från databasen.    
+        List<User> users = User.getAllUsers();
         User tempUser = users.get(0); //Hämtar in for för temporär user, som skall vara sessionuser sen.
         
-       
         //Skriver ut användarens namn som rubrik. 
         final TextView nameText = (TextView)findViewById(R.id.textView2);
         nameText.setText(tempUser.getName());
@@ -81,11 +77,9 @@ public class UserActivity extends Activity {
 		  lv.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View view,
 		        int position, long id) {
-		    	//name
 		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
 		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
 		    	mi.putExtra("mission_id", acceptedMList.get((int)id).getId());
-		    	//mi.putExtra("mission_id", FEED[position]);
 		    	startActivity(mi);
 		    }
 		  });
@@ -106,11 +100,9 @@ public class UserActivity extends Activity {
 		  lv2.setOnItemClickListener(new OnItemClickListener() {
 		    public void onItemClick(AdapterView<?> parent, View view,
 		        int position, long id) {
-		    	//name
 		    	Intent mi = new Intent(getApplicationContext(), MissionActivity.class);
 		    	mi.setData(Uri.parse(parent.getItemAtPosition(position).toString()));
 		    	mi.putExtra("mission_id", completedMList.get((int)id).getId());
-		    	//mi.putExtra("mission_id", FEED[position]);
 		    	startActivity(mi);
 		    }
 		  });
