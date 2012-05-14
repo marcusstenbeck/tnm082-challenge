@@ -2,39 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/grey0">
+    android:background="@color/grey0"
+    android:orientation="vertical" >
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+
         <TableRow
             android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
 
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/user_selected" />
+                android:src="@drawable/prof2"/>
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold"/>
+                android:textStyle="bold" 
+                android:layout_marginLeft="20px"/>
 
         </TableRow>
+
     </TableLayout>
 
     <FrameLayout
         android:id="@+id/frameLayout1"
-        android:layout_width= "10px"
+        android:layout_width="10px"
         android:layout_height="50px" >
     </FrameLayout>
 
@@ -48,73 +49,78 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Accepterade Uppdrag"
-            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/dark_orange"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textStyle="bold" />
     </TableRow>
-    
-     <TableRow
+
+    <TableRow
         android:id="@+id/tableRow4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        
-        <!-- Lista med anvandarens uppdrag -->
-        <ListView android:id="@+id/accepted_mission_list"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
-	</TableRow>
 
-    
-	<TableRow
-	        android:id="@+id/tableRow5"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
-	
-	        <TextView
-	            android:id="@+id/textView3"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="Avklarade Uppdrag"
-	            android:textStyle="bold"
-	            android:textColor="@color/dark_orange"
-	            android:textAppearance="?android:attr/textAppearanceMedium" />
-	
-	 </TableRow>
-	     <TableRow
+        <!-- Lista med anvandarens uppdrag -->
+
+        <ListView
+            android:id="@+id/accepted_mission_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avklarade Uppdrag"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/dark_orange"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
         android:id="@+id/tableRow6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        
+
         <!-- Lista med anvandarens uppdrag -->
-        <ListView android:id="@+id/completed_mission_list"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
-	</TableRow>
-	<TableRow
-	        android:id="@+id/tableRow7"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
-	
-	        <TextView
-	            android:id="@+id/textView5"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="Medlem i grupper"
-	            android:textStyle="bold"
-	            android:textColor="@color/dark_orange"
-	            android:textAppearance="?android:attr/textAppearanceMedium" />
-	
-	 </TableRow>
-	     <TableRow
+
+        <ListView
+            android:id="@+id/completed_mission_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medlem i grupper"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/dark_orange"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
         android:id="@+id/tableRow8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        
+
         <!-- Lista med anvandarens grupper -->
-        <ListView android:id="@+id/group_list"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
-	</TableRow>    
+
+        <ListView
+            android:id="@+id/group_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
 
 </LinearLayout>
-
