@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey0"
+    android:isScrollContainer="true"
     android:orientation="vertical" >
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="match_parent"
@@ -19,18 +20,16 @@
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/prof2"/>
+                android:src="@drawable/prof2" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold" 
-                android:layout_marginLeft="20px"/>
-
+                android:textStyle="bold" />
         </TableRow>
-
     </TableLayout>
 
     <FrameLayout
@@ -59,12 +58,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <!-- Lista med anvandarens uppdrag -->
-
         <ListView
             android:id="@+id/accepted_mission_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+        </ListView>
     </TableRow>
 
     <TableRow
@@ -87,12 +85,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <!-- Lista med anvandarens uppdrag -->
-
         <ListView
             android:id="@+id/completed_mission_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+        </ListView>
     </TableRow>
 
     <TableRow
@@ -115,12 +112,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <!-- Lista med anvandarens grupper -->
-
         <ListView
             android:id="@+id/group_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+        </ListView>
     </TableRow>
 
 </LinearLayout>
