@@ -43,33 +43,30 @@ public class MissionActivity extends Activity {
 	
 	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		 IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-		 if (requestCode == 0) {
-			 if (resultCode == RESULT_OK) {
-				 //if (scanResult != null) {
-				 // handle scan result
-				 barcode = scanResult.getContents();
-				 if(Integer.parseInt(barcode) == getIntent().getExtras().getInt("mission_id")){
-					 User.dummyUser().completeMission(getIntent().getExtras().getInt("mission_id"));
-					 //sätter checkknappen "checkad" och inte ändringsbar samt acceptknappen oändringsbar
-					 checkDone.setChecked(true);
-					 checkDone.setEnabled(false);
-					 tb.setEnabled(false);
-					 Toast toast = Toast.makeText(getBaseContext(),"Uppdraget avklarat. Bra gjort!", Toast.LENGTH_LONG);
-					 toast.setGravity(Gravity.CENTER, 0, 0);
-					 toast.show();
-				 }else{
-					 checkDone.setChecked(false);
-					 Toast toast = Toast.makeText(getBaseContext(),"Tyvärr, det där var fel kod.", Toast.LENGTH_LONG);
-					 toast.setGravity(Gravity.CENTER, 0, 0);
-					 toast.show();
-				 }
-			 } else if (resultCode == RESULT_CANCELED) {
-				 // Handle cancel
-				 checkDone.setChecked(false);
-				 Toast toast = Toast.makeText(this, "Scan was Cancelled!", Toast.LENGTH_LONG);
-				 toast.setGravity(Gravity.TOP, 25, 400);
+		 if (scanResult != null) {
+			 barcode = scanResult.getContents();
+				 
+			 if(Integer.parseInt(barcode) == getIntent().getExtras().getInt("mission_id")){
+				 User.dummyUser().completeMission(getIntent().getExtras().getInt("mission_id"));
+				 //sätter checkknappen "checkad" och inte ändringsbar samt acceptknappen oändringsbar
+				 checkDone.setChecked(true);
+				 checkDone.setEnabled(false);
+				 tb.setEnabled(false);
+				 Toast toast = Toast.makeText(getBaseContext(),"Uppdraget avklarat. Bra gjort!", Toast.LENGTH_LONG);
+				 toast.setGravity(Gravity.CENTER, 0, 0);
 				 toast.show();
-			 }
+			 }else{
+				 checkDone.setChecked(false);
+				 Toast toast = Toast.makeText(getBaseContext(),"Tyvärr, det där var fel kod.", Toast.LENGTH_LONG);
+				 toast.setGravity(Gravity.CENTER, 0, 0);
+				 toast.show();
+			 } 
+		}else {
+			 // Handle cancel
+			 checkDone.setChecked(false);
+			 Toast toast = Toast.makeText(this, "Scan was Cancelled!1111", Toast.LENGTH_LONG);
+			 toast.setGravity(Gravity.TOP, 25, 400);
+			 toast.show();
 		 }
 	 }
 
